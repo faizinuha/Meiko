@@ -68,5 +68,54 @@
       "</header>"
     ],
     "description": "Navbar"
-  }
-}
+  },
+      "Blade Template": {
+          "prefix": "blade",
+              "body": [
+                    "<!DOCTYPE html>",
+                          "<html lang=\"en\">",
+                                "<head>",
+                                      "    <meta charset=\"UTF-8\">",
+                                            "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+                                                  "    <title>${1:Document}</title>",
+                                                        "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLmj+fZgjmzdIaK6YNTonFfpfP/ln9vfg+3ReJujFTsSAjjPv2cVkcKtxkp73Ehz\" crossorigin=\"anonymous\">",
+                                                              "</head>",
+                                                                    "<body>",
+                                                                          "    @extends('your-app')",
+                                                                                "    <div class=\"container\">",
+                                                                                      "        <h1>${2:Hello World}</h1>",
+                                                                                            "        @yield('content')",
+                                                                                                  "    </div>",
+                                                                                                        "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kaVey8C1/63PUL7A+QZsgdsfjfe3w/+xaC0UNuvjZflnN+4UBJ+Yh59p7zHLfZOo\" crossorigin=\"anonymous\"></script>",
+                                                                                                              "</body>",
+                                                                                                                    "</html>"
+                                                                                                                        ],
+                                                                                                                            "description": "Template dasar untuk Blade dengan ekstensi"
+                                                                                                                              },
+
+                                                                                                                                "PHP Basic": {
+                                                                                                                                    "prefix": "php",
+                                                                                                                                        "body": [
+                                                                                                                                              "<?php",
+                                                                                                                                                    "",
+                                                                                                                                                          "namespace App\\Http\\Controllers;",
+                                                                                                                                                                "",
+                                                                                                                                                                      "use Illuminate\\Http\\Request;",
+                                                                                                                                                                            "use App\\Models\\${1:ModelName};",
+                                                                                                                                                                                  "",
+                                                                                                                                                                                        "class ${1:ControllerName} extends Controller",
+                                                                                                                                                                                              "{",
+                                                                                                                                                                                                    "    public function index()",
+                                                                                                                                                                                                          "    {",
+                                                                                                                                                                                                                "        $data = ${1:ModelName}::all();",
+                                                                                                                                                                                                                      "        return view('${1:view}', compact('data'));",
+                                                                                                                                                                                                                            "    }",
+                                                                                                                                                                                                                                  "",
+                                                                                                                                                                                                                                        "    // Tambahkan method lain sesuai kebutuhan",
+                                                                                                                                                                                                                                              "}"
+                                                                                                                                                                                                                                                  ],
+                                                                                                                                                                                                                                                      "description": "Template dasar untuk Controller PHP"
+                                                                                                                                                                                                                                                        }
+                                                                                                                                                                                                                                                        }
+
+                                                                                                                                                                                                                                                      
