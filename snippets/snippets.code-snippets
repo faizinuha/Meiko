@@ -35,6 +35,7 @@
         "<body>",
         "    <h3>${2:Hello World}</h3>",
         "    <div class=\"container\">",
+        
         "    </div>",
         "</body>",
         "</html>"
@@ -42,7 +43,7 @@
       "description": "Hellow Worlds"
     },
   "HTML Header Template": {
-    "prefix": "n",
+    "prefix": "nvb",
     "body": [
       "<header>",
       "    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">",
