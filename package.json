@@ -3,9 +3,10 @@
   "displayName": "KawaiiCode",
   "description": "KawaiiCode - HTML Shortcuts for VS Code",
   "version": "0.0.1",
-  "publisher": "Zaky",
+  "id": "ZakyEvenso12",
+  "publisher": "ZakyEvenso12",
   "engines": {
-    "vscode": "^1.94.0"
+    "vscode": "^1.92.2"
   },
   "categories": [
     "Snippets"
