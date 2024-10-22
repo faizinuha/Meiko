@@ -1,0 +1,20 @@
+{
+  "name": "KawaiiCode",
+  "displayName": "KawaiiCode",
+  "description": "KawaiiCode - HTML Shortcuts for VS Code",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Snippets"
+  ],
+  "contributes": {
+    "snippets": [
+      {
+        "language": "and looking for quick integration into their projects.",
+        "path": "./snippets/snippets.code-snippets"
+      }
+    ]
+  }
+}
