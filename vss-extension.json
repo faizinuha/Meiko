@@ -3,7 +3,7 @@
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "name": "ZakyEvenso12",
- "version": "1.0.0",
+  "version": "1.0.0",
   "description": "Description of your extension",
   "tags": ["Kawaii", "coders"],
   "galleryBanner": {
@@ -18,4 +18,5 @@
   "icons": {
     "default": "Image/icons.jpeg"
   }
+ 
 }
