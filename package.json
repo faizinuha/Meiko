@@ -10,11 +10,19 @@
     "Snippets"
   ],
   "contributes": {
+    "language": "html",
     "snippets": [
       {
-        "language": "and looking for quick integration into their projects.",
+        "language": "html",
+        "path": "./snippets/snippets.code-snippets"
+      },
+      {
+        "language": "php",
         "path": "./snippets/snippets.code-snippets"
       }
     ]
-  }
+  },
+  "scripts": {
+  "test": "node ./out/test/runTest.js"
+}
 }
