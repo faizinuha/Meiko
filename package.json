@@ -3,6 +3,7 @@
   "displayName": "KawaiiCode",
   "description": "KawaiiCode - HTML Shortcuts for VS Code",
   "version": "0.0.1",
+  "publisher": "Zaky",
   "engines": {
     "vscode": "^1.94.0"
   },
@@ -24,5 +25,9 @@
   },
   "scripts": {
   "test": "node ./out/test/runTest.js"
+},
+"repository": {
+  "type": "git",
+  "url": "https://github.com/faizinuha/KawaiiCode"
 }
 }
