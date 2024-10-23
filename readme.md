@@ -1,46 +1,58 @@
-# CodersLar
+# 🌟 CodersLar
 
-**CodersLar** adalah Exstension Visual Studio Code yang mengubah pengalaman coding menjadi Lebih Mudah dan praktis Karena Exstension Ini sudah support semua template 4 Bahasa Pemograman .
+## 💖 Donasi
 
-**BY DEMO**
-
-## Fitur Utama
-- 🐾 Kalian Bisa Cek DI Bawah
-- 📩 Alasan kami buat ini untuk mudahkan pengguna krena belum aktifkan emment di dalam vsocde 
+Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimbangkan untuk berdonasi! 
 
 
 
-## Cara Menggunakan
-1. Install extension dari marketplace.
-2. Buka `vscode ` dan downloads `KawaiiCode`.
-3. Nikmati suasana coding dengan mudah dan simpel karena di lengkapi dengan shourcut mudah
+<a href="https://saweria.co/C02V">
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Ikon Donasi" width="150" />
+</a>
 
-## Screenshot
-![Tampilan Tema Kawaii](images/theme-preview.png)
+---
 
-## Catatan Rilis
-**v1.2.0** - Rilis Snippet kami!
+**CodersLar** adalah ekstensi Visual Studio Code yang dirancang untuk memudahkan pengalaman coding. Dengan dukungan untuk empat bahasa pemrograman, ekstensi ini mempercepat dan mempermudah proses penulisan kode melalui berbagai template yang telah disediakan.
 
-## Kontribusi
-Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan buat pull request atau laporkan masalah di [GitHub Repository](https://github.com/ZakyEvenso12/kawaiicode-extension).
+## 🚀 Demo Fitur Utama
 
--🔴 Next Kami akan masukan Codes Laravel Route dan Lain2 Ya
+Berikut adalah daftar fitur utama dari CodersLar:
+- 🌐 **Dukungan Multi Bahasa**: Mendukung empat bahasa pemrograman.
+- 📋 **Template Snippet**: Menyediakan berbagai template untuk mempercepat penulisan kode.
+- ⚡ **Emmet Alternatif**: Membantu pengguna yang belum mengaktifkan Emmet di Visual Studio Code.
 
-```
-```Fiturs```
-1. BS-> Docstype->Link Bosstraps New
-2. DCS-> Docstype Not Link Bosstraps
-3. Nvb-> Navbar Only Not Docstype 
-```
-```Laravel``
-```Fiturs```
-1. Bld 
-2. php -> Controller
-3.Comming soon
+## 📥 Cara Menggunakan
 
-```Java``
-```Fiturs```
-1. Javasegitinga
-2. javastar
-3. javahello
-4. javapenjumlahan
+1. **Install Ekstensi**: 
+   - Buka Marketplace Visual Studio Code.
+   - Cari dan unduh **CodersLar**.
+2. **Nikmati Pengalaman Coding**: 
+   - Gunakan berbagai shortcut yang telah disediakan untuk pengalaman coding yang lebih mudah dan simpel.
+
+## 📅 Catatan Rilis
+
+- **v1.2.0**: Rilis snippet pertama kami!
+
+## 🤝 Kontribusi
+
+Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
+- 🛠️ Buat pull request.
+- 🐞 Laporkan masalah di [GitHub Repository kami](#).
+
+## 📂 Fitur Snippets
+
+### 🏗️ HTML
+- **BS**: Doctype dengan link Bootstrap terbaru.
+- **DCS**: Doctype tanpa link Bootstrap.
+- **Nvb**: Navbar sederhana tanpa doctype.
+
+### 🛠️ Laravel
+- **Bld**: Snippet untuk Blade template.
+- **php**: Snippet untuk membuat controller di Laravel.
+- **Coming soon**: Snippet tambahan untuk Laravel (rute, middleware, dll.).
+
+### ☕ Java
+- **Javasegitinga**: Snippet segitiga di Java.
+- **Javastar**: Snippet bintang (pattern) di Java.
+- **Javahello**: Snippet program Hello World di Java.
+- **Javapenjumlahan**: Snippet penjumlahan dua angka di Java.
