@@ -41,9 +41,7 @@
     "type": "git",
     "url": "https://github.com/faizinuha/KawaiiCode"
   },
-  "icons": {
-    "default": "Image/icons1.jpeg"
-  },
+  "icon": "image/CodersLar.png",
   "keywords": [
     "html",
     "php"
