@@ -16,7 +16,7 @@
     ],
     "description": "Simple Java code to print star pattern"
   },
-  
+
   "Java Hello World": {
     "prefix": "javahello",
     "body": [
@@ -28,7 +28,7 @@
     ],
     "description": "Basic Java Hello World"
   },
-  
+
   "Java Addition Function": {
     "prefix": "javapenjumlahan",
     "body": [
@@ -44,7 +44,7 @@
     ],
     "description": "Simple addition function in Java"
   },
-  
+
   "Java Triangle Pattern": {
     "prefix": "javasegitiga",
     "body": [
