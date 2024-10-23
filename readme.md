@@ -3,8 +3,6 @@
 **Kawaii Code** adalah tema Visual Studio Code yang mengubah pengalaman coding menjadi lebih lucu dan menyenangkan dengan palet warna yang cerah dan manis.
 
 ## Fitur Utama
-- 🎨 Palet warna pastel yang menenangkan
-- 💻 Desain dark mode yang ramah di mata
 - 🐾 Kami Mengubah awalnya ! menjadi .bs | dcs | nvb | 
 - 📩 Alasan kami buat ini untuk mudahkan pengguna krena belum aktifkan emment di dalam vsocde 
 
@@ -25,3 +23,10 @@
 Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan buat pull request atau laporkan masalah di [GitHub Repository](https://github.com/ZakyEvenso12/kawaiicode-extension).
 
 -🔴 Next Kami akan masukan Codes Laravel Route dan Lain2 Ya
+
+
+```
+Snippet
+1. BS-> Docstype->Link Bosstraps New
+2. DCS-> Docstype Not Link Bosstraps
+3. Nvb-> Navbar Only Not Docstype 
