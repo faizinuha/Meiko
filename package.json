@@ -2,7 +2,7 @@
   "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar - HTML Shortcuts for VS Code",
-  "version": "1.7.0",
+  "version": "1.9.0",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": ["Kawaii", "coders"],
@@ -17,15 +17,15 @@
     "snippets": [
       {
         "language": "html",
-        "path": "./snippets/html-snippets.code-snippets"
+        "path": "./snippets/snippets.code-snippets"
       },
       {
         "language": "php",
-        "path": "./snippets/php-snippets.code-snippets"
+        "path": "./snippets/laravel-snippets.code-snippets"
       },
       {
         "language": "blade",
-        "path": "./snippets/blade-snippets.code-snippets"
+        "path": "./snippets/laravel-snippets.code-snippets"
       },
       {
         "language": "java",
