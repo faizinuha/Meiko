@@ -2,7 +2,7 @@
   "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar - HTML Shortcuts for VS Code",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": ["Kawaii", "coders"],
@@ -13,27 +13,26 @@
     "Programming Languages",
     "Snippets"
   ],
-    "contributes": {
-      "language": "html",
-      "snippets": [
-        {
-          "language": "html",
-          "path": "./snippets/snippets.code-snippets"
-        },
-        {
-          "language": "php",
-          "path": "./snippets/snippets.code-snippets"
-        },
-        {
-          "language": "blade",
-          "path": "./snippets/snippets.code-snippets"
-        },
-        {
-          "java": "java",
-          "path": "./snippets/java-snippets.code-snippets"
-        }
-      ]
-    },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "html",
+        "path": "./snippets/html-snippets.code-snippets"
+      },
+      {
+        "language": "php",
+        "path": "./snippets/php-snippets.code-snippets"
+      },
+      {
+        "language": "blade",
+        "path": "./snippets/blade-snippets.code-snippets"
+      },
+      {
+        "language": "java",
+        "path": "./snippets/java-snippets.code-snippets"
+      }
+    ]
+  },
   "scripts": {
     "test": "node ./out/test/runTest.js"
   },
@@ -41,7 +40,7 @@
     "type": "git",
     "url": "https://github.com/faizinuha/KawaiiCode"
   },
-  "icon": "image/CodersLar.png",
+  "icon": "Image/CodersLar.png",
   "keywords": [
     "html",
     "php"
