@@ -1,9 +1,11 @@
-# Kawaii Code
+# CodersLar
 
-**Kawaii Code** adalah tema Visual Studio Code yang mengubah pengalaman coding menjadi lebih lucu dan menyenangkan dengan palet warna yang cerah dan manis.
+**CodersLar** adalah Exstension Visual Studio Code yang mengubah pengalaman coding menjadi Lebih Mudah dan praktis Karena Exstension Ini sudah support semua template 4 Bahasa Pemograman .
+
+**BY DEMO**
 
 ## Fitur Utama
-- 🐾 Kami Mengubah awalnya ! menjadi .bs | dcs | nvb | 
+- 🐾 Kalian Bisa Cek DI Bawah
 - 📩 Alasan kami buat ini untuk mudahkan pengguna krena belum aktifkan emment di dalam vsocde 
 
 
@@ -24,9 +26,21 @@ Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan buat pull r
 
 -🔴 Next Kami akan masukan Codes Laravel Route dan Lain2 Ya
 
-
 ```
-Snippet
+```Fiturs```
 1. BS-> Docstype->Link Bosstraps New
 2. DCS-> Docstype Not Link Bosstraps
 3. Nvb-> Navbar Only Not Docstype 
+```
+```Laravel``
+```Fiturs```
+1. Bld 
+2. php -> Controller
+3.Comming soon
+
+```Java``
+```Fiturs```
+1. Javasegitinga
+2. javastar
+3. javahello
+4. javapenjumlahan
