@@ -1,0 +1,68 @@
+{
+  "Star Pattern in Java": {
+    "prefix": "javastar",
+    "body": [
+      "public class ${1:StarPattern} {",
+      "    public static void main(String[] args) {",
+      "        int n = ${2:5};",
+      "        for (int i = 0; i < n; i++) {",
+      "            for (int j = 0; j <= i; j++) {",
+      "                System.out.print(\"*\");",
+      "            }",
+      "            System.out.println();",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Simple Java code to print star pattern"
+  },
+  
+  "Java Hello World": {
+    "prefix": "javahello",
+    "body": [
+      "public class ${1:HelloWorld} {",
+      "    public static void main(String[] args) {",
+      "        System.out.println(\"${2:Hello, World!}\");",
+      "    }",
+      "}"
+    ],
+    "description": "Basic Java Hello World"
+  },
+  
+  "Java Addition Function": {
+    "prefix": "javapenjumlahan",
+    "body": [
+      "public class ${1:Addition} {",
+      "    public static int add(int a, int b) {",
+      "        return a + b;",
+      "    }",
+      "    public static void main(String[] args) {",
+      "        int result = add(${2:5}, ${3:10});",
+      "        System.out.println(\"Result: \" + result);",
+      "    }",
+      "}"
+    ],
+    "description": "Simple addition function in Java"
+  },
+  
+  "Java Triangle Pattern": {
+    "prefix": "javasegitiga",
+    "body": [
+      "public class ${1:TrianglePattern} {",
+      "    public static void main(String[] args) {",
+      "        int n = ${2:5};",
+      "        for (int i = 1; i <= n; i++) {",
+      "            for (int j = 1; j <= n - i; j++) {",
+      "                System.out.print(\" \");",
+      "            }",
+      "            for (int k = 1; k <= i; k++) {",
+      "                System.out.print(\"*\");",
+      "            }",
+      "            System.out.println();",
+      "        }",
+      "    }",
+      "}"
+    ],
+    "description": "Java code to print a right-aligned triangle pattern"
+  }
+}
