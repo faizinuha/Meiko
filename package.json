@@ -2,7 +2,7 @@
   "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar - HTML Shortcuts for VS Code",
-  "version": "1.9.0",
+  "version": "1.9.2",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": ["Kawaii", "coders"],
@@ -30,6 +30,10 @@
       {
         "language": "java",
         "path": "./snippets/java-snippets.code-snippets"
+      },
+      {
+        "language": "vue",
+        "path": "./snippets/vue-snippets.code-snippets"
       }
     ]
   },

@@ -74,3 +74,6 @@ Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
 - **Javahello**: Snippet program Hello World di Java.
 - **Javapenjumlahan**: Snippet penjumlahan dua angka di Java.
 - **Coming soon**: Build Calculator 2.5.4
+
+### 🛠️ Vue
+- **Learn**:
