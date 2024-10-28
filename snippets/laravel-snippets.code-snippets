@@ -91,33 +91,47 @@
       ],
       "description": "Basic CRUD template for PHP Controller"
     },
-    
-  "Route Resource Split": {
-    "prefix": "RouteRs",
+    "Resource Route": {
+    "prefix": "ResourceRoute",
     "body": [
-      "",
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Standard resource routes",
-      "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');",
-      "",
-      "// Routes for resource controller with split CRUD methods",
-      "Route::get('/${1:ResourceName}', '${2:ResourceName}Controller@index')->name('${1}.index');",
-      "Route::get('/${1:ResourceName}/create', '${2:ResourceName}Controller@create')->name('${1}.create');",
-      "Route::post('/${1:ResourceName}', '${2:ResourceName}Controller@store')->name('${1}.store');",
-      "Route::get('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@show')->name('${1}.show');",
-      "Route::get('/${1:ResourceName}/{id}/edit', '${2:ResourceName}Controller@edit')->name('${1}.edit');",
-      "Route::put('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@update')->name('${1}.update');",
-      "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');",
-      "",
-      "// Routes with auth, verified, and admin role middleware",
-      "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
-      "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
-      "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
-      "});"
+        "use Illuminate\\Support\\Facades\\Route;",
+        "",
+        "// Standard resource routes",
+        "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');"
     ],
-    "description": "Simpel Route"
-  },
+    "description": "Simpel Resource Route"
+},
+
+"Split CRUD Routes": {
+    "prefix": "SplitCRUD",
+    "body": [
+        "use Illuminate\\Support\\Facades\\Route;",
+        "",
+        "// Split CRUD methods for resource controller",
+        "Route::get('/${1:ResourceName}', '${2:ResourceName}Controller@index')->name('${1}.index');",
+        "Route::get('/${1:ResourceName}/create', '${2:ResourceName}Controller@create')->name('${1}.create');",
+        "Route::post('/${1:ResourceName}', '${2:ResourceName}Controller@store')->name('${1}.store');",
+        "Route::get('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@show')->name('${1}.show');",
+        "Route::get('/${1:ResourceName}/{id}/edit', '${2:ResourceName}Controller@edit')->name('${1}.edit');",
+        "Route::put('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@update')->name('${1}.update');",
+        "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');"
+    ],
+    "description": "Split CRUD Routes"
+},
+"Middleware Route": {
+    "prefix": "MiddlewareRoute",
+    "body": [
+        "use Illuminate\\Support\\Facades\\Route;",
+        "",
+        "// Admin routes with auth, verified, and admin role middleware",
+        "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
+        "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
+        "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
+        "});"
+    ],
+    "description": "Simpel Middleware Route"
+},
+
 
   "Basic Route": {
     "prefix": "route",

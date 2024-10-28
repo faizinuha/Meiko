@@ -50,6 +50,6 @@
         "  <button @click=\"increment\">Count is: {{ count }}</button>",
         "</template>"
       ],
-      "description": "Snippet Vue 3 sederhana untuk counter menggunakan ref dan onMounted lifecycle hook."
+      "description": "Snippet Vue 3 sederhana untuk counter."
     }
 }
