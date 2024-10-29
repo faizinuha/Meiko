@@ -30,6 +30,10 @@
       {
         "language": "javascript",
         "path": "./snippets/vue-snippets.code-snippets"
+      },
+      {
+        "language": "javascript",
+        "path": "./snippets/javascript-snippets.code-snippets"
       }
     ]
   },
