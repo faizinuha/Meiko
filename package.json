@@ -7,7 +7,7 @@
   "publisher": "ZakyEvenso12",
   "tags": ["Kawaii", "coders"],
   "engines": {
-    "vscode": "^1.92.2"
+    "vscode": "^1.9.2"
   },
   "categories": [
     "Programming Languages",
@@ -24,15 +24,11 @@
         "path": "./snippets/laravel-snippets.code-snippets"
       },
       {
-        "language": "blade",
-        "path": "./snippets/laravel-snippets.code-snippets"
-      },
-      {
         "language": "java",
         "path": "./snippets/java-snippets.code-snippets"
       },
       {
-        "language": "vue",
+        "language": "javascript",
         "path": "./snippets/vue-snippets.code-snippets"
       }
     ]
