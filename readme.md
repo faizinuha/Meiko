@@ -40,8 +40,13 @@ Berikut adalah daftar fitur utama dari CodersLar:
 - **v1.7.0**: Pembaruan dokumentasi dan penambahan contoh penggunaan snippet.
 - **v1.8.0**: Penambahan fitur Emmet alternatif untuk pengguna yang belum mengaktifkan Emmet.
 - **v1.9.0**: Peningkatan antarmuka pengguna dan perbaikan bug.
-- **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman.
+- **v1.9.1**: Update version Tambahan Route laravel dan new vue/Javascript Basic
+- **v1.9.2**: update fixed bug changed Readme Document
+- **v1.9.3**: update new vue/Javascript Basic version 
 
+
+## 🛠️ New Update And Topic
+- - **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman. 
 ## 🤝 Kontribusi
 
 Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
