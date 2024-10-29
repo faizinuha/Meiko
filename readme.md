@@ -56,16 +56,36 @@ Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
 - **BS**: Doctype dengan link Bootstrap terbaru.
 - **DCS**: Doctype tanpa link Bootstrap.
 - **Nvb**: Navbar sederhana tanpa doctype.
+# Laravel Snippets
 
-### 🛠️ Laravel
+Kumpulan snippet untuk mempercepat pengembangan aplikasi Laravel. Snippet ini dirancang untuk digunakan dalam editor yang mendukung snippet, seperti Visual Studio Code.
+
+### 🛠️ Laravel Snippets
 
 - **Bld**: Snippet untuk Blade template.
 - **php**: Snippet untuk membuat controller di Laravel.
-- **RouteRs**: Route Allocation Resource Template and Route
-- Allocation Middleware
-- **route**: Route Basic
-- **forelse**: forelse laravel Blade
-- **foreach**: foreach Laravel blade
+- **ResourceRoute**: Snippet untuk membuat route resource.
+- **SplitCRUD**: Snippet untuk mendefinisikan route CRUD secara terpisah.
+- **MiddlewareRoute**: Snippet untuk mendefinisikan route dengan middleware.
+- **route**: Snippet untuk mendefinisikan route dasar.
+- **forelse**: Snippet untuk menggunakan `forelse` dalam Blade.
+- **foreach**: Snippet untuk menggunakan `foreach` dalam Blade.
+- **Query**: Snippet untuk menggunakan query dasar dalam Laravel.
+
+**fungsiquerylaravel** 
+- Fungsi query dalam Laravel adalah untuk mengakses dan memanipulasi data yang tersimpan di dalam database. Query dalam Laravel dapat dilakukan dengan menggunakan fitur-fitur berikut:
+- Query Builder
+Fitur ini menyediakan klausa kondisional seperti when, orWhere, dan orWhereRaw yang dapat ditambahkan ke kueri berdasarkan kondisi tertentu. 
+- Eloquent
+Fitur ini merupakan Object-Relational-Mapping (ORM) yang menyediakan fungsi-fungsi query SQL untuk mengelola data database. Eloquent juga menyediakan Object-Oriented Approach untuk menambah, memperbarui, dan menghapus data
+
+## Cara Menggunakan
+
+1. Salin snippet yang diinginkan.
+2. Tempelkan ke dalam file yang sesuai di proyek Laravel Anda.
+3. Sesuaikan parameter yang diperlukan sesuai kebutuhan aplikasi Anda.
+
+Semoga snippet ini membantu dalam pengembangan aplikasi Laravel Anda!
 
 ### ☕ Java
 
