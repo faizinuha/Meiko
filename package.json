@@ -2,12 +2,12 @@
   "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar - HTML Shortcuts for VS Code",
-  "version": "1.9.2",
+  "version": "1.9.3",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": ["Kawaii", "coders"],
   "engines": {
-    "vscode": "^1.9.3"
+    "vscode": "^1.9.1"
   },
   "categories": [
     "Programming Languages",
@@ -47,7 +47,10 @@
   "icon": "Image/CodersLar.png",
   "keywords": [
     "html",
-    "php"
+    "php",
+    "laravel",
+    "javascript",
+    "Vue"
   ],
   "author": "Zaky Evenso",
   "license": "MIT"
