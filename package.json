@@ -1,13 +1,16 @@
 {
-  "name": "KawaiiCode",
+  "name": "CodersLar",
   "displayName": "CodersLar",
   "description": "CodersLar - HTML Shortcuts for VS Code",
   "version": "1.9.3",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
-  "tags": ["Kawaii", "coders"],
+  "tags": [
+    "Kawaii",
+    "coders"
+  ],
   "engines": {
-    "vscode": "^1.9.1"
+    "vscode": "^1.9.4"
   },
   "categories": [
     "Programming Languages",
@@ -35,7 +38,24 @@
         "language": "javascript",
         "path": "./snippets/javascript-snippets.code-snippets"
       }
-    ]
+    ],
+    "contributes": {
+      "commands": [
+        {
+          "command": "extension.formatWithCustomFormatter",
+          "title": "Format with Custom Formatter"
+        }
+      ],
+      "menus": {
+        "editor/context": [
+          {
+            "command": "extension.formatWithCustomFormatter",
+            "when": "editorLangId == javascript",
+            "group": "navigation"
+          }
+        ]
+      }
+    }
   },
   "scripts": {
     "test": "node ./out/test/runTest.js"
@@ -53,5 +73,10 @@
     "Vue"
   ],
   "author": "Zaky Evenso",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.8.4",
+    "@types/vscode": "^1.95.0",
+    "prettier": "^3.3.3"
+  }
 }
