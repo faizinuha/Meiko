@@ -68,5 +68,81 @@
       "</header>"
     ],
     "description": "Navbar"
-  }
+  },
+
+  "HTML Table": {
+    "prefix": "tbl",
+    "body": [
+      "<table>",
+      "    <thead>",
+      "        <tr>",
+      "            <th>${1:Header 1}</th>",
+      "            <th>${2:Header 2}</th>",
+      "        </tr>",
+      "    </thead>",
+      "    <tbody>",
+      "        <tr>",
+      "            <td>${4:Data 1}</td>",
+      "            <td>${5:Data 2}</td>",
+      "        </tr>",
+      "    </tbody>",
+      "</table>"
+    ],
+    "description": "Create a basic HTML table"
+  },
+
+  "HTML Footer": {
+    "prefix": "foot",
+    "body": [
+        "<footer>",
+        "    <p>&copy; ${1:Year} ${2:Your Company}. All rights reserved.</p>",
+        "</footer>"
+    ],
+    "description": "Insert a footer element"
+  },
+
+  "HTML List": {
+    "prefix": "list",
+    "body": [
+      "<ul>",
+        "<li>${1:Item 1}</li>",
+        "<li>${1:Item 2}</li>",
+        "<li>${1:Item 3}</li>",
+      "</ul>"
+    ],
+    "description": "Insert an unordered list"
+  },
+
+  "HTML Image": {
+        "prefix": "image",
+        "body": [
+            "<img src=\"${1:path/to}\" alt=\"${2:Image description}\" />"
+        ],
+        "description": "Insert an image"
+    },
+
+    "HTML Form": {
+        "prefix": "htmlForm",
+        "body": [
+            "<form action=\"${1:/submit}\" method=\"${2:post}\">",
+            "    <label for=\"${3:inputId}\">${4:Label}</label>",
+            "    <input type=\"${5:text}\" id=\"${3:inputId}\" name=\"${6:name}\">",
+            "    <button type=\"submit\">${7:Submit}</button>",
+            "</form>"
+        ],
+        "description": "Insert a basic form"
+    },
+
+  "HTML Detail and Summary": {
+    "prefix": "htmlDetail",
+    "body": [
+      "<details>",
+      "    <summary>${1:Title}</summary>",
+      "    <p>${2:This is the detailed content that appears when you click the title.}</p>",
+      "</details>"
+    ],
+    "description": "Create a details element with summary"
+  },
+
+
 }
