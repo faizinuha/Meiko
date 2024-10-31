@@ -1,11 +1,11 @@
-import * as vscode from "vscode";
-import * as prettier from "prettier";
+const vscode = require("vscode");
+const prettier = require("prettier");
 const formatterConfig = require("./formatter.json");
 
-export function activate(context: vscode.ExtensionContext) {
-  // Daftarkan dan langsung push command ke context.subscriptions
+function activate(context) {
+  // Register command and push it directly to context.subscriptions
   const disposable = vscode.commands.registerCommand(
-    "extension.formatWithCustomFormatter",
+    'extension.formatWithCustomFormatter',
     async () => {
       vscode.window.showInformationMessage("Command is working!");
       const editor = vscode.window.activeTextEditor;
@@ -14,13 +14,19 @@ export function activate(context: vscode.ExtensionContext) {
         const unformattedText = document.getText();
 
         try {
-          // Format teks menggunakan Prettier
+          // Check if the text is empty before formatting
+          if (unformattedText.trim() === "") {
+            vscode.window.showErrorMessage("Document is empty. Nothing to format.");
+            return;
+          }
+
+          // Format text using Prettier
           const formattedText = await prettier.format(unformattedText, {
             ...formatterConfig,
-            parser: "babel",
+            parser: document.languageId === "javascript" ? "babel" : "html"
           });
 
-          // Ganti teks di editor
+          // Replace text in the editor
           editor.edit((editBuilder) => {
             const firstLine = document.lineAt(0);
             const lastLine = document.lineAt(document.lineCount - 1);
@@ -31,7 +37,7 @@ export function activate(context: vscode.ExtensionContext) {
 
             editBuilder.replace(textRange, formattedText);
           });
-        } catch (error: any) {
+        } catch (error) {
           vscode.window.showErrorMessage(`Formatting failed: ${error.message}`);
         }
       }
@@ -40,3 +46,7 @@ export function activate(context: vscode.ExtensionContext) {
 
   context.subscriptions.push(disposable);
 }
+
+module.exports = {
+  activate
+};

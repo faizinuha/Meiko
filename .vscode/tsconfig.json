@@ -11,6 +11,6 @@
     "skipLibCheck": true
   },
   "exclude": ["node_modules"],
-  "main": "exstension.ts",
+  "main": "exstension.js",
   "include": ["src/**/*.ts"],
 } 

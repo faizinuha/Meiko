@@ -52,6 +52,12 @@
           "when": "editorLangId == javascript",
           "group": "navigation"
         }
+      ],
+      "commandPalette": [
+        {
+          "command": "extension.formatWithCustomFormatter",
+          "title": "Format Liners"
+        }
       ]
     }
   },
