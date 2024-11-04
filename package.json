@@ -37,6 +37,10 @@
       {
         "language": "javascript",
         "path": "./snippets/javascript-snippets.code-snippets"
+      },
+      {
+        "language": "react",
+        "path": "./React/ReactNative-snippets.code-snippets"
       }
     ]
   },

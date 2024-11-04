@@ -1,0 +1,157 @@
+{
+  "React Native Basic Component": {
+    "prefix": "rnBasic",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text } from 'react-native';",
+      "",
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>",
+      "      <Text>${2:Hello, React Native!}</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "Basic React Native functional component"
+  },
+  "React Native Button Component": {
+    "prefix": "rnButton",
+    "body": [
+      "import React from 'react';",
+      "import { View, Button } from 'react-native';",
+      "",
+      "const ${1:ButtonComponent} = () => {",
+      "  return (",
+      "    <View style={{ margin: 10 }}>",
+      "      <Button",
+      "        title=\"${2:Press Me}\"",
+      "        onPress={() => alert('${3:Button Pressed!}')}",
+      "      />",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ButtonComponent};"
+    ],
+    "description": "React Native component with a Button"
+  },
+  "React Native ScrollView Component": {
+    "prefix": "rnScrollView",
+    "body": [
+      "import React from 'react';",
+      "import { ScrollView, Text } from 'react-native';",
+      "",
+      "const ${1:ScrollViewComponent} = () => {",
+      "  return (",
+      "    <ScrollView style={{ padding: 10 }}>",
+      "      <Text>${2:Scroll down to see more...}</Text>",
+      "      <Text>${3:Content 1}</Text>",
+      "      <Text>${4:Content 2}</Text>",
+      "      <Text>${5:Content 3}</Text>",
+      "    </ScrollView>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ScrollViewComponent};"
+    ],
+    "description": "React Native component with a ScrollView"
+  },
+  "React Native FlatList Component": {
+    "prefix": "rnFlatList",
+    "body": [
+      "import React from 'react';",
+      "import { View, FlatList, Text } from 'react-native';",
+      "",
+      "const ${1:FlatListComponent} = () => {",
+      "  const data = [",
+      "    { id: '1', title: '${2:Item 1}' },",
+      "    { id: '2', title: '${3:Item 2}' },",
+      "    { id: '3', title: '${4:Item 3}' }",
+      "  ];",
+      "",
+      "  return (",
+      "    <FlatList",
+      "      data={data}",
+      "      keyExtractor={(item) => item.id}",
+      "      renderItem={({ item }) => <Text style={{ padding: 10 }}>{item.title}</Text>}",
+      "    />",
+      "  );",
+      "};",
+      "",
+      "export default ${1:FlatListComponent};"
+    ],
+    "description": "React Native component with a FlatList"
+  },
+  "React Native Image Component": {
+    "prefix": "rnImage",
+    "body": [
+      "import React from 'react';",
+      "import { View, Image } from 'react-native';",
+      "",
+      "const ${1:ImageComponent} = () => {",
+      "  return (",
+      "    <View style={{ alignItems: 'center', marginTop: 20 }}>",
+      "      <Image",
+      "        source={{ uri: '${2:https://example.com/image.jpg}' }}",
+      "        style={{ width: 200, height: 200 }}",
+      "      />",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:ImageComponent};"
+    ],
+    "description": "React Native component with an Image"
+  },
+  "React Native TextInput Component": {
+    "prefix": "rnTextInput",
+    "body": [
+      "import React, { useState } from 'react';",
+      "import { View, TextInput, Text } from 'react-native';",
+      "",
+      "const ${1:TextInputComponent} = () => {",
+      "  const [text, setText] = useState('');",
+      "",
+      "  return (",
+      "    <View style={{ padding: 10 }}>",
+      "      <TextInput",
+      "        placeholder=\"${2:Type here}\"",
+      "        value={text}",
+      "        onChangeText={setText}",
+      "        style={{ borderWidth: 1, borderColor: 'gray', padding: 5 }}",
+      "      />",
+      "      <Text>${3:You typed:} {text}</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "export default ${1:TextInputComponent};"
+    ],
+    "description": "React Native component with a TextInput"
+  },
+  "react ccc short": {
+    "prefix": "cccc",
+    "body": [
+      "import React from 'react';",
+      "",
+      "class ${1:TextInputComponent} extends React.Component {",
+      "    render() {",
+      "        return (",
+      "         <TextInput",
+      "        placeholder=\"${2:Type here}\"",
+      "        value={text}",
+      "        onChangeText={setText}",
+      "        style={{ borderWidth: 1, borderColor: 'gray', padding: 5 }}",
+      "      />",
+      "        );",
+      "    }",
+      "}",
+      "",
+      "export default ${1:TextInputComponent};"
+    ],
+    "description": "Create a React class component with default export"
+  }
+}
