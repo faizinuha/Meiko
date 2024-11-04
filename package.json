@@ -38,28 +38,7 @@
         "language": "javascript",
         "path": "./snippets/javascript-snippets.code-snippets"
       }
-    ],
-    "commands": [
-      {
-        "command": "extension.formatWithCustomFormatter",
-        "title": "Format Liners"
-      }
-    ],
-    "menus": {
-      "editor/context": [
-        {
-          "command": "extension.formatWithCustomFormatter",
-          "when": "editorLangId == javascript",
-          "group": "navigation"
-        }
-      ],
-      "commandPalette": [
-        {
-          "command": "extension.formatWithCustomFormatter",
-          "title": "Format Liners"
-        }
-      ]
-    }
+    ]
   },
   "scripts": {
     "test": "node ./out/test/runTest.js"
