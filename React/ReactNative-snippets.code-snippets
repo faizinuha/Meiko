@@ -153,5 +153,54 @@
       "export default ${1:TextInputComponent};"
     ],
     "description": "Create a React class component with default export"
-  }
+  },
+
+  "React Native Functional Component": {
+    "prefix": "rnfc",
+    "body": [
+      "import React from 'react';",
+      "import { View, Text, StyleSheet } from 'react-native';",
+      "",
+      "const ${1:ComponentName} = () => {",
+      "  return (",
+      "    <View style={styles.container}>",
+      "      <Text>${2:Hello, world!}</Text>",
+      "    </View>",
+      "  );",
+      "};",
+      "",
+      "const styles = StyleSheet.create({",
+      "  container: {",
+      "    flex: 1,",
+      "    justifyContent: 'center',",
+      "    alignItems: 'center'",
+      "  }",
+      "});",
+      "",
+      "export default ${1:ComponentName};"
+    ],
+    "description": "Create a React Native functional component"
+  },
+  "React Native Index": {
+    "prefix": "rni",
+    "body": [
+      "import { AppRegistry } from 'react-native';",
+      "import App from './App';",
+      "import { name as appName } from './app.json';",
+      "",
+      "AppRegistry.registerComponent(appName, () => App);"
+    ],
+    "description": "Set up index file for React Native application"
+  },
+  "Import React Native Element": {
+    "prefix": "ime",
+    "body": ["import { ${1:ComponentName} } from 'react-native-elements';"],
+    "description": "Import React Native Element component"
+  },
+  "Import React": {
+    "prefix": "imr",
+    "body": ["import React from 'react';"],
+    "description": "Import React"
+  },
+
 }
