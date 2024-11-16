@@ -3,6 +3,14 @@
 const fs = require("fs");
 const path = require("path");
 
+const deleteprogress = new CliProgress.SigleBar({
+  format: "progress | {bar} | {percentage)%",
+  barCompleteChar: "\u2588",
+  barIncompleteChar: "\u2591",
+  hideCursor: true,
+  clearOnComplete: true,
+});
+
 function deleteSolidStructure(basePath) {
   const directories = [
     "app",
@@ -13,7 +21,8 @@ function deleteSolidStructure(basePath) {
     "app/Interfaces",
     "app/Http/Requests"
   ];
-
+  // Mulai progress bar
+  progressBar.start(directories.length, 0);
   const files = [
     "app/Entities/ExampleEntity.php",
     "app/Repositories/ExampleRepository.php",
@@ -50,7 +59,9 @@ function deleteSolidStructure(basePath) {
     }
   });
 
-  console.log("Cleanup completed. Only specified files and folders were deleted.");
+  console.log(
+    "Cleanup completed. Only specified files and folders were deleted."
+  );
 }
 
 const basePath = process.cwd();

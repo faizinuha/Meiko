@@ -4,20 +4,22 @@
   "description": "CodersLar -  Shortcuts for VS Code",
   "bin": {
     "coders": "./cli/coders-solid.js",
-    "coders-delete": "./cli/delete-solid.js"
+    "coders-delete": "./cli/delete-solid.js",
+    "code-info": "./cli/info-solid.js"
   },
   "version": "2.0.0",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": [
-    "Kawaii",
-    "coders"
+    "codersLar",
+    "codersHtml"
   ],
   "engines": {
     "vscode": "^1.9.4"
   },
   "categories": [
     "Programming Languages",
+    "AI",
     "Snippets"
   ],
   "contributes": {
@@ -43,7 +45,7 @@
         "path": "./snippets/javascript-snippets.code-snippets"
       },
       {
-        "language": "react",
+        "language": "javascript",
         "path": "./React/ReactNative-snippets.code-snippets"
       }
     ]
@@ -69,5 +71,9 @@
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
     "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "cli-progress": "^3.12.0",
+    "ora": "^8.1.1"
   }
 }
