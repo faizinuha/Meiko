@@ -10,7 +10,8 @@ function deleteSolidStructure(basePath) {
     "app/Repositories",
     "app/Services",
     "app/Controllers",
-    "app/Interfaces"
+    "app/Interfaces",
+    "app/Http/Requests"
   ];
 
   const files = [
@@ -18,7 +19,8 @@ function deleteSolidStructure(basePath) {
     "app/Repositories/ExampleRepository.php",
     "app/Services/ExampleService.php",
     "app/Controllers/ExampleController.php",
-    "app/Interfaces/RepositoryInterface.php"
+    "app/Interfaces/RepositoryInterface.php",
+    "app/Http/Requests/ExampleRequest.php"
   ];
 
   // Hapus file
