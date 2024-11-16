@@ -29,26 +29,30 @@ Berikut adalah daftar fitur utama dari CodersLar:
    - Gunakan berbagai shortcut yang telah disediakan untuk pengalaman coding yang lebih mudah dan simpel.
 
 ## 📅 Catatan Rilis
-
-- **v1.0.0**: Rilis awal **CodersLar** dengan fitur dasar.
+- **v1.0.0**: Rilis awal dengan fitur dasar.
 - **v1.1.0**: Penambahan dukungan untuk snippet HTML dan perbaikan bug kecil.
 - **v1.2.0**: Rilis snippet pertama untuk Laravel, termasuk template Blade.
 - **v1.3.0**: Penambahan snippet untuk Java, termasuk Hello World dan struktur dasar.
 - **v1.4.0**: Peningkatan performa dan penambahan template untuk model Laravel.
 - **v1.5.0**: Penambahan snippet untuk rute Laravel dan middleware.
-- **v1.6.0**: Penambahan dukungan untuk snippet laravel.
+- **v1.6.0**: Penambahan dukungan untuk snippet Laravel.
 - **v1.7.0**: Pembaruan dokumentasi dan penambahan contoh penggunaan snippet.
 - **v1.8.0**: Penambahan fitur Emmet alternatif untuk pengguna yang belum mengaktifkan Emmet.
 - **v1.9.0**: Peningkatan antarmuka pengguna dan perbaikan bug.
-- **v1.9.1**: Update version Tambahan Route laravel dan new vue/Javascript Basic
-- **v1.9.2**: update fixed bug changed Readme Document
-- **v1.9.3**: update new vue/Javascript Basic version 
-
-
+- **v1.9.1**: Pembaruan tambahan Route Laravel dan snippet dasar Vue/Javascript baru.
+- **v1.9.2**: Perbaikan bug dan perubahan pada dokumen Readme.
+- **v1.9.3**: Pembaruan versi baru untuk snippet Vue/Javascript.
+- **v1.9.4**: Tidak ada pembaruan.
+- **v1.9.5**: Tidak ada pembaruan.
+- **v1.9.6**: Penambahan perbaikan bug untuk React Reset2.
+- **v1.9.7**: Penambahan snippet untuk React.
+- **v1.9.8**: Penambahan perbaikan bug.
+- **v1.9.9**: Penambahan perbaikan bug untuk React Reset2.
+- **Catatan 1.9.4,1.9.5,**: Tidak ada Pembaruan
+ 
 ## 🛠️ New Update And Topic
 - - **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman. 
 ## 🤝 Kontribusi
-
 Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ Buat pull request.
@@ -101,4 +105,4 @@ Semoga snippet ini membantu dalam pengembangan aplikasi Laravel Anda!
 - **Coming soon**: Build Calculator 2.5.4
 
 ### 🛠️ Vue
-- **Learn**:
+- **Cooming Soon**:

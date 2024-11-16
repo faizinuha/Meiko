@@ -10,7 +10,7 @@
     "coders"
   ],
   "engines": {
-    "vscode": "^1.9.4"
+   "vscode": "^1.95.0"
   },
   "categories": [
     "Programming Languages",
