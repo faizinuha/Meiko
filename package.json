@@ -2,11 +2,7 @@
   "name": "CodersLar",
   "displayName": "CodersLar",
   "description": "CodersLar -  Shortcuts for VS Code",
-  "bin": {
-    "coders": "./cli/coders-solid.js",
-    "coders-delete": "./cli/delete-solid.js"
-  },
-  "version": "1.9.3",
+  "version": "1.9.6",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": [
