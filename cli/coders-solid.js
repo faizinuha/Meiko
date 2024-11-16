@@ -9,7 +9,8 @@ function createSolidStructure(basePath) {
     "app/Repositories",
     "app/Services",
     "app/Controllers",
-    "app/Interfaces"
+    "app/Interfaces",
+    "app/Http/Requests" 
   ];
 
   // Membuat folder sesuai struktur SOLID
@@ -67,6 +68,15 @@ class ExampleRepository {
         // Logika mendapatkan data dari database.
         return new ExampleEntity($id, "Example Name");
     }
+
+     public function findAll() {
+        // Logika untuk mengambil semua entitas, bisa berupa array atau query database
+        return [
+            new ExampleEntity(1, "Entity One"),
+            new ExampleEntity(2, "Entity Two"),
+            new ExampleEntity(3, "Entity Three")
+        ];
+    }
 }
 `
     },
@@ -90,6 +100,10 @@ class ExampleService {
     public function getEntityById($id) {
         return $this->repository->findById($id);
     }
+
+    public function getAllEntities() {
+        return $this->repository->findAll();
+    }
 }
 `
     },
@@ -99,6 +113,7 @@ class ExampleService {
 namespace App\\Controllers;
 
 use App\\Services\\ExampleService;
+use App\\Http\\Requests\\ExampleRequest;
 
 /**
  * Contoh Controller.
@@ -110,8 +125,18 @@ class ExampleController {
         $this->service = $service;
     }
 
-    public function show($id) {
-        $entity = $this->service->getEntityById($id);
+    public function index() {
+        // Mendapatkan semua entitas dari service
+        $entities = $this->service->getAllEntities();
+
+        return json_encode($entities);
+    }
+
+    public function show(ExampleRequest $request) {
+        // Mendapatkan ID yang divalidasi
+        $validated = $request->validated();
+        $entity = $this->service->getEntityById($validated['id']);
+        
         return json_encode([
             'id' => $entity->getId(),
             'name' => $entity->getName()
@@ -130,6 +155,41 @@ namespace App\\Interfaces;
  */
 interface RepositoryInterface {
     public function findById($id);
+}
+`
+    },
+    {
+      path: "app/Http/Requests/ExampleRequest.php", // Menambahkan file request validation
+      content: `<?php
+
+namespace App\Http\Requests;
+
+use Illuminate\Foundation\Http\FormRequest;
+
+class ExampleRequest extends FormRequest
+{
+    /**
+     * Menentukan apakah pengguna berwenang untuk membuat permintaan ini.
+     *
+     * @return bool
+     */
+    public function authorize()
+    {
+        return true;
+    }
+
+    /**
+     * Mendapatkan aturan validasi yang berlaku untuk permintaan ini.
+     *
+     * @return array
+     */
+    public function rules()
+    {
+        return [
+            'id' => 'required|integer|exists:entities,id', // Validasi ID
+            'name' => 'required|string|max:255', // Validasi nama
+        ];
+    }
 }
 `
     }
