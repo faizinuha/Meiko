@@ -6,11 +6,10 @@ const cliProgress = require("cli-progress");
 
 // Membuat progress bar
 const progressBar = new cliProgress.SingleBar({
-  format: 'Progress | {bar} | {percentage}%',
-  barCompleteChar: '\u2588', // Karakter bar penuh
-  barIncompleteChar: '\u2591', // Karakter bar kosong
-  hideCursor: true,
-  clearOnComplete:true
+  format: '📂 Progress | {bar} | {percentage}% | {value}/{total} directories',
+  barCompleteChar: '\u2588',
+  barIncompleteChar: '\u2591',
+  hideCursor: true
 });
 
 // Fungsi untuk membuat struktur SOLID
@@ -21,22 +20,24 @@ function createSolidStructure(basePath) {
     "app/Services",
     "app/Controllers",
     "app/Interfaces",
-    "app/Http/Requests" 
+    "app/Http/Requests"
   ];
 
+  console.log("🚀 Starting to create SOLID folder structure...\n");
+  
   // Mulai progress bar
   progressBar.start(directories.length, 0);
 
   directories.forEach((dir, index) => {
     const dirPath = path.join(basePath, dir);
 
-    // Simulasi delay untuk memperlihatkan loading bar (0.5 detik per folder)
+    // Simulasi delay untuk memperlihatkan loading bar
     setTimeout(() => {
       if (!fs.existsSync(dirPath)) {
         fs.mkdirSync(dirPath, { recursive: true });
-        console.log(`Created folder: ${dirPath}`);
+        console.log(`✅ Folder created: ${dirPath}`);
       } else {
-        console.log(`Folder already exists: ${dirPath}`);
+        console.log(`📁 Folder already exists: ${dirPath}`);
       }
 
       // Update progress bar
@@ -45,7 +46,7 @@ function createSolidStructure(basePath) {
       // Hentikan progress bar setelah selesai
       if (index === directories.length - 1) {
         progressBar.stop();
-        console.log("SOLID structure has been created successfully.");
+        console.log("\n✅ SOLID folder structure has been created successfully!\n");
 
         // Membuat file PHP sesuai prinsip SOLID
         createSolidFiles(basePath);
@@ -72,7 +73,7 @@ class ExampleEntity {
 
     public function __construct($id, $name) {
         $this->id = $id;
-        $this->name = $name;
+        this->name = $name;
     }
 
     public function getId() {
@@ -98,16 +99,13 @@ use App\\Entities\\ExampleEntity;
  */
 class ExampleRepository {
     public function findById($id) {
-        // Contoh mendapatkan data dari database
         return new ExampleEntity($id, "Example Name");
     }
 
-     public function findAll() {
-        // Logika untuk mengambil semua entitas, bisa berupa array atau query database
+    public function findAll() {
         return [
             new ExampleEntity(1, "Entity One"),
-            new ExampleEntity(2, "Entity Two"),
-            new ExampleEntity(3, "Entity Three")
+            new ExampleEntity(2, "Entity Two")
         ];
     }
 }
@@ -122,7 +120,6 @@ use App\\Repositories\\ExampleRepository;
 
 /**
  * Interface Segregation Principle (ISP).
- * Service ini memproses data dan memisahkan tanggung jawab dengan Repository.
  */
 class ExampleService {
     private $repository;
@@ -147,7 +144,6 @@ class ExampleService {
 namespace App\\Controllers;
 
 use App\\Services\\ExampleService;
-use App\\Http\\Requests\\ExampleRequest;
 
 /**
  * Contoh Controller menggunakan prinsip SOLID.
@@ -160,21 +156,8 @@ class ExampleController {
     }
 
     public function index() {
-        // Mendapatkan semua entitas dari service
         $entities = $this->service->getAllEntities();
-
         return json_encode($entities);
-    }
-
-    public function show(ExampleRequest $request) {
-        // Mendapatkan ID yang divalidasi
-        $validated = $request->validated();
-        $entity = $this->service->getEntityById($validated['id']);
-        
-        return json_encode([
-            'id' => $entity->getId(),
-            'name' => $entity->getName()
-        ]);
     }
 }
 `
@@ -186,7 +169,6 @@ namespace App\\Interfaces;
 
 /**
  * Liskov Substitution Principle (LSP).
- * Interface memungkinkan substitusi implementasi Repository tanpa mengubah Service.
  */
 interface RepositoryInterface {
     public function findById($id);
@@ -194,35 +176,21 @@ interface RepositoryInterface {
 `
     },
     {
-      path: "app/Http/Requests/ExampleRequest.php", // Menambahkan file request validation
+      path: "app/Http/Requests/ExampleRequest.php",
       content: `<?php
 
-namespace App\Http\Requests;
+namespace App\\Http\\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\\Foundation\\Http\\FormRequest;
 
-class ExampleRequest extends FormRequest
-{
-    /**
-     * Menentukan apakah pengguna berwenang untuk membuat permintaan ini.
-     *
-     * @return bool
-     */
-    public function authorize()
-    {
+class ExampleRequest extends FormRequest {
+    public function authorize() {
         return true;
     }
 
-    /**
-     * Mendapatkan aturan validasi yang berlaku untuk permintaan ini.
-     *
-     * @return array
-     */
-    public function rules()
-    {
+    public function rules() {
         return [
-            'id' => 'required|integer|exists:entities,id', // Validasi ID
-            'name' => 'required|string|max:255', // Validasi nama
+            'id' => 'required|integer'
         ];
     }
 }
@@ -230,26 +198,34 @@ class ExampleRequest extends FormRequest
     }
   ];
 
-  // Membuat file
-  files.forEach((file) => {
+  console.log("📄 Starting to create SOLID files...\n");
+
+  files.forEach((file, index) => {
     const filePath = path.join(basePath, file.path);
     const fileDir = path.dirname(filePath);
 
+    // Membuat direktori jika belum ada
     if (!fs.existsSync(fileDir)) {
       fs.mkdirSync(fileDir, { recursive: true });
     }
 
+    // Membuat file jika belum ada
     if (!fs.existsSync(filePath)) {
       fs.writeFileSync(filePath, file.content);
-      console.log(`Created file: ${filePath}`);
+      console.log(`✅ File created: ${filePath}`);
     } else {
-      console.log(`File already exists: ${filePath}`);
+      console.log(`📄 File already exists: ${filePath}`);
     }
-  });
 
-  console.log("🔒:SOLID files have been created successfully.");
+    // Simulasi delay untuk estetika
+    setTimeout(() => {
+      if (index === files.length - 1) {
+        console.log("\n✅ All SOLID files have been created successfully!");
+      }
+    }, 200 * index);
+  });
 }
 
-// Mendapatkan base path (direktori di mana perintah dijalankan)
+// Mendapatkan base path
 const basePath = process.cwd();
 createSolidStructure(basePath);

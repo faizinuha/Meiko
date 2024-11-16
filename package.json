@@ -3,7 +3,7 @@
   "displayName": "CodersLar",
   "description": "CodersLar -  Shortcuts for VS Code",
   "bin": {
-    "coders": "./cli/coders-solid.js",
+    "coders install solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js",
     "code-info": "./cli/info-solid.js"
   },
