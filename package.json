@@ -1,11 +1,10 @@
 {
-  "name": "CodersLar",
+  "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar -  Shortcuts for VS Code",
   "bin": {
-    "coders install solid": "./cli/coders-solid.js",
-    "coders-delete": "./cli/delete-solid.js",
-    "code-info": "./cli/info-solid.js"
+    "coders solid": "./cli/coders-solid.js",
+    "coders-delete": "./cli/delete-solid.js"
   },
   "version": "2.0.0",
   "id": "ZakyEvenso12",
