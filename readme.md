@@ -1,5 +1,6 @@
 # 🌟 CodersLar
-
+<a href="Ja/Ja.md">Japan.Md</a>
+<a href="En/en.md">En.md</a>
 ## 💖 Donasi
 
 Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimbangkan untuk berdonasi!
@@ -28,31 +29,32 @@ Berikut adalah daftar fitur utama dari CodersLar:
 2. **Nikmati Pengalaman Coding**:
    - Gunakan berbagai shortcut yang telah disediakan untuk pengalaman coding yang lebih mudah dan simpel.
 
-## 📅 Catatan Rilis
+ 
 
-- **v1.0.0**: Rilis awal **CodersLar** dengan fitur dasar.
-- **v1.1.0**: Penambahan dukungan untuk snippet HTML dan perbaikan bug kecil.
-- **v1.2.0**: Rilis snippet pertama untuk Laravel, termasuk template Blade.
-- **v1.3.0**: Penambahan snippet untuk Java, termasuk Hello World dan struktur dasar.
-- **v1.4.0**: Peningkatan performa dan penambahan template untuk model Laravel.
-- **v1.5.0**: Penambahan snippet untuk rute Laravel dan middleware.
-- **v1.6.0**: Penambahan dukungan untuk snippet laravel.
-- **v1.7.0**: Pembaruan dokumentasi dan penambahan contoh penggunaan snippet.
-- **v1.8.0**: Penambahan fitur Emmet alternatif untuk pengguna yang belum mengaktifkan Emmet.
-- **v1.9.0**: Peningkatan antarmuka pengguna dan perbaikan bug.
-- **v1.9.1**: Update version Tambahan Route laravel dan new vue/Javascript Basic
-- **v1.9.2**: update fixed bug changed Readme Document
-- **v1.9.3**: update new vue/Javascript Basic version 
-
-
-## 🛠️ New Update And Topic
-- - **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman. 
 ## 🤝 Kontribusi
-
 Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ Buat pull request.
 - 🐞 Laporkan masalah di [GitHub Repository kami](#).
+## 📂 Fitur New Coders
+
+### **Laravel Solid**
+Laravel Solid adalah fitur yang membantu pengembang dalam menyiapkan proyek Laravel yang sudah terstruktur secara solid dengan konfigurasi awal yang rapi dan mudah digunakan. 
+
+#### **Coders Solid**
+Fitur ini memungkinkan pengguna untuk dengan cepat mengatur kerangka dasar Laravel yang sudah disiapkan untuk pengembangan lebih lanjut. Beberapa poin utama:
+- **Instalasi Dasar**: Coders Solid menyediakan kerangka dasar Laravel dengan beberapa konfigurasi penting, seperti:
+  - Struktur direktori yang terorganisir.
+  - File konfigurasi default yang sesuai untuk proyek skala kecil hingga menengah.
+- **Efisiensi Waktu**: Membantu pengembang memulai proyek tanpa harus memulai dari awal atau mengatur ulang file secara manual.
+
+#### **Coders-delete**
+Fitur ini berfungsi untuk menghapus folder atau file Laravel jika ternyata proyek yang telah dibuat tidak jadi digunakan. Beberapa poin utama:
+- **Penghapusan Cepat**: Menghemat waktu pengguna dengan secara otomatis menghapus folder Laravel dan file terkait.
+- **Keamanan Data**: Coders-delete memastikan proses penghapusan dilakukan hanya pada folder proyek yang dipilih pengguna, untuk mencegah kehilangan data yang tidak disengaja.
+- **Skenario Penggunaan**:
+  - Ketika pengguna membuat proyek Laravel tetapi memutuskan untuk tidak melanjutkannya.
+  - Membersihkan lingkungan pengembangan dari proyek-proyek yang tidak lagi diperlukan.
 
 ## 📂 Fitur Snippets
 
@@ -101,4 +103,4 @@ Semoga snippet ini membantu dalam pengembangan aplikasi Laravel Anda!
 - **Coming soon**: Build Calculator 2.5.4
 
 ### 🛠️ Vue
-- **Learn**:
+- **Cooming Soon**:
