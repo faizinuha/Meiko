@@ -1,19 +1,20 @@
 {
-  "name": "CodersLar",
+  "name": "KawaiiCode",
   "displayName": "CodersLar",
   "description": "CodersLar -  Shortcuts for VS Code",
   "version": "1.9.6",
   "id": "ZakyEvenso12",
   "publisher": "ZakyEvenso12",
   "tags": [
-    "Kawaii",
-    "coders"
+    "codersLar",
+    "codersHtml"
   ],
   "engines": {
    "vscode": "^1.95.0"
   },
   "categories": [
     "Programming Languages",
+    "AI",
     "Snippets"
   ],
   "contributes": {
@@ -39,7 +40,7 @@
         "path": "./snippets/javascript-snippets.code-snippets"
       },
       {
-        "language": "react",
+        "language": "javascript",
         "path": "./React/ReactNative-snippets.code-snippets"
       }
     ]
@@ -65,5 +66,10 @@
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
     "prettier": "^3.3.3"
+  },
+  "dependencies": {
+    "chalk": "^5.3.0",
+    "cli-progress": "^3.12.0",
+    "ora": "^8.1.1"
   }
 }
