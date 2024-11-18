@@ -20,6 +20,8 @@ function createSolidStructure(basePath) {
     "app/Services",
     "app/Controllers",
     "app/Interfaces",
+    "app/Traits",
+    "app/Enums",
     "app/Http/Requests"
   ];
 
@@ -194,6 +196,40 @@ class ExampleRequest extends FormRequest {
         ];
     }
 }
+`
+    },
+    // TRAITS
+    {
+      path: "app/Traits/Uploadable.php",
+      content: `<?php
+namespace App\\Traits;
+
+    /**  
+     * Trait untuk menangani upload file. //EXAMPLE
+     */
+    trait Uploadable {
+        public function uploadFile($file, $destination) {
+            $filename = uniqid() . '_' . $file->getClientOriginalName();
+            $file->move($destination, $filename);
+            return $filename;
+        }
+    }
+`
+    },
+     // Enum
+     {
+      path: "app/Enums/FileType.php",
+      content: `<?php
+      namespace App\\Enums;
+
+      /**
+       * Enum untuk tipe file yang didukung. //EXAMPLE
+       */
+      enum FileType: string {
+          case IMAGE = 'image';
+          case DOCUMENT = 'document';
+          case VIDEO = 'video';
+      }
 `
     }
   ];
