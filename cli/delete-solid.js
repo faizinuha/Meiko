@@ -22,6 +22,8 @@ function deleteSolidStructure(basePath) {
     "app/Services",
     "app/Controllers",
     "app/Interfaces",
+    "app/Traits",
+    "app/Enums",
     "app/Http/Requests",
     
   ];
@@ -32,7 +34,9 @@ function deleteSolidStructure(basePath) {
     "app/Services/ExampleService.php",
     "app/Controllers/ExampleController.php",
     "app/Interfaces/RepositoryInterface.php",
-    "app/Http/Requests/ExampleRequest.php"
+    "app/Http/Requests/ExampleRequest.php",
+    "app/Traits/Uploadable.php",
+    "app/Enums/FileType.php"
   ];
 
   // Total item untuk progress bar
