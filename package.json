@@ -1,14 +1,14 @@
 {
   "name": "KawaiiCode",
+  "id": "ZakyEvenso12",
+  "version": "2.0.0",
+  "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
   "description": "CodersLar -  Shortcuts for VS Code",
   "bin": {
-    "coders solid": "./cli/coders-solid.js",
+    "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js"
   },
-  "version": "2.0.0",
-  "id": "ZakyEvenso12",
-  "publisher": "ZakyEvenso12",
   "tags": [
     "codersLar",
     "codersHtml"
