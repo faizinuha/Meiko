@@ -23,30 +23,30 @@
   ],
   "contributes": {
     "snippets": [
-      {
-        "language": "html",
-        "path": "./snippets/html-snippets.code-snippets"
-      },
-      {
-        "language": "php",
-        "path": "./snippets/laravel-snippets.code-snippets"
-      },
-      {
-        "language": "java",
-        "path": "./snippets/java-snippets.code-snippets"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/javascript-snippets.code-snippets"
-      },
-      {
-        "language": "vue",
-        "path": "./snippets/vue-snippets.code-snippets"
-      },
-      {
-        "language": "javascript",
-        "path": "./snippets/react-native-snippets.code-snippets"
-      }
+        {
+            "language": "html",
+            "path": "./.vscode/snippets.code-snippets"
+        },
+        {
+            "language": "php",
+            "path": "./.vscode/laravel-snippets.code-snippets"
+        },
+        {
+            "language": "java",
+            "path": "./.vscode/java-snippets.code-snippets"
+        },
+        {
+            "language": "javascript",
+            "path": "./.vscode/javascript-snippets.code-snippets"
+        },
+        {
+            "language": "vue",
+            "path": "./.vscode/vue-snippets.code-snippets"
+        },
+        {
+            "language": "javascript",
+            "path": "./.vscode/react-native-snippets.code-snippets"
+        }
     ]
   },
   "scripts": {
