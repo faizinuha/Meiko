@@ -201,6 +201,5 @@
     "prefix": "imr",
     "body": ["import React from 'react';"],
     "description": "Import React"
-  },
-
+  }
 }

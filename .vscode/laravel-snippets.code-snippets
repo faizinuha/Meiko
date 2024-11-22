@@ -117,19 +117,6 @@
     ],
     "description": "Split CRUD Routes"
   },
-  "Middleware Route": {
-    "prefix": "MiddlewareRoute",
-    "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Admin routes with auth, verified, and admin role middleware",
-      "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
-      "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
-      "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
-      "});"
-    ],
-    "description": "Simpel Middleware Route"
-  },
   "Basic Route": {
     "prefix": "route",
     "body": [

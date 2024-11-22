@@ -49,7 +49,7 @@
         },
         {
             "language": "javascript",
-            "path": "./.vscode/react-native-snippets.code-snippets"
+            "path": "./.vscode/ReactNative-snippets.code-snippets"
         }
     ]
 },
