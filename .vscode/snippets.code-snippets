@@ -1,0 +1,148 @@
+{
+  "HTML Template with Bootstrap": {
+    "prefix": ".bs",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <meta http-equiv=\"X-UA-Compatible\" content=\"ie=edge\">",
+      "    <title>${1:Document}</title>",
+      "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLmj+fZgjmzdIaK6YNTonFfpfP/ln9vfg+3ReJujFTsSAjjPv2cVkcKtxkp73Ehz\" crossorigin=\"anonymous\">",
+      "</head>",
+      "<body>",
+      "    <div class=\"container\">",
+      "        <h1>${2:Hello World}</h1>",
+      "    </div>",
+      "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kaVey8C1/63PUL7A+QZsgdsfjfe3w/+xaC0UNuvjZflnN+4UBJ+Yh59p7zHLfZOo\" crossorigin=\"anonymous\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "Simple HTML with Bootstrap setup"
+  },
+
+  "HTML3 Template": {
+    "prefix": "dcs",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title>${1:HTML3}</title>",
+      "</head>",
+      "<body>",
+      "    <h3>${2:Hello World}</h3>",
+      "    <div class=\"container\">",
+
+      "    </div>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "Hellow Worlds"
+  },
+  "HTML Header Template": {
+    "prefix": "nvb",
+    "body": [
+      "<header>",
+      "    <nav class=\"navbar navbar-expand-lg navbar-light bg-light\">",
+      "        <a class=\"navbar-brand\" href=\"#\">${1:Brand}</a>",
+      "        <button class=\"navbar-toggler\" type=\"button\" data-toggle=\"collapse\" data-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">",
+      "            <span class=\"navbar-toggler-icon\"></span>",
+      "        </button>",
+      "        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">",
+      "            <ul class=\"navbar-nav\">",
+      "                <li class=\"nav-item active\">",
+      "                    <a class=\"nav-link\" href=\"#\">${2:Home}</a>",
+      "                </li>",
+      "                <li class=\"nav-item\">",
+      "                    <a class=\"nav-link\" href=\"#\">${3:Features}</a>",
+      "                </li>",
+      "                <li class=\"nav-item\">",
+      "                    <a class=\"nav-link\" href=\"#\">${4:Pricing}</a>",
+      "                </li>",
+      "            </ul>",
+      "        </div>",
+      "    </nav>",
+      "</header>"
+    ],
+    "description": "Navbar"
+  },
+
+  "HTML Table": {
+    "prefix": "tbl",
+    "body": [
+      "<table>",
+      "    <thead>",
+      "        <tr>",
+      "            <th>${1:Header 1}</th>",
+      "            <th>${2:Header 2}</th>",
+      "        </tr>",
+      "    </thead>",
+      "    <tbody>",
+      "        <tr>",
+      "            <td>${4:Data 1}</td>",
+      "            <td>${5:Data 2}</td>",
+      "        </tr>",
+      "    </tbody>",
+      "</table>"
+    ],
+    "description": "Create a basic HTML table"
+  },
+
+  "HTML Footer": {
+    "prefix": "foot",
+    "body": [
+        "<footer>",
+        "    <p>&copy; ${1:Year} ${2:Your Company}. All rights reserved.</p>",
+        "</footer>"
+    ],
+    "description": "Insert a footer element"
+  },
+
+  "HTML List": {
+    "prefix": "list",
+    "body": [
+      "<ul>",
+        "<li>${1:Item 1}</li>",
+        "<li>${1:Item 2}</li>",
+        "<li>${1:Item 3}</li>",
+      "</ul>"
+    ],
+    "description": "Insert an unordered list"
+  },
+
+  "HTML Image": {
+        "prefix": "image",
+        "body": [
+            "<img src=\"${1:path/to}\" alt=\"${2:Image description}\" />"
+        ],
+        "description": "Insert an image"
+    },
+
+    "HTML Form": {
+        "prefix": "htmlForm",
+        "body": [
+            "<form action=\"${1:/submit}\" method=\"${2:post}\">",
+            "    <label for=\"${3:inputId}\">${4:Label}</label>",
+            "    <input type=\"${5:text}\" id=\"${3:inputId}\" name=\"${6:name}\">",
+            "    <button type=\"submit\">${7:Submit}</button>",
+            "</form>"
+        ],
+        "description": "Insert a basic form"
+    },
+
+  "HTML Detail and Summary": {
+    "prefix": "htmlDetail",
+    "body": [
+      "<details>",
+      "    <summary>${1:Title}</summary>",
+      "    <p>${2:This is the detailed content that appears when you click the title.}</p>",
+      "</details>"
+    ],
+    "description": "Create a details element with summary"
+  },
+
+
+}

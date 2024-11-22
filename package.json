@@ -25,7 +25,7 @@
     "snippets": [
       {
         "language": "html",
-        "path": "./snippets/snippets.code-snippets"
+        "path": "./snippets/html-snippets.code-snippets"
       },
       {
         "language": "php",
@@ -37,15 +37,15 @@
       },
       {
         "language": "javascript",
+        "path": "./snippets/javascript-snippets.code-snippets"
+      },
+      {
+        "language": "vue",
         "path": "./snippets/vue-snippets.code-snippets"
       },
       {
         "language": "javascript",
-        "path": "./snippets/javascript-snippets.code-snippets"
-      },
-      {
-        "language": "javascript",
-        "path": "./React/ReactNative-snippets.code-snippets"
+        "path": "./snippets/react-native-snippets.code-snippets"
       }
     ]
   },

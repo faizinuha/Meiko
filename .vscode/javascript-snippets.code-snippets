@@ -1,0 +1,248 @@
+{
+	// JS-Basic
+	"Variable Declaration": {
+			"prefix": "jsVar",
+			"body": [
+					"let ${1:variableName} = ${2:value};",
+					"const ${3:contsName} = ${4:contsValue};"
+			],
+			"description": "Declare a variable and constant in Javascript"
+	},
+
+	"Basic Function": {
+			"prefix": "jsFunc",
+			"body": [
+					"function ${1:functionName} (${2:parameters}) {",
+					"   ${3:// function body}",
+					"   return ${4:result};",
+					"}"
+			],
+			"description": "Create a basic function"
+	},
+
+	"For Loop": {
+			"prefix": "jsFor",
+			"body": [
+					"for (let ${1:i} = 0; ${1:i} < ${2:array}.length; ${1:i}++) {",
+					"    ${3:// loop body}",
+					"}"
+			],
+			"description": "Basic for loop"
+	},
+
+	"While Loop": {
+			"prefix": "jsWhile",
+			"body": [
+					"while (${1:condition}) {",
+					"   ${2:// while body}",
+					"}"
+			],
+			"description": "Basic for while"
+	},
+
+	"If-Else Statement": {
+			"prefix": "jsIf",
+			"body": [
+					"if (${1:condition}) {",
+					"   ${2:// if body}",
+					"} else {",
+					"   ${3:// else body}",
+					"}"
+			],
+			"description": "If-Else statement"
+	},
+
+	"Array Declaration": {
+			"prefix": "jsArray",
+			"body": [
+					"const ${1:arrayName} = [${2:value1}, ${3:value2}, ${4:value3}];"
+			],
+			"description": "Declare an array in Javascript"
+	},
+
+	"Object Declaration": {
+			"prefix": "jsObj",
+			"body": [
+					"const ${1:objectName} = {",
+					"   ${2:key1}: ${3:value1},",
+					"   ${4:key2}: ${4:value2}",
+					"};"
+			],
+			"description": "Declare an object in Javascript"
+	},
+
+	// JS-Console
+	"Console Log": {
+			"prefix": "jsLog",
+			"body": [
+					"console.log(${1:message});"
+			],
+			"description": "Log output console"
+	},
+
+	"Console Clear": {
+			"prefix": "jsClr",
+			"body": [
+					"console.clear();",
+			],
+			"description": "Console clear"
+	},
+
+	"Console Debug": {
+			"prefix": "jsDb",
+			"body": [
+					"console.debug(${1:object});",
+			],
+			"description": "Console debug"
+	},
+
+	"Console Error": {
+			"prefix": "jsErr",
+			"body": [
+					"console.error(${1:object});"
+			],
+			"description": "Console Error"
+	},
+
+	"Console Group": {
+			"prefix": "jsGrp",
+			"body": [
+					"console.group(${1:label});"
+			],
+			"description": "Console group"
+	},
+
+	"Console Count": {
+			"prefix": "jsCo",
+			"body": [
+					"console.count(${1:label});"
+			],
+			"description": "Console count"
+	},
+
+	// JS-Dom
+	"Get Element by Id": {
+			"prefix": "jsGetId",
+			"body": [
+					"const ${1:elemet1} = document.getElementById('${2:id}');"
+			],
+			"description": "Get elemet by Id"
+	},
+
+	"Get Element by Class": {
+			"prefix": "jsGetCls",
+			"body": [
+					"const ${1:elements} = document.getElementsByClassName('${2:className}');"
+			],
+			"description": "Get element by class"
+	},
+
+	"Get Elements by Tag Name": {
+			"prefix": "jsGetTag",
+			"body": [
+					"const ${1:elements} = document.getElementsByTagName('${2:tagName}');"
+			],
+			"description": "Get elements by tag name"
+	},
+
+	"Query Selector": {
+			"prefix": "jsQuerySel",
+			"body": [
+					"const ${1:element1} = document.querySelector('${2:selector}');"
+			],
+			"description": "Get the first element matching a CSS selector"
+	},
+
+	"Query Selector All": {
+			"prefix": "jsQueryAll",
+			"body": [
+					"const ${1:elements} = document.querySelectorAll('${2:selector}');"
+			],
+			"description": "Get all elements matching a CSS selector"
+	},
+
+	"Add Event Listener": {
+			"prefix": "jsAddEvent",
+			"body": [
+					"${1:element}.addEventListener('${2:event}', (${3:eventParam}) => {",
+					"    ${4:// handler code}",
+					"});"
+			],
+			"description": "Add an event listener"
+	},
+
+	"Set Attribute": {
+			"prefix": "jsSetAttr",
+			"body": [
+					"${1:element}.setAttribute('${2:attribute}', '${3:value}');"
+			],
+			"description": "Set an attribute on a DOM element"
+	},
+	
+	"Remove Child": {
+			"prefix": "jsRemoveChild",
+			"body": [
+					"${1:parent}.removeChild(${2:child});"
+			],
+			"description": "Remove a child element from a parent"
+	},
+
+	// JS-JSON
+	"JSON Parse": {
+			"prefix": "jsParse",
+			"body": [
+					"JSON.parse(${1:jsonString});"
+			],
+			"description": "Parse a JSON string to a JavaScript object"
+	},
+
+	"JSON Stringify": {
+			"prefix": "jsStr",
+			"body": [
+					"JSON.stringify(${1:object});"
+			],
+			"description": "Convert JavaScript object to a JSON string"
+	},
+
+	"Convert JSON to Array Value": {
+			"prefix": "jsonValue", 
+			"body": [
+					"const values = Object.values(${1:jsonObject});",
+					"console.log(values);"
+			],
+			"description": "Convert a JSON object to an array values"
+	},
+
+	// JS-Utility
+	"Try Catch": {
+			"prefix": "jsTryCatch",
+			"body": [
+					"try {",
+					"   ${1:// error code}",
+					"} catch (error) {",
+					"   console.error(error);",
+					"}"
+			],
+			"description": "Try catch block for error handling"
+	},
+
+	"Array Map": {
+			"prefix": "jsMap",
+			"body": [
+					"const mappedArray = ${1:array}.map(${2:item} => {",
+					"    return ${3:item};",
+					"});"
+			],
+			"description": "Map over an array"
+	},
+
+	"Arrow Function": {
+			"prefix": "jsArrow",
+			"body": [
+					"const ${1:functionName} = (${2:parameters}) => {",
+					"    ${3:// code to execute}",
+					"};"
+			],
+			"description": "Basic arrow function in javascript"
+	},
+}
