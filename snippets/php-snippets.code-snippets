@@ -1,4 +1,83 @@
 {
+  // Basic PHP
+    "PHP Tag": {
+      "prefix": "php",
+      "body": ["<php>", "\t$0", "/>"],
+      "description": "Basic php tag structure"
+  },
+    "PHP Open Tag": {
+      "prefix": "po",
+      "body": ["<php>", "\t$0"],
+      "description": "PHP open tag"
+    },
+    "Echo Statement": {
+      "prefix": "eco",
+      "body": ["echo \"$0\";"],
+      "description": "Echo statement in PHP"
+    },
+    "Var Dump Statement": {
+      "prefix": "vd",
+      "body": ["var_dump($0);"],
+      "description": "Dump variable"
+    },
+    "foreach loop": {
+      "prefix": "fore",
+      "body": [
+        "foreach ($${1:iterable} as $${2:item}) {",
+        "\t$0",
+        "}"
+      ],
+      "description": "foreach loop structure in PHP"
+    },
+    "include": {
+      "prefix": "in",
+      "body": [
+        "include \"$0\";"
+      ],
+      "description": "Insert an include statement"
+    },
+    "require": {
+      "prefix": "req",
+      "body": [
+        "require \"$0\";"
+      ],
+      "description": "Insert a require statement"
+    },
+    "If Statement": {
+      "prefix": "if",
+      "body": [
+        "if ($1) {",
+        "\t$0",
+        "}"
+      ],
+      "description": "PHP if statement"
+    },
+    "Array Creation": {
+    "prefix": "arr",
+    "body": [
+      "$${1:array} = [$0];"
+    ],
+    "description": "PHP array creation"
+    },
+    "PHP File Upload": {
+      "prefix": "php-upload",
+      "body": [
+        "function uploadFile($file, $destination) {",
+        "    if ($file['error'] === UPLOAD_ERR_OK) {",
+        "        $tmpName = $file['tmp_name'];",
+        "        $fileName = basename($file['name']);",
+        "        $uploadPath = $destination . DIRECTORY_SEPARATOR . $fileName;",
+        "        if (move_uploaded_file($tmpName, $uploadPath)) {",
+        "            return $uploadPath;",
+        "        }",
+        "    }",
+        "    return false;",
+        "}"
+      ],
+      "description": "Function to handle file uploads"
+    }, 
+
+
     "CRUD with Image Validation": {
       "prefix": "crudimg",
       "body": [
