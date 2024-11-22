@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
-  "description": "CodersLar -  Shortcuts for VS Code",
+  "description": "CodersLang - Shortcuts for VS Code Provides various Laravel, php, vue, html, React.java, javascript language shortcuts with simple codes",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js"
@@ -32,6 +32,10 @@
             "path": "./.vscode/laravel-snippets.code-snippets"
         },
         {
+            "language": "php",
+            "path": "./snippets/php-snippets.code-snippets"
+        },
+        {
             "language": "java",
             "path": "./.vscode/java-snippets.code-snippets"
         },
@@ -40,7 +44,7 @@
             "path": "./.vscode/javascript-snippets.code-snippets"
         },
         {
-            "language": "vue",
+            "language": "javascript",
             "path": "./.vscode/vue-snippets.code-snippets"
         },
         {
@@ -48,7 +52,7 @@
             "path": "./.vscode/react-native-snippets.code-snippets"
         }
     ]
-  },
+},
   "scripts": {
     "test": "node ./out/test/runTest.js"
   },
