@@ -1,170 +1,82 @@
 {
-  "Blade Template": {
-    "prefix": "blade",
+  "Blade Template Layout": {
+    "prefix": "bladeLayout",
     "body": [
       "<!DOCTYPE html>",
       "<html lang=\"en\">",
       "<head>",
       "    <meta charset=\"UTF-8\">",
       "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
-      "    <title>${1:Document}</title>",
+      "    <title>@yield('title', 'Default Title')</title>",
       "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLmj+fZgjmzdIaK6YNTonFfpfP/ln9vfg+3ReJujFTsSAjjPv2cVkcKtxkp73Ehz\" crossorigin=\"anonymous\">",
+      "    @stack('styles')",
       "</head>",
       "<body>",
-      "    @extends('your-app')",
-      "    <div class=\"container\">",
-      "        <h1>${2:Hello World}</h1>",
+      "    @include('partials.header')",
+      "",
+      "    <div class=\"container my-4\">",
       "        @yield('content')",
       "    </div>",
+      "",
+      "    @include('partials.footer')",
+      "",
       "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kaVey8C1/63PUL7A+QZsgdsfjfe3w/+xaC0UNuvjZflnN+4UBJ+Yh59p7zHLfZOo\" crossorigin=\"anonymous\"></script>",
+      "    @stack('scripts')",
       "</body>",
       "</html>"
     ],
-    "description": "Basic template"
+    "description": "Laravel Blade Layout Template"
   },
-  "CRUD Basic": {
-    "prefix": "crud",
+  "Blade Header Partial": {
+    "prefix": "bladeHeader",
     "body": [
-      "<?php",
-      "",
-      "namespace App\\Http\\Controllers;",
-      "",
-      "use Illuminate\\Http\\Request;",
-      "use App\\Models\\${1:ModelName};",
-      "",
-      "class ${2:ControllerName} extends Controller",
-      "{",
-      "    // Menampilkan daftar data",
-      "    public function index()",
-      "    {",
-      "        $data = ${1:ModelName}::all();",
-      "        return view('${3:viewName}.index', compact('data'));",
-      "    }",
-      "",
-      "    // Menampilkan form untuk menambahkan data",
-      "    public function create()",
-      "    {",
-      "        return view('${3:viewName}.create');",
-      "    }",
-      "",
-      "    // Menyimpan data baru ke database",
-      "    public function store(Request $request)",
-      "    {",
-      "        $request->validate([",
-      "            'field1' => 'required',",
-      "            'field2' => 'required',",
-      "            // tambahkan validasi sesuai kebutuhan",
-      "        ]);",
-      "",
-      "        ${1:ModelName}::create($request->all());",
-      "        return redirect()->route('${3:viewName}.index')->with('success', 'Data berhasil ditambahkan!');",
-      "    }",
-      "",
-      "    // Menampilkan form untuk mengedit data",
-      "    public function edit($id)",
-      "    {",
-      "        $data = ${1:ModelName}::findOrFail($id);",
-      "        return view('${3:viewName}.edit', compact('data'));",
-      "    }",
-      "",
-      "    // Memperbarui data di database",
-      "    public function update(Request $request, $id)",
-      "    {",
-      "        $request->validate([",
-      "            'field1' => 'required',",
-      "            'field2' => 'required',",
-      "        ]);",
-      "",
-      "        $data = ${1:ModelName}::findOrFail($id);",
-      "        $data->update($request->all());",
-      "        return redirect()->route('${3:viewName}.index')->with('success', 'Data berhasil diperbarui!');",
-      "    }",
-      "",
-      "    // Menghapus data dari database",
-      "    public function destroy($id)",
-      "    {",
-      "        $data = ${1:ModelName}::findOrFail($id);",
-      "        $data->delete();",
-      "        return redirect()->route('${3:viewName}.index')->with('success', 'Data berhasil dihapus!');",
-      "    }",
-      "}"
+      "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">",
+      "    <div class=\"container-fluid\">",
+      "        <a class=\"navbar-brand\" href=\"#\">Brand</a>",
+      "        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">",
+      "            <span class=\"navbar-toggler-icon\"></span>",
+      "        </button>",
+      "        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">",
+      "            <ul class=\"navbar-nav\">",
+      "                <li class=\"nav-item\">",
+      "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>",
+      "                </li>",
+      "                <li class=\"nav-item\">",
+      "                    <a class=\"nav-link\" href=\"#\">Features</a>",
+      "                </li>",
+      "                <li class=\"nav-item\">",
+      "                    <a class=\"nav-link\" href=\"#\">Pricing</a>",
+      "                </li>",
+      "            </ul>",
+      "        </div>",
+      "    </div>",
+      "</nav>"
     ],
-    "description": "Basic CRUD template for PHP Controller"
+    "description": "Laravel Blade Header Partial"
   },
-  "Resource Route": {
-    "prefix": "ResourceRoute",
+  "Blade Footer Partial": {
+    "prefix": "bladeFooter",
     "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Standard resource routes",
-      "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');"
+      "<footer class=\"text-center py-4 bg-light\">",
+      "    <p>&copy; ${1:Year} Your Company. All rights reserved.</p>",
+      "</footer>"
     ],
-    "description": "Simpel Resource Route"
+    "description": "Laravel Blade Footer Partial"
   },
-  "Split CRUD Routes": {
-    "prefix": "SplitCRUD",
+  "Blade Content Section": {
+    "prefix": "bladeContent",
     "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
+      "@extends('layouts.app')",
       "",
-      "// Split CRUD methods for resource controller",
-      "Route::get('/${1:ResourceName}', '${2:ResourceName}Controller@index')->name('${1}.index');",
-      "Route::get('/${1:ResourceName}/create', '${2:ResourceName}Controller@create')->name('${1}.create');",
-      "Route::post('/${1:ResourceName}', '${2:ResourceName}Controller@store')->name('${1}.store');",
-      "Route::get('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@show')->name('${1}.show');",
-      "Route::get('/${1:ResourceName}/{id}/edit', '${2:ResourceName}Controller@edit')->name('${1}.edit');",
-      "Route::put('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@update')->name('${1}.update');",
-      "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');"
+      "@section('title', '${1:Page Title}')",
+      "",
+      "@section('content')",
+      "<div class=\"content\">",
+      "    <h1>${2:Welcome to the Page}</h1>",
+      "    <p>${3:Your content goes here.}</p>",
+      "</div>",
+      "@endsection"
     ],
-    "description": "Split CRUD Routes"
-  },
-  "Basic Route": {
-    "prefix": "route",
-    "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Basic route definition",
-      "Route::get('/${1:uri}', '${2:ControllerName}@${3:methodName}')->name('${1}.index');"
-    ],
-    "description": "Basic route definition in Laravel"
-  },
-  "Basic Query": {
-    "prefix": "query",
-    "body": [
-      "// Mengambil semua data",
-      "${1:ModelName}::all();",
-      "",
-      "// Mengambil data dengan kondisi",
-      "${1:ModelName}::where('${2:field}', '${3:value}')->get();",
-      "",
-      "// Mengambil data pertama yang cocok",
-      "${1:ModelName}::where('${2:field}', '${3:value}')->first();",
-      "",
-      "// Menghitung jumlah data",
-      "${1:ModelName}::count();",
-      "",
-      "// Menghapus data",
-      "${1:ModelName}::destroy(${4:id});"
-    ],
-    "description": "Basic queries for Laravel models"
-  },
-  "Forelse Statements": {
-    "prefix": "forelse",
-    "body": [
-      "@forelse (${1:collection} as ${2:item})",
-      "    ${2:item}",
-      "@empty",
-      "    <p>No items found.</p>",
-      "@endforelse"
-    ],
-    "description": "Template in Blade"
-  },
-  "Foreach": {
-    "prefix": "foreach",
-    "body": [
-      "@foreach (${1:collection} as ${2:item})",
-      "    ${2:item}",
-      "@endforeach"
-    ],
-    "description": "Template for foreach statements in Blade"
+    "description": "Laravel Blade Content Section"
   }
 }

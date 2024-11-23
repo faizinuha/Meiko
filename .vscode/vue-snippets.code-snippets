@@ -26,30 +26,95 @@
     ],
     "description": "Button dan flex layout styling di Vue.js"
   },
-    "Count Vue": {
-      "prefix": "vue-count",
-      "body": [
-        "<script setup>",
-        "import { ref, onMounted } from 'vue';",
-        "",
-        "// reactive state",
-        "const count = ref(0);",
-        "",
-        "// functions that mutate state and trigger updates",
-        "function increment() {",
-        "  count.value++;",
-        "}",
-        "",
-        "// lifecycle hooks",
-        "onMounted(() => {",
-        "  console.log(`The initial count is ${count.value}.`);",
-        "});",
-        "</script>",
-        "",
-        "<template>",
-        "  <button @click=\"increment\">Count is: {{ count }}</button>",
-        "</template>"
-      ],
-      "description": "Snippet Vue 3 sederhana untuk counter."
-    }
+  "Count Vue": {
+    "prefix": "vue-count",
+    "body": [
+      "<script setup>",
+      "import { ref, onMounted } from 'vue';",
+      "",
+      "// reactive state",
+      "const count = ref(0);",
+      "",
+      "// functions that mutate state and trigger updates",
+      "function increment() {",
+      "  count.value++;",
+      "}",
+      "",
+      "// lifecycle hooks",
+      "onMounted(() => {",
+      "  console.log(`The initial count is ${count.value}.`);",
+      "});",
+      "</script>",
+      "",
+      "<template>",
+      "  <button @click=\"increment\">Count is: {{ count }}</button>",
+      "</template>"
+    ],
+    "description": "Snippet Vue 3 sederhana untuk counter."
+  },
+  "Vue List Rendering": {
+    "prefix": "vue-list",
+    "body": [
+      "<script setup>",
+      "import { ref } from 'vue';",
+      "",
+      "const items = ref([${1:'Item 1'}, ${2:'Item 2'}, ${3:'Item 3'}]);",
+      "</script>",
+      "",
+      "<template>",
+      "  <ul>",
+      "    <li v-for=\"(item, index) in items\" :key=\"index\">",
+      "      {{ item }}",
+      "    </li>",
+      "  </ul>",
+      "</template>"
+    ],
+    "description": "Snippet untuk rendering daftar dengan v-for di Vue 3."
+  },
+  "Vue Two-Way Binding": {
+    "prefix": "vue-bind",
+    "body": [
+      "<script setup>",
+      "import { ref } from 'vue';",
+      "",
+      "const inputValue = ref('');",
+      "</script>",
+      "",
+      "<template>",
+      "  <div>",
+      "    <input v-model=\"inputValue\" placeholder=\"Type something...\" />",
+      "    <p>Input Value: {{ inputValue }}</p>",
+      "  </div>",
+      "</template>"
+    ],
+    "description": "Snippet untuk two-way binding menggunakan v-model di Vue 3."
+  },
+  "Vue Modal Component": {
+    "prefix": "vue-modal",
+    "body": [
+      "<template>",
+      "  <div v-if=\"isOpen\" class=\"fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center\">",
+      "    <div class=\"bg-white rounded-lg p-4\">",
+      "      <slot />",
+      "      <button @click=\"closeModal\" class=\"mt-4 px-4 py-2 bg-red-500 text-white rounded-lg\">Close</button>",
+      "    </div>",
+      "  </div>",
+      "</template>",
+      "",
+      "<script setup>",
+      "import { ref } from 'vue';",
+      "",
+      "const isOpen = ref(false);",
+      "",
+      "function openModal() {",
+      "  isOpen.value = true;",
+      "}",
+      "",
+      "function closeModal() {",
+      "  isOpen.value = false;",
+      "}",
+      "</script>"
+    ],
+    "description": "Snippet untuk membuat modal sederhana di Vue 3."
+  }
 }

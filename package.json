@@ -4,7 +4,7 @@
   "version": "2.0.0",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
-  "description": "CodersLang - Shortcuts for VS Code Provides various Laravel, php, vue, html, React.java, javascript language shortcuts with simple codes",
+  "description": "CodersLang - Shortcuts for VS Code Provides",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js"
@@ -25,31 +25,31 @@
     "snippets": [
         {
             "language": "html",
-            "path": "./.vscode/snippets.code-snippets"
+            "path": ".vscode/html-snippets.code-snippets"
         },
         {
             "language": "php",
-            "path": "./.vscode/laravel-snippets.code-snippets"
+            "path": ".vscode/laravel-snippets.code-snippets"
         },
         {
             "language": "php",
-            "path": "./snippets/php-snippets.code-snippets"
+            "path": ".vscode/php-snippets.code-snippets"
         },
         {
             "language": "java",
-            "path": "./.vscode/java-snippets.code-snippets"
+            "path": ".vscode/java-snippets.code-snippets"
         },
         {
             "language": "javascript",
-            "path": "./.vscode/javascript-snippets.code-snippets"
+            "path": ".vscode/javascript-snippets.code-snippets"
         },
         {
             "language": "javascript",
-            "path": "./.vscode/vue-snippets.code-snippets"
+            "path": ".vscode/vue-snippets.code-snippets"
         },
         {
             "language": "javascript",
-            "path": "./.vscode/ReactNative-snippets.code-snippets"
+            "path": ".vscode/ReactNative-snippets.code-snippets"
         }
     ]
 },

@@ -133,7 +133,7 @@
     "description": "React Native component with a TextInput"
   },
   "react ccc short": {
-    "prefix": "cccc",
+    "prefix": "ccc",
     "body": [
       "import React from 'react';",
       "",
@@ -201,5 +201,50 @@
     "prefix": "imr",
     "body": ["import React from 'react';"],
     "description": "Import React"
+  },
+    "Import React Native Vector Icons": {
+      "prefix": "rnIcon",
+      "body": [
+        "import Icon from 'react-native-vector-icons/${1:MaterialIcons}';",
+        "",
+        "const ${2:IconComponent} = () => {",
+        "  return (",
+        "    <Icon name=\"${3:home}\" size={${4:24}} color=\"${5:#000}\" />",
+        "  );",
+        "};",
+        "",
+        "export default ${2:IconComponent};"
+      ],
+      "description": "Import and use react-native-vector-icons"
+    },
+    "Import React Icons": {
+      "prefix": "ri",
+      "body": [
+        "import { ${1:FaBeer} } from 'react-icons/${2:fa}';",
+        "",
+        "const ${3:IconComponent} = () => {",
+        "  return (",
+        "    <${1:FaBeer} size={${4:24}} color=\"${5:#000}\" />",
+        "  );",
+        "};",
+        "",
+        "export default ${3:IconComponent};"
+      ],
+      "description": "Import and use React Icons"
+    },
+    "Import Feather Icons (React Native)": {
+      "prefix": "rnFeatherIcon",
+      "body": [
+        "import FeatherIcon from 'react-native-vector-icons/Feather';",
+        "",
+        "const ${1:FeatherIconComponent} = () => {",
+        "  return (",
+        "    <FeatherIcon name=\"${2:settings}\" size={${3:24}} color=\"${4:#000}\" />",
+        "  );",
+        "};",
+        "",
+        "export default ${1:FeatherIconComponent};"
+      ],
+      "description": "Import Feather Icons from react-native-vector-icons"
+    }
   }
-}
