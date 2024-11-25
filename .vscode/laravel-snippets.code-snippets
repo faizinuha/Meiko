@@ -8,19 +8,16 @@
       "    <meta charset=\"UTF-8\">",
       "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
       "    <title>@yield('title', 'Default Title')</title>",
-      "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-GLmj+fZgjmzdIaK6YNTonFfpfP/ln9vfg+3ReJujFTsSAjjPv2cVkcKtxkp73Ehz\" crossorigin=\"anonymous\">",
+      "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\">",
       "    @stack('styles')",
       "</head>",
       "<body>",
       "    @include('partials.header')",
-      "",
       "    <div class=\"container my-4\">",
       "        @yield('content')",
       "    </div>",
-      "",
       "    @include('partials.footer')",
-      "",
-      "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\" integrity=\"sha384-kaVey8C1/63PUL7A+QZsgdsfjfe3w/+xaC0UNuvjZflnN+4UBJ+Yh59p7zHLfZOo\" crossorigin=\"anonymous\"></script>",
+      "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\"></script>",
       "    @stack('scripts')",
       "</body>",
       "</html>"
@@ -33,19 +30,16 @@
       "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">",
       "    <div class=\"container-fluid\">",
       "        <a class=\"navbar-brand\" href=\"#\">Brand</a>",
-      "        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\" aria-controls=\"navbarNav\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">",
+      "        <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#navbarNav\">",
       "            <span class=\"navbar-toggler-icon\"></span>",
       "        </button>",
       "        <div class=\"collapse navbar-collapse\" id=\"navbarNav\">",
       "            <ul class=\"navbar-nav\">",
       "                <li class=\"nav-item\">",
-      "                    <a class=\"nav-link active\" aria-current=\"page\" href=\"#\">Home</a>",
+      "                    <a class=\"nav-link active\" href=\"#\">Home</a>",
       "                </li>",
       "                <li class=\"nav-item\">",
       "                    <a class=\"nav-link\" href=\"#\">Features</a>",
-      "                </li>",
-      "                <li class=\"nav-item\">",
-      "                    <a class=\"nav-link\" href=\"#\">Pricing</a>",
       "                </li>",
       "            </ul>",
       "        </div>",
@@ -79,72 +73,28 @@
     ],
     "description": "Laravel Blade Content Section"
   },
-    "Blade Template Tailwind": {
-      "prefix": "bladeLayoutTailwind",
-      "body": [
-        "<!DOCTYPE html>",
-        "<html lang=\"id\">",
-        "<head>",
-        "    <meta charset=\"UTF-8\">",
-        "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
-        "    <title>@yield('title', 'Judul Default')</title>",
-        "    <link href=\"https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css\" rel=\"stylesheet\">",
-        "    @stack('styles')",
-        "</head>",
-        "<body class=\"bg-gray-100\">",
-        "    @include('partials.header')",
-        "",
-        "    <div class=\"container mx-auto my-4 px-4\">",
-        "        @yield('content')",
-        "    </div>",
-        "",
-        "    @include('partials.footer')",
-        "",
-        "    @stack('scripts')",
-        "</body>",
-        "</html>"
-      ],
-      "description": "Template Layout Laravel Blade dengan Tailwind CSS"
-    },
-    "Blade Header Partial tailwind": {
-      "prefix": "bladenav",
-      "body": [
-        "<nav class=\"bg-blue-600 p-4\">",
-        "    <div class=\"container mx-auto flex justify-between items-center\">",
-        "        <a class=\"text-white text-xl font-semibold\" href=\"#\">Brand</a>",
-        "        <div class=\"space-x-4\">",
-        "            <a class=\"text-white hover:text-gray-200\" href=\"#\">Beranda</a>",
-        "            <a class=\"text-white hover:text-gray-200\" href=\"#\">Fitur</a>",
-        "            <a class=\"text-white hover:text-gray-200\" href=\"#\">Harga</a>",
-        "        </div>",
-        "    </div>",
-        "</nav>"
-      ],
-      "description": "Header Partial Laravel Blade dengan Navbar Tailwind"
-    },
-    "Blade Footer Partial tailwind": {
-      "prefix": "bladeFooter",
-      "body": [
-        "<footer class=\"bg-blue-600 text-white text-center py-4\">",
-        "    <p>&copy; ${1:Tahun} Perusahaan Anda. Semua hak dilindungi.</p>",
-        "</footer>"
-      ],
-      "description": "Footer Partial Laravel Blade dengan Tailwind"
-    },
-    "Blade Content Section tailwind": {
-      "prefix": "bladeContent",
-      "body": [
-        "@extends('layouts.app')",
-        "",
-        "@section('title', '${1:Judul Halaman}')",
-        "",
-        "@section('content')",
-        "<div class=\"content text-center\">",
-        "    <h1 class=\"text-4xl font-bold text-blue-600 mb-4\">${2:Selamat datang di Halaman}</h1>",
-        "    <p class=\"text-lg text-gray-700\">${3:Konten Anda ada di sini.}</p>",
-        "</div>",
-        "@endsection"
-      ],
-      "description": "Bagian Konten Laravel Blade dengan Heading dan Paragraf menggunakan Tailwind"
-    }
+  "Blade Template Tailwind": {
+    "prefix": "bladeLayoutTailwind",
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"id\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title>@yield('title', 'Judul Default')</title>",
+      "    <link href=\"https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css\" rel=\"stylesheet\">",
+      "    @stack('styles')",
+      "</head>",
+      "<body class=\"bg-gray-100\">",
+      "    @include('partials.header')",
+      "    <div class=\"container mx-auto my-4 px-4\">",
+      "        @yield('content')",
+      "    </div>",
+      "    @include('partials.footer')",
+      "    @stack('scripts')",
+      "</body>",
+      "</html>"
+    ],
+    "description": "Template Layout Laravel Blade dengan Tailwind CSS"
   }
+}
