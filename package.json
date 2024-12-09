@@ -1,20 +1,21 @@
 {
   "name": "KawaiiCode",
   "id": "ZakyEvenso12",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
   "description": "CodersLang - Shortcuts for VS Code Provides",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
-    "coders-delete": "./cli/delete-solid.js"
+    "coders-delete": "./cli/delete-solid.js",
+    "coders-crud": "./cli/coders-Crud.js"
   },
   "tags": [
     "codersLar",
     "codersHtml"
   ],
   "engines": {
-  "vscode": "^1.95.0"
+    "vscode": "^1.95.0"
   },
   "categories": [
     "Programming Languages",
@@ -23,36 +24,36 @@
   ],
   "contributes": {
     "snippets": [
-        {
-            "language": "html",
-            "path": ".vscode/html-snippets.code-snippets"
-        },
-        {
-            "language": "php",
-            "path": ".vscode/laravel-snippets.code-snippets"
-        },
-        {
-            "language": "php",
-            "path": ".vscode/php-snippets.code-snippets"
-        },
-        {
-            "language": "java",
-            "path": ".vscode/java-snippets.code-snippets"
-        },
-        {
-            "language": "javascript",
-            "path": ".vscode/javascript-snippets.code-snippets"
-        },
-        {
-            "language": "javascript",
-            "path": ".vscode/vue-snippets.code-snippets"
-        },
-        {
-            "language": "javascript",
-            "path": ".vscode/ReactNative-snippets.code-snippets"
-        }
+      {
+        "language": "html",
+        "path": ".vscode/html-snippets.code-snippets.json"
+      },
+      {
+        "language": "php",
+        "path": ".vscode/laravel-snippets.code-snippets.json"
+      },
+      {
+        "language": "php",
+        "path": ".vscode/php-snippets.code-snippets.json"
+      },
+      {
+        "language": "java",
+        "path": ".vscode/java-snippets.code-snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": ".vscode/javascript-snippets.code-snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": ".vscode/vue-snippets.code-snippets.json"
+      },
+      {
+        "language": "javascript",
+        "path": ".vscode/ReactNative-snippets.code-snippets.json"
+      }
     ]
-},
+  },
   "scripts": {
     "test": "node ./out/test/runTest.js"
   },

@@ -1,8 +1,8 @@
 {
-    "foreach loop": {
+  "foreach loop": {
     "prefix": "fore",
     "body": ["foreach ($${1:iterable} as $${2:item}) {", "\t$0", "}"],
-    "description": "foreach loop structure in PHP",
+    "description": "foreach loop structure in PHP"
   },
   "Foreach": {
     "prefix": "foreach",
@@ -20,9 +20,9 @@
       "    ${2:item}",
       "@empty",
       "    <p>No items found.</p>",
-      "@endforelse",
+      "@endforelse"
     ],
-    "description": "Template in Blade",
+    "description": "Template in Blade"
   },
   "CRUD with Image Validation": {
     "prefix": "crudimg",
@@ -84,7 +84,7 @@
       "        $request->validate([",
       "            'field1' => 'required',",
       "            'field2' => 'required',",
-      "            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',", // Validasi gambar opsional pada update
+      "            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',",
       "        ]);",
       "",
       "        $data = ${1:ModelName}::findOrFail($id);",
@@ -116,9 +116,9 @@
       "        $data->delete();",
       "        return redirect()->route('${3:viewName}.index')->with('success', 'Data berhasil dihapus!');",
       "    }",
-      "}",
+      "}"
     ],
-    "description": "Basic CRUD with image validation and delete functionality",
+    "description": "Basic CRUD with image validation and delete functionality"
   },
   "Resource Route": {
     "prefix": "ResourceRoute",
@@ -126,9 +126,9 @@
       "use Illuminate\\Support\\Facades\\Route;",
       "",
       "// Standard resource routes",
-      "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');",
+      "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');"
     ],
-    "description": "Simpel Resource Route",
+    "description": "Simpel Resource Route"
   },
   "Split CRUD Routes": {
     "prefix": "SplitCRUD",
@@ -142,9 +142,9 @@
       "Route::get('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@show')->name('${1}.show');",
       "Route::get('/${1:ResourceName}/{id}/edit', '${2:ResourceName}Controller@edit')->name('${1}.edit');",
       "Route::put('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@update')->name('${1}.update');",
-      "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');",
+      "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');"
     ],
-    "description": "Split CRUD Routes",
+    "description": "Split CRUD Routes"
   },
   "Middleware Route": {
     "prefix": "MiddlewareRoute",
@@ -155,9 +155,9 @@
       "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
       "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
       "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
-      "});",
+      "});"
     ],
-    "description": "Simpel Middleware Route",
+    "description": "Simpel Middleware Route"
   },
   "Basic Route": {
     "prefix": "route",
@@ -165,9 +165,9 @@
       "use Illuminate\\Support\\Facades\\Route;",
       "",
       "// Basic route definition",
-      "Route::get('/${1:uri}', '${2:ControllerName}@${3:methodName}')->name('${1}.index');",
+      "Route::get('/${1:uri}', '${2:ControllerName}@${3:methodName}')->name('${1}.index');"
     ],
-    "description": "Basic route definition in Laravel",
+    "description": "Basic route definition in Laravel"
   },
   "Basic Query": {
     "prefix": "query",
@@ -185,8 +185,8 @@
       "${1:ModelName}::count();",
       "",
       "// Menghapus data",
-      "${1:ModelName}::destroy(${4:id});",
+      "${1:ModelName}::destroy(${4:id});"
     ],
-    "description": "Basic queries for Laravel models",
+    "description": "Basic queries for Laravel models"
   }
 }
