@@ -12,9 +12,9 @@ const progressBar = new cliProgress.SingleBar({
   hideCursor: true,
 });
 
-console.log("Entity Name:", entityName);
-console.log("PascalCase:", pascalCase);
-console.log("SnakeCase:", snakeCase);
+// console.log("Entity Name:", entityName);
+// console.log("PascalCase:", pascalCase);
+// console.log("SnakeCase:", snakeCase);
 
 // Ambil nama entity dari argumen CLI
 const entityName = process.argv[2];

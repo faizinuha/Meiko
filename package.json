@@ -1,10 +1,10 @@
 {
   "name": "KawaiiCode",
   "id": "ZakyEvenso12",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
-  "description": "CodersLang - Shortcuts for VS Code Provides",
+  "description": "Coders Lar - Ai Exstension cli",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js",
@@ -70,7 +70,7 @@
     "Vue"
   ],
   "author": "Zaky Evenso",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "devDependencies": {
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",

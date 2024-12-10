@@ -95,7 +95,14 @@ Kumpulan snippet untuk mempercepat pengembangan aplikasi Laravel. Snippet ini di
 Fitur ini menyediakan klausa kondisional seperti when, orWhere, dan orWhereRaw yang dapat ditambahkan ke kueri berdasarkan kondisi tertentu. 
 - Eloquent
 Fitur ini merupakan Object-Relational-Mapping (ORM) yang menyediakan fungsi-fungsi query SQL untuk mengelola data database. Eloquent juga menyediakan Object-Oriented Approach untuk menambah, memperbarui, dan menghapus data
-
+**Fungsi Cli New** 
+- Coders-crud <NameProject> -> Itu adalah sebuah Sebuah cli yang Berguna Bagi Kalian yang Malas buat kami mempermudah kalian dalam pembuatan Crud yang mudah karena Program kami ini sangat Simpel 
+## cara Gunakan
+1.Ctrl+J
+2.Ketikan coders-crud ini Contoh Enter 
+3.Lihat Hasil kalian bisa edit2 sesuka kalian Tanpa Susah Buat Lagi 1 per 1 
+4.Jalanakan cli itu secara terus terus dengan tak terbatan 
+-New Kami akan Menambahkan Validasi2 Jika sudah Banyak Yang downloads Exstension kami-
 ## Cara Menggunakan
 
 1. Salin snippet yang diinginkan.
