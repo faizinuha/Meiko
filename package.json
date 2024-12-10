@@ -8,7 +8,7 @@
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js",
-    "coders-crud": "./cli/coders-Crud.js"
+    "coders-crud": "./cli/crud-installer.js"
   },
   "tags": [
     "codersLar",

@@ -12,28 +12,66 @@ const progressBar = new cliProgress.SingleBar({
   hideCursor: true,
 });
 
+console.log("Entity Name:", entityName);
+console.log("PascalCase:", pascalCase);
+console.log("SnakeCase:", snakeCase);
+
 // Ambil nama entity dari argumen CLI
 const entityName = process.argv[2];
 if (!entityName) {
-  console.error("❌ Please provide an entity name. Usage: node coders-crud.js <EntityName>");
+  console.error(
+    "❌ Iam Soryy! Please provide an entity name. Usage: node coders-crud.js <EntityName>"
+  );
   process.exit(1);
 }
 
 // Konversi ke format PascalCase dan snake_case
 const pascalCase = entityName.charAt(0).toUpperCase() + entityName.slice(1);
-const snakeCase = entityName.replace(/([A-Z])/g, "_$1").toLowerCase().slice(1);
+const snakeCase = entityName
+  .replace(/([A-Z])/g, "_$1")
+  .toLowerCase()
+  .replace(/^_/, ""); // Hapus underscore awal jika ada
 
 // Paths dasar
 const basePath = process.cwd();
-const resourcesPath = path.join(basePath, "resources", "views", snakeCase);
+const resourcesPath = path.join("resources", "views");
 
 // Struktur file yang akan dibuat
 const tasks = [
-  { type: "migration", path: `database/migrations/create_${snakeCase}s_table.php`, template: migrationTemplate },
-  { type: "model", path: `app/Models/${pascalCase}.php`, template: modelTemplate },
-  { type: "controller", path: `app/Http/Controllers/${pascalCase}Controller.php`, template: controllerTemplate },
-  { type: "view", path: `${resourcesPath}/index.blade.php`, template: indexViewTemplate },
-  { type: "view", path: `${resourcesPath}/form.blade.php`, template: formViewTemplate },
+  {
+    type: "migration",
+    path: `database/migrations/${new Date()
+      .toISOString()
+      .replace(/[-:.TZ]/g, "")
+      .slice(0, 14)}_create_${snakeCase}s_table.php`,
+    template: migrationTemplate,
+  },
+
+  {
+    type: "model",
+    path: `app/Models/${pascalCase}.php`,
+    template: modelTemplate,
+  },
+  {
+    type: "controller",
+    path: `app/Http/Controllers/${pascalCase}Controller.php`,
+    template: controllerTemplate,
+  },
+  {
+    type: "view",
+    path: path.join(resourcesPath, `${snakeCase}/index.blade.php`),
+    template: indexViewTemplate,
+  },
+  {
+    type: "view",
+    path: path.join(resourcesPath, `${snakeCase}/create.blade.php`),
+    template: createViewTemplate,
+  },
+  {
+    type: "view",
+    path: path.join(resourcesPath, `${snakeCase}/edit.blade.php`),
+    template: editViewTemplate,
+  },
 ];
 
 // Fungsi template
@@ -51,6 +89,7 @@ class Create${pascalCase}sTable extends Migration
         Schema::create('${snakeCase}s', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('content');
             $table->string('image')->nullable();
             $table->timestamps();
         });
@@ -75,7 +114,7 @@ class ${pascalCase} extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'image'];
+    protected $fillable = ['name','content','image'];
 }`;
 }
 
@@ -142,6 +181,7 @@ function indexViewTemplate() {
             <tr>
                 <th>ID</th>
                 <th>Name</th>
+                <th>Content</th>
                 <th>Image</th>
                 <th>Actions</th>
             </tr>
@@ -151,6 +191,7 @@ function indexViewTemplate() {
                 <tr>
                     <td>{{ $item->id }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->content }}</td>
                     <td>
                         @if ($item->image)
                             <img src="{{ asset('storage/' . $item->image) }}" width="100" alt="Image">
@@ -172,6 +213,28 @@ function indexViewTemplate() {
     </table>
 </div>`;
 }
+function createViewTemplate() {
+  return `<div class="container mt-5">
+    <h1 class="mb-4">Create {{ $title ?? '${pascalCase}' }}</h1>
+    <form action="{{ route('${snakeCase}.store') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="content">Content</label>
+            <input type="text" name="content" id="content" class="form-control" value="{{ old('content') }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+        </div>
+        <button type="submit" class="btn btn-success">Save</button>
+    </form>
+</div>
+`;
+}
 
 function formViewTemplate() {
   return `<div class="container mt-5">
@@ -186,6 +249,10 @@ function formViewTemplate() {
             <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $${snakeCase}->name ?? '') }}" required>
         </div>
         <div class="form-group mb-3">
+            <label for="content">Name</label>
+            <input type="text" name="content" id="content" class="form-control" value="{{ old('content', $${snakeCase}->content ?? '') }}" required>
+        </div>
+        <div class="form-group mb-3">
             <label for="image">Image</label>
             <input type="file" name="image" id="image" class="form-control">
             @if (isset($${snakeCase}) && $${snakeCase}->image)
@@ -196,7 +263,33 @@ function formViewTemplate() {
     </form>
 </div>`;
 }
-
+function editViewTemplate() {
+  return `
+    <div class="container mt-5">
+    <h1 class="mb-4">Edit {{ $title ?? '${pascalCase}' }}</h1>
+    <form action="{{ route('${snakeCase}.update', $${snakeCase}->id) }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('PUT')
+        <div class="form-group mb-3">
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $${snakeCase}->name) }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="content">Content</label>
+            <input type="text" name="content" id="content" class="form-control" value="{{ old('content', $${snakeCase}->content) }}" required>
+        </div>
+        <div class="form-group mb-3">
+            <label for="image">Image</label>
+            <input type="file" name="image" id="image" class="form-control">
+            @if ($${snakeCase}->image)
+                <img src="{{ asset('storage/' . $${snakeCase}->image) }}" width="100" alt="Image">
+            @endif
+        </div>
+        <button type="submit" class="btn btn-success">Update</button>
+    </form>
+</div>
+`;
+}
 // Eksekusi tugas
 progressBar.start(tasks.length, 0);
 tasks.forEach((task, index) => {
