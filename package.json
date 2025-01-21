@@ -26,31 +26,31 @@
     "snippets": [
       {
         "language": "html",
-        "path": ".vscode/html-snippets.code-snippets.json"
+        "path": "./snippets/html-snippets.code-snippets.json"
       },
       {
         "language": "php",
-        "path": ".vscode/laravel-snippets.code-snippets.json"
+        "path": "./snippets/laravel-snippets.code-snippets.json"
       },
       {
         "language": "php",
-        "path": ".vscode/php-snippets.code-snippets.json"
+        "path": "./snippets/php-snippets.code-snippets.json"
       },
       {
         "language": "java",
-        "path": ".vscode/java-snippets.code-snippets.json"
+        "path": "./snippets/java-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": ".vscode/javascript-snippets.code-snippets.json"
+        "path": "./snippets/javascript-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": ".vscode/vue-snippets.code-snippets.json"
+        "path": "./snippets/vue-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": ".vscode/ReactNative-snippets.code-snippets.json"
+        "path": "./snippets/ReactNative-snippets.code-snippets.json"
       }
     ]
   },
