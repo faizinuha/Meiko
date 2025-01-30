@@ -1,7 +1,7 @@
 {
   "name": "KawaiiCode",
   "id": "ZakyEvenso12",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar",
   "description": "Coders Lar - Ai Exstension cli",
@@ -15,7 +15,7 @@
     "codersHtml"
   ],
   "engines": {
-    "vscode": "^1.95.0"
+    "vscode": "^1.96.0"
   },
   "categories": [
     "Programming Languages",

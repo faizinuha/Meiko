@@ -4,6 +4,33 @@
 {
 	"version": "0.2.0",
 	"configurations": [
+		{
+			"args": [
+				"generator"
+			],
+			"console": "integratedTerminal",
+			"internalConsoleOptions": "neverOpen",
+			"name": "Yeoman generator",
+			"program": "${workspaceFolder}/node_modules/yo/lib/cli.js",
+			"request": "launch",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"type": "node"
+		},
+		{
+			"name": "Launch via NPM",
+			"request": "launch",
+			"runtimeArgs": [
+				"run-script",
+				"debug"
+			],
+			"runtimeExecutable": "npm",
+			"skipFiles": [
+				"<node_internals>/**"
+			],
+			"type": "node"
+		},
 		
 		{
 			"name": "Launch Extension",
