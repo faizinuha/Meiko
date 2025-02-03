@@ -3,6 +3,7 @@
 const fs = require("fs");
 const path = require("path");
 const cliProgress = require("cli-progress");
+const { type } = require("os");
 
 // Progress bar
 const progressBar = new cliProgress.SingleBar({
@@ -12,15 +13,11 @@ const progressBar = new cliProgress.SingleBar({
   hideCursor: true,
 });
 
-// console.log("Entity Name:", entityName);
-// console.log("PascalCase:", pascalCase);
-// console.log("SnakeCase:", snakeCase);
-
 // Ambil nama entity dari argumen CLI
 const entityName = process.argv[2];
 if (!entityName) {
   console.error(
-    "❌ Iam Soryy! Please provide an entity name. Usage: node coders-crud.js <EntityName>"
+      "❌ Iam Sorry! Please provide an entity name. Usage: node coders-crud.js <EntityName>"
   );
   process.exit(1);
 }
@@ -46,7 +43,6 @@ const tasks = [
       .slice(0, 14)}_create_${snakeCase}s_table.php`,
     template: migrationTemplate,
   },
-
   {
     type: "model",
     path: `app/Models/${pascalCase}.php`,
@@ -72,6 +68,16 @@ const tasks = [
     path: path.join(resourcesPath, `${snakeCase}/edit.blade.php`),
     template: editViewTemplate,
   },
+  {
+    type: "view",
+    path: path.join(resourcesPath, "Kerangka/master.blade.php"),
+    template: masterLayoutTemplate,
+  },
+  {
+    type: "route",
+    path: "routes/web.php",
+    template: routeTemplate,
+  }
 ];
 
 // Fungsi template
@@ -136,7 +142,7 @@ class ${pascalCase}Controller extends Controller
 
     public function create()
     {
-        return view('${snakeCase}.form');
+        return view('${snakeCase}.create');
     }
 
     public function store(Request $request)
@@ -151,7 +157,7 @@ class ${pascalCase}Controller extends Controller
 
     public function edit(${pascalCase} $${snakeCase})
     {
-        return view('${snakeCase}.form', compact('${snakeCase}'));
+        return view('${snakeCase}.edit', compact('${snakeCase}'));
     }
 
     public function update(Request $request, ${pascalCase} $${snakeCase})
@@ -173,7 +179,10 @@ class ${pascalCase}Controller extends Controller
 }
 
 function indexViewTemplate() {
-  return `<div class="container mt-5">
+  return `@extends('Kerangka.master')
+
+@section('content')
+<div class="container mt-5">
     <h1 class="mb-4">${pascalCase} List</h1>
     <a href="{{ route('${snakeCase}.create') }}" class="btn btn-primary mb-3">Add New</a>
     <table class="table table-bordered">
@@ -211,11 +220,16 @@ function indexViewTemplate() {
             @endforeach
         </tbody>
     </table>
-</div>`;
+</div>
+@endsection`;
 }
+
 function createViewTemplate() {
-  return `<div class="container mt-5">
-    <h1 class="mb-4">Create {{ $title ?? '${pascalCase}' }}</h1>
+  return `@extends('Kerangka.master')
+
+@section('content')
+<div class="container mt-5">
+    <h1 class="mb-4">Create ${pascalCase}</h1>
     <form action="{{ route('${snakeCase}.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="form-group mb-3">
@@ -233,40 +247,15 @@ function createViewTemplate() {
         <button type="submit" class="btn btn-success">Save</button>
     </form>
 </div>
-`;
+@endsection`;
 }
 
-function formViewTemplate() {
-  return `<div class="container mt-5">
-    <h1 class="mb-4">{{ isset($${snakeCase}) ? 'Edit' : 'Create' }} ${pascalCase}</h1>
-    <form action="{{ isset($${snakeCase}) ? route('${snakeCase}.update', $${snakeCase}->id) : route('${snakeCase}.store') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        @if (isset($${snakeCase}))
-            @method('PUT')
-        @endif
-        <div class="form-group mb-3">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" class="form-control" value="{{ old('name', $${snakeCase}->name ?? '') }}" required>
-        </div>
-        <div class="form-group mb-3">
-            <label for="content">Name</label>
-            <input type="text" name="content" id="content" class="form-control" value="{{ old('content', $${snakeCase}->content ?? '') }}" required>
-        </div>
-        <div class="form-group mb-3">
-            <label for="image">Image</label>
-            <input type="file" name="image" id="image" class="form-control">
-            @if (isset($${snakeCase}) && $${snakeCase}->image)
-                <img src="{{ asset('storage/' . $${snakeCase}->image) }}" width="100" alt="Image">
-            @endif
-        </div>
-        <button type="submit" class="btn btn-success">Save</button>
-    </form>
-</div>`;
-}
 function editViewTemplate() {
-  return `
-    <div class="container mt-5">
-    <h1 class="mb-4">Edit {{ $title ?? '${pascalCase}' }}</h1>
+  return `@extends('Kerangka.master')
+
+@section('content')
+<div class="container mt-5">
+    <h1 class="mb-4">Edit ${pascalCase}</h1>
     <form action="{{ route('${snakeCase}.update', $${snakeCase}->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PUT')
@@ -288,8 +277,34 @@ function editViewTemplate() {
         <button type="submit" class="btn btn-success">Update</button>
     </form>
 </div>
-`;
+@endsection`;
 }
+
+function masterLayoutTemplate() {
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${pascalCase} Management</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        @yield('content')
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>`;
+}
+function routeTemplate() {
+  return `
+    Route::resource('${snakeCase}', ${pascalCase}Controller::class);
+  `;
+}
+
 // Eksekusi tugas
 progressBar.start(tasks.length, 0);
 tasks.forEach((task, index) => {
@@ -300,10 +315,11 @@ tasks.forEach((task, index) => {
     fs.mkdirSync(dirPath, { recursive: true });
   }
 
-  if (!fs.existsSync(filePath) || !task.append) {
+  if (!fs.existsSync(filePath)) {
     fs.writeFileSync(filePath, task.template());
-  } else if (task.append) {
-    fs.appendFileSync(filePath, task.template());
+    console.log(`✅ Created: ${task.path}`);
+  } else {
+    console.log(`⚠️  Skipped: ${task.path} already exists.`);
   }
 
   progressBar.update(index + 1);

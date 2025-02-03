@@ -90,3 +90,11 @@ jobs:
       uses: github/codeql-action/analyze@v3
       with:
         category: "/language:${{matrix.language}}"
+        # Path to the CodeQL database
+        database: codeql-db/${{ matrix.language }}-codeql-database.zip
+        # Additional options for the CodeQL CLI, such as setting extra arguments or
+        # enabling debugging. For more details, see:
+        # https://codeql.github.com/docs/codeql-cli/advanced-use-of-the-codeql-cli/
+        # options: --no-sarif
+        # If you wish to specify custom queries, you can do so here or in a config file.
+        # By default, queries listed here will override any specified in a config file.
