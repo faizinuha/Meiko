@@ -3,8 +3,8 @@
   "id": "ZakyEvenso12",
   "version": "2.0.5",
   "publisher": "ZakyEvenso12",
-  "displayName": "CodersLar",
-  "description": "Coders Lar - Ai Exstension cli",
+  "displayName": "CodersLar Pro",
+  "description": "CodersLar Pro - AI-powered CLI extension for developers.",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js",
@@ -12,10 +12,13 @@
   },
   "tags": [
     "codersLar",
-    "codersHtml"
+    "codersHtml",
+    "laravel",
+    "AI",
+    "snippets"
   ],
   "engines": {
-    "vscode": "^1.96.0"
+    "vscode": "^1.97.0"
   },
   "categories": [
     "Programming Languages",
@@ -59,15 +62,17 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/faizinuha/KawaiiCode"
+    "url": "https://github.com/ZakyEvenso12/CodersLar-Pro"
   },
   "icon": "Image/CodersLar.png",
   "keywords": [
-    "html",
+    "codersLar",
     "php",
     "laravel",
+    "AI",
     "javascript",
-    "Vue"
+    "Vue",
+    "snippets"
   ],
   "author": "Zaky Evenso",
   "license": "Apache-2.0",
