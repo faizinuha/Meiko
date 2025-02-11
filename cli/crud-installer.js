@@ -326,5 +326,7 @@ tasks.forEach((task, index) => {
   if (index === tasks.length - 1) {
     progressBar.stop();
     console.log("✅ CRUD generated successfully!");
+  }else{
+    console.log('✅ php Artisan Storage:link ')
   }
 });
