@@ -1,7 +1,7 @@
 {
-  "name": "KawaiiCode",
+  "name": "kawaiicode",
   "id": "ZakyEvenso12",
-  "version": "2.0.5",
+  "version": "2.0.7",
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar Pro",
   "description": "CodersLar Pro - AI-powered CLI extension for developers.",
@@ -18,7 +18,7 @@
     "snippets"
   ],
   "engines": {
-    "vscode": "^1.97.0"
+    "vscode": "1.97.1"
   },
   "categories": [
     "Programming Languages",
@@ -55,8 +55,27 @@
         "language": "javascript",
         "path": "./snippets/ReactNative-snippets.code-snippets.json"
       }
+    ],
+    "commands": [
+      {
+        "command": "extension.codersSolid",
+        "title": "Run Coders Solid CLI"
+      },
+      {
+        "command": "extension.codersDelete",
+        "title": "Run Coders Delete CLI"
+      },
+      {
+        "command": "extension.codersCrud",
+        "title": "Run Coders CRUD CLI"
+      }
     ]
   },
+  "activationEvents": [
+    "onCommand:extension.codersSolid",
+    "onCommand:extension.codersDelete",
+    "onCommand:extension.codersCrud"
+  ],
   "scripts": {
     "test": "node ./out/test/runTest.js"
   },
