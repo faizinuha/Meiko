@@ -5,6 +5,7 @@
   "publisher": "ZakyEvenso12",
   "displayName": "CodersLar Pro",
   "description": "CodersLar Pro - AI-powered CLI extension for developers.",
+  "main": "exstension.js",
   "bin": {
     "coders-solid": "./cli/coders-solid.js",
     "coders-delete": "./cli/delete-solid.js",
