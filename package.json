@@ -56,6 +56,11 @@
       }
     ]
   },
+  "activationEvents": [
+    "onCommand:extension.codersSolid",
+    "onCommand:extension.codersDelete",
+    "onCommand:extension.codersCrud"
+  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
@@ -71,9 +76,10 @@
   },
   "displayName": "CodersLar Pro",
   "engines": {
-   "vscode": ">=1.60.0"
+    "vscode": ">=1.95.0"
   },
   "icon": "Image/CodersLar.png",
+  "main": "/out/exstension.js", 
   "id": "ZakyEvenso12",
   "keywords": [
     "codersLar",
@@ -85,7 +91,6 @@
     "snippets"
   ],
   "license": "Apache-2.0",
-  "main": "exstension.js",
   "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
   "repository": {
