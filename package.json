@@ -1,9 +1,14 @@
 {
+  "activationEvents": [
+    "onCommand:extension.coders-solid",
+    "onCommand:extension.coders-delete",
+    "onCommand:extension.coders-crud"
+  ],
   "author": "Zaky Evenso",
   "bin": {
-    "coders-crud": "/cli/crud-installer.js",
-    "coders-delete": "/cli/delete-solid.js",
-    "coders-solid": "/cli/cli/coders-solid.js"
+    "coders-crud": "cli/crud-installer.js",
+    "coders-delete": "cli/delete-solid.js",
+    "coders-solid": "cli/coders-solid.js"
   },
   "categories": [
     "Programming Languages",
@@ -56,11 +61,6 @@
       }
     ]
   },
-  "activationEvents": [
-    "onCommand:extension.codersSolid",
-    "onCommand:extension.codersDelete",
-    "onCommand:extension.codersCrud"
-  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
@@ -78,8 +78,7 @@
   "engines": {
     "vscode": ">=1.95.0"
   },
-  "icon": "Image/CodersLar.png",
-  "main": "/out/exstension.js", 
+  "icon": "Image/Logo3.png",
   "id": "ZakyEvenso12",
   "keywords": [
     "codersLar",
@@ -91,6 +90,7 @@
     "snippets"
   ],
   "license": "Apache-2.0",
+  "main": "out/exstension.js",
   "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
   "repository": {
@@ -107,5 +107,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.0.7"
+  "version": "2.0.8"
 }
