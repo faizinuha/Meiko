@@ -33,31 +33,31 @@
     "snippets": [
       {
         "language": "html",
-        "path": "./snippets/html-snippets.code-snippets.json"
+        "path": "/snippets/html-snippets.code-snippets.json"
       },
       {
         "language": "php",
-        "path": "./snippets/laravel-snippets.code-snippets.json"
+        "path": "/snippets/laravel-snippets.code-snippets.json"
       },
       {
         "language": "php",
-        "path": "./snippets/php-snippets.code-snippets.json"
+        "path": "/snippets/php-snippets.code-snippets.json"
       },
       {
         "language": "java",
-        "path": "./snippets/java-snippets.code-snippets.json"
+        "path": "/snippets/java-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/javascript-snippets.code-snippets.json"
+        "path": "/snippets/javascript-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/vue-snippets.code-snippets.json"
+        "path": "/snippets/vue-snippets.code-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/ReactNative-snippets.code-snippets.json"
+        "path": "/snippets/ReactNative-snippets.code-snippets.json"
       }
     ]
   },
@@ -89,7 +89,17 @@
     "Vue",
     "snippets"
   ],
-  "license": "Apache-2.0",
+  "license": "AGPL-3.0-only",
+  "badges": [
+    {
+      "description": "CodersLar Pro",
+      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
+    },
+    {
+      "description": "CodersLar Pro",
+      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
+    }
+  ],
   "main": "out/exstension.js",
   "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
