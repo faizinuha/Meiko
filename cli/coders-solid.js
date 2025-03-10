@@ -22,7 +22,9 @@ function createSolidStructure(basePath) {
     "app/Interfaces",
     "app/Traits",
     "app/Enums",
-    "app/Http/Requests"
+    "app/Http/Requests",
+      "resources/views/posts",
+      "app/migration/0000_00_00_create_posts_table.php"
   ];
 
   console.log("🚀 Starting to create SOLID folder structure...\n");
@@ -197,39 +199,326 @@ class ExampleRequest extends FormRequest {
     }
 }
 `
-    },
+      },
+      // Migration
+{
+    path: "app/migration/0000_00_00_create_posts_table.php",
+    content: `<?php
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+class CreatePostsTable extends Migration {
+    public function up() {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->id();
+            $table->string('title');
+            $table->text('content');
+            $table->timestamps();
+        });
+    }
+    public function down() {
+        Schema::dropIfExists('posts');
+    }
+}`
+},
     // TRAITS
     {
       path: "app/Traits/Uploadable.php",
       content: `<?php
 namespace App\\Traits;
 
-    /**  
-     * Trait untuk menangani upload file. //EXAMPLE
-     */
-    trait Uploadable {
-        public function uploadFile($file, $destination) {
-            $filename = uniqid() . '_' . $file->getClientOriginalName();
-            $file->move($destination, $filename);
-            return $filename;
-        }
+/**  
+ * Trait untuk menangani upload file.
+ */
+trait Uploadable {
+    public function uploadFile($file, $destination) {
+        $filename = uniqid() . '_' . $file->getClientOriginalName();
+        $file->move($destination, $filename);
+        return $filename;
     }
+}
 `
     },
-     // Enum
-     {
+    // Enum
+    {
       path: "app/Enums/FileType.php",
       content: `<?php
-      namespace App\\Enums;
+namespace App\\Enums;
 
-      /**
-       * Enum untuk tipe file yang didukung. //EXAMPLE
-       */
-      enum FileType: string {
-          case IMAGE = 'image';
-          case DOCUMENT = 'document';
-          case VIDEO = 'video';
-      }
+/**
+ * Enum untuk tipe file yang didukung.
+ */
+enum FileType: string {
+    case IMAGE = 'image';
+    case DOCUMENT = 'document';
+    case VIDEO = 'video';
+}
+`
+    },
+    // CRUD Example
+    {
+      path: "app/Controllers/PostController.php",
+      content: `<?php
+namespace App\\Controllers;
+
+use App\\Services\\PostService;
+use App\\Http\\Requests\\PostRequest;
+
+/**
+ * Contoh Controller untuk operasi CRUD.
+ */
+class PostController {
+    private $service;
+
+    public function __construct(PostService $service) {
+        $this->service = $service;
+    }
+
+    public function index() {
+        $entities = $this->service->getAllEntities();
+        return view('posts.index', compact('entities'));
+    }
+
+    public function create() {
+        return view('posts.create');
+    }
+
+    public function store(PostRequest $request) {
+        $data = $request->validated();
+        $entity = $this->service->create($data);
+        return redirect()->route('posts.index')->with('success', 'Post created successfully.');
+    }
+
+    public function show($id) {
+        $entity = $this->service->read($id);
+        return view('posts.show', compact('entity'));
+    }
+
+    public function edit($id) {
+        $entity = $this->service->read($id);
+        return view('posts.edit', compact('entity'));
+    }
+
+    public function update(PostRequest $request, $id) {
+        $data = $request->validated();
+        $entity = $this->service->update($id, $data);
+        return redirect()->route('posts.index')->with('success', 'Post updated successfully.');
+    }
+
+    public function destroy($id) {
+        $this->service->delete($id);
+        return redirect()->route('posts.index')->with('success', 'Post deleted successfully.');
+    }
+}
+`
+    },
+    {
+      path: "app/Services/PostService.php",
+      content: `<?php
+namespace App\\Services;
+
+use App\\Repositories\\PostRepository;
+
+/**
+ * Service untuk operasi CRUD.
+ */
+class PostService {
+    private $repository;
+
+    public function __construct(PostRepository $repository) {
+        $this->repository = $repository;
+    }
+
+    public function getAllEntities() {
+        return $this->repository.findAll();
+    }
+
+    public function create($data) {
+        return $this->repository.create($data);
+    }
+
+    public function read($id) {
+        return $this->repository.findById($id);
+    }
+
+    public function update($id, $data) {
+        return $this->repository.update($id, $data);
+    }
+
+    public function delete($id) {
+        return $this->repository.delete($id);
+    }
+}
+`
+    },
+    {
+      path: "app/Repositories/PostRepository.php",
+      content: `<?php
+namespace App\\Repositories;
+
+use App\\Entities\\PostEntity;
+
+/**
+ * Repository untuk operasi CRUD.
+ */
+class PostRepository {
+    private $entities = [];
+
+    public function findAll() {
+        return $this->entities;
+    }
+
+    public function create($data) {
+        $entity = new PostEntity(count($this->entities) + 1, $data['name']);
+        $this->entities[] = $entity;
+        return $entity;
+    }
+
+    public function findById($id) {
+        foreach ($this->entities as $entity) {
+            if ($entity.getId() == $id) {
+                return $entity;
+            }
+        }
+        return null;
+    }
+
+    public function update($id, $data) {
+        foreach ($this->entities as $entity) {
+            if ($entity.getId() == $id) {
+                $entity.setName($data['name']);
+                return $entity;
+            }
+        }
+        return null;
+    }
+
+    public function delete($id) {
+        foreach ($this->entities as $index => $entity) {
+            if ($entity.getId() == $id) {
+                unset($this->entities[$index]);
+                return true;
+            }
+        }
+        return false;
+    }
+}
+`
+    },
+    {
+      path: "app/Entities/PostEntity.php",
+      content: `<?php
+namespace App\\Entities;
+
+/**
+ * Entity untuk operasi CRUD.
+ */
+class PostEntity {
+    private $id;
+    private $name;
+
+    public function __construct($id, $name) {
+        $this->id = $id;
+        $this->name = $name;
+    }
+
+    public function getId() {
+        return $this->id;
+    }
+
+    public function getName() {
+        return $this->name;
+    }
+
+    public function setName($name) {
+        $this->name = $name;
+    }
+}
+`
+    },
+    {
+      path: "app/Http/Requests/PostRequest.php",
+      content: `<?php
+
+namespace App\\Http\\Requests;
+
+use Illuminate\\Foundation\\Http\\FormRequest;
+
+class PostRequest extends FormRequest {
+    public function authorize() {
+        return true;
+    }
+
+    public function rules() {
+        return [
+            'name' => 'required|string|max:255'
+        ];
+    }
+}
+`
+    },
+    // Blade Views
+    {
+      path: "resources/views/posts/index.blade.php",
+      content: `<!DOCTYPE html>
+<html>
+<head>
+    <title>Posts</title>
+</head>
+<body>
+    <h1>Posts</h1>
+    <a href="{{ route('posts.create') }}">Create New Post</a>
+    <ul>
+        @foreach ($entities as $entity)
+            <li>{{ $entity->getName() }} - <a href="{{ route('posts.edit', $entity->getId()) }}">Edit</a> - <form action="{{ route('posts.destroy', $entity->getId()) }}" method="POST" style="display:inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit">Delete</button>
+            </form></li>
+        @endforeach
+    </ul>
+</body>
+</html>
+`
+    },
+    {
+      path: "resources/views/posts/create.blade.php",
+      content: `<!DOCTYPE html>
+<html>
+<head>
+    <title>Create Post</title>
+</head>
+<body>
+    <h1>Create Post</h1>
+    <form action="{{ route('posts.store') }}" method="POST">
+        @csrf
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+        <button type="submit">Create</button>
+    </form>
+</body>
+</html>
+`
+    },
+    {
+      path: "resources/views/posts/edit.blade.php",
+      content: `<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Post</title>
+</head>
+<body>
+    <h1>Edit Post</h1>
+    <form action="{{ route('posts.update', $entity->getId()) }}" method="POST">
+        @csrf
+        @method('PUT')
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="{{ $entity->getName() }}">
+        <button type="submit">Update</button>
+    </form>
+</body>
+</html>
 `
     }
   ];

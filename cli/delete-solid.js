@@ -25,7 +25,8 @@ function deleteSolidStructure(basePath) {
     "app/Traits",
     "app/Enums",
     "app/Http/Requests",
-    
+    "resources/views/posts",
+    "database/migration/0000_00_00_create_posts_table.php",
   ];
 
   const files = [
@@ -36,7 +37,16 @@ function deleteSolidStructure(basePath) {
     "app/Interfaces/RepositoryInterface.php",
     "app/Http/Requests/ExampleRequest.php",
     "app/Traits/Uploadable.php",
-    "app/Enums/FileType.php"
+    "app/Enums/FileType.php",
+    "app/Controllers/PostController.php",
+    "app/Services/PostService.php",
+    "app/Repositories/PostRepository.php",
+    "app/Entities/PostEntity.php",
+    "app/Http/Requests/PostRequest.php",
+    "resources/views/posts/index.blade.php",
+    "resources/views/posts/create.blade.php",
+    "resources/views/posts/edit.blade.php",
+    "database/migration/0000_00_00_create_posts_table.php",
   ];
 
   // Total item untuk progress bar

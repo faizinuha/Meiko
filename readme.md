@@ -35,14 +35,14 @@ Berikut adalah daftar fitur utama dari CodersLar:
 
 ## 🤝 Kontribusi
 
-Jika kamu menemukan bug atau memiliki ide untuk peningkatan, silakan:
+Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ **Buat pull request**.
 - 🐞 **Laporkan masalah** di [GitHub Repository kami](#).
 
 ---
 
-## 📂 Fitur New Coders
+## 📂 Fitur New Coders CLi terminal
 
 ### **Laravel Solid**
 
@@ -76,11 +76,12 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 4. 🚀 Gunakan CLI ini tanpa batasan.
 
 ---
+
 ## 📂 Fitur Snippets
 
 ### 🏗️ **HTML**
 
-- 🖋️ **BS**: Doctype dengan link Bootstrap terbaru.
+- 🖋️ **BSS**: Doctype dengan link Bootstrap terbaru.
 - 🖋️ **DCS**: Doctype tanpa link Bootstrap.
 - 🖋️ **tbl**: Table Basic.
 - 🖋️ **Footer**: Footer Basic.
@@ -122,4 +123,3 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 ### 🛠️ **Vue.js**
 
 - ⏳ **Coming Soon**.
-

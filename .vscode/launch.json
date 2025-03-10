@@ -3,34 +3,6 @@
 {
 	"configurations": [
 		{
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Run webpack",
-			"request": "launch",
-			"runtimeExecutable": "webpack",
-			"type": "node"
-		},
-		{
-			"args": [],
-			"cwd": "${workspaceFolder}",
-			"name": "Run webpack-cli",
-			"request": "launch",
-			"runtimeExecutable": "webpack-cli",
-			"type": "node"
-		},
-		{
-			"args": [
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"name": "Launch Extension",
-			"outFiles": [
-				"${workspaceFolder}/out/**/*.js"
-			],
-			"preLaunchTask": "npm",
-			"request": "launch",
-			"type": "extensionHost"
-		},
-		{
 			"args": [
 				"generator"
 			],

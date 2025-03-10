@@ -1,6 +1,6 @@
 {
   "HTML Template with Bootstrap": {
-    "prefix": ".bs",
+    "prefix": "bbs",
     "body": [
       "<!DOCTYPE html>",
       "<html lang=\"en\">",

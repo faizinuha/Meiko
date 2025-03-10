@@ -107,7 +107,7 @@
     "type": "git",
     "url": "https://github.com/ZakyEvenso12/CodersLar-Pro"
   },
-  "scripts": {
+    "scripts": {
     "test": "node ./out/test/runTest.js"
   },
   "tags": [
