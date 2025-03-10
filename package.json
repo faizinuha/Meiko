@@ -70,6 +70,7 @@
   "devDependencies": {
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
+    "electron-builder": "^25.1.8",
     "prettier": "^3.3.3",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
@@ -107,7 +108,7 @@
     "type": "git",
     "url": "https://github.com/ZakyEvenso12/CodersLar-Pro"
   },
-    "scripts": {
+  "scripts": {
     "test": "node ./out/test/runTest.js"
   },
   "tags": [

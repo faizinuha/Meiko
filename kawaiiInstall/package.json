@@ -1,0 +1,16 @@
+{
+  "name": "kawaii-",
+  "version": "1.0.0",
+  "description": " Kawaii dengan desain anime pixel",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-packager . KawaiiInstaller --platform=win32 --arch=x64 --out=dist/ --overwrite",
+    "make": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^28.3.3",
+    "electron-builder": "^25.1.8",
+    "electron-packager": "^17.1.2"
+  }
+}

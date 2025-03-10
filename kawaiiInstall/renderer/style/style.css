@@ -1,0 +1,83 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #ffe6f2;
+  margin: 0;
+}
+
+.container {
+  display: flex;
+  width: 750px;
+  background: #fff0f5;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  border: 3px solid #ffb6c1;
+}
+
+.image {
+  width: 50%;
+  background: url("../../assets/Anime_pixel_Art1.png") no-repeat center;
+  background-size: cover;
+  border-right: 3px solid #ffb6c1;
+}
+
+.text {
+  width: 50%;
+  padding: 25px;
+  text-align: center;
+  background: #fffafc;
+}
+
+h1 {
+  font-size: 22px;
+  color: #ff69b4;
+  font-weight: bold;
+}
+
+p {
+  font-size: 14px;
+  color: #666;
+  margin: 8px 0;
+}
+
+input {
+  width: 90%;
+  padding: 10px;
+  margin-top: 10px;
+  border: 2px solid #ffb6c1;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+button {
+  background: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  margin-top: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: #ff1493;
+}
+
+.install-btn {
+  display: block;
+  width: 90%;
+  margin: 8px auto;
+}
+
+#helpMessage {
+  font-size: 12px;
+  color: #ff69b4;
+  margin-top: 10px;
+}

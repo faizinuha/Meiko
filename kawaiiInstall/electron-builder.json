@@ -1,0 +1,16 @@
+{
+  "appId": "com.kawaii.installer",
+  "productName": "Kawaii Installer",
+  "win": {
+    "target": "nsis",
+    "icon": "assets/Anime_pixel_Art.png"
+  },
+  "linux": {
+    "target": "AppImage",
+    "icon": "assets/Anime_pixel_Art1.png"
+  },
+  "mac": {
+    "target": "dmg",
+    "icon": "assets/Anime_pixel_Art2.png"
+  }
+}

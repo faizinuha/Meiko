@@ -87,4 +87,4 @@ Laravel Solid は、構造化された整然とした初期設定を使用して
 - **Coming soon**: バージョン2.5.4の計算機。
 
 ### 🛠️ Vue
-- **Coming Soon**:
+- **Coming Soon**.

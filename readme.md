@@ -1,7 +1,7 @@
 # 🌟 CodersLar
 
-<a href="Ja/Ja.md">🇯🇵 Japan.md</a>
-<a href="En/en.md">🇺🇸 En.md</a>
+<a href="ja/readme.md">🇯🇵 Japan.md</a>
+<a href="en/readme.md">🇺🇸 En.md</a>
 
 ## 💖 Donasi
 
@@ -119,7 +119,7 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 - ⏳ **Coming Soon**: Build Calculator 2.5.4.
 
 ---
-
 ### 🛠️ **Vue.js**
-
 - ⏳ **Coming Soon**.
+
+Enjoy The Coders

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kawaii </title>
+    <link rel="stylesheet" href="style/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="image"></div>
+        <div class="text">
+            <h1>Welcome Kawaii</h1>
+            <p>👋 Selamat datang di Kawaii </p>
+            <p>🚀 Kawaii  adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat</p>
+            <p>📦 Pilih framework yang ingin kamu install</p>
+            <div id="version"></div>
+            <div id="creator"></div>
+            <input type="text" id="userInput" placeholder="/help or /opsi" />
+            <div id="projectInputContainer" style="display: none;">
+                <p>Masukkan Nama Proyek:</p>
+                <input type="text" id="projectName" placeholder="Contoh: MyProject" />
+                <p id="directoryInfo">📂 Pilih folder untuk menyimpan proyek</p>
+                <button id="installConfirmBtn">Install</button>
+            </div>
+            <p id="helpMessage"></p>
+            <div id="opsiMessage" style="display: none;">
+                <strong>Opsi Yang Tersedia:</strong> <br>
+                <button class="install-btn" data-framework="laravel">Install Laravel</button> <br>
+                <button class="install-btn" data-framework="react">Install React.js</button> <br>
+                <button class="install-btn" data-framework="next">Install Next.js</button> <br>
+            </div>
+            <p id="loadingMessage" style="display: none;">⏳ Mohon tunggu, proses sedang berjalan...</p>
+        </div>
+    </div>
+    <script src="renderer.js"></script>
+</body>
+</html>

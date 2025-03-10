@@ -87,4 +87,4 @@ This feature is a tool to remove unused projects. Key points:
 - **Coming soon**: Build Calculator 2.5.4.
 
 ### 🛠️ Vue
-- **Coming Soon**:
+- **Coming Soon**.
