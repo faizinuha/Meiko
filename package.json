@@ -8,8 +8,8 @@
   "badges": [
     {
       "description": "CodersLar Pro",
-      "url": "https://img.shields.io/badge/CodersLar-Pro-blue",
-       "href": "https://example.com"
+      "href": "https://example.com",
+      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
     }
   ],
   "bin": {
