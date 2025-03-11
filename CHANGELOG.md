@@ -10,6 +10,17 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - Fitur baru yang akan datang.
 
+## [2.1.0] - 2024-01-20
+
+### Added
+- Installer GUI dengan Electron
+- React Native snippets
+- Vue.js snippets yang lebih lengkap
+
+### Changed
+- Peningkatan performa CLI tools
+- Pembaruan dokumentasi
+
 ## [1.9.9] - 2023-10-15
 
 ### Fixed

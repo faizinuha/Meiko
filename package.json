@@ -4,7 +4,14 @@
     "onCommand:extension.coders-delete",
     "onCommand:extension.coders-crud"
   ],
-  "author": "Zaky Evenso",
+  "author": "Zaky",
+  "badges": [
+    {
+      "description": "CodersLar Pro",
+      "url": "https://img.shields.io/badge/CodersLar-Pro-blue",
+       "href": "https://example.com"
+    }
+  ],
   "bin": {
     "coders-crud": "cli/crud-installer.js",
     "coders-delete": "cli/delete-solid.js",
@@ -30,34 +37,37 @@
         "title": "Run Coders CRUD CLI"
       }
     ],
+    "documentation": {
+      "releaseNotes": "./CHANGELOG.md"
+    },
     "snippets": [
       {
         "language": "html",
-        "path": "/snippets/html-snippets.code-snippets.json"
+        "path": "./snippets/html-snippets.json"
       },
       {
         "language": "php",
-        "path": "/snippets/laravel-snippets.code-snippets.json"
+        "path": "./snippets/php-snippets.json"
       },
       {
         "language": "php",
-        "path": "/snippets/php-snippets.code-snippets.json"
+        "path": "./snippets/laravel-snippets.json"
       },
       {
         "language": "java",
-        "path": "/snippets/java-snippets.code-snippets.json"
+        "path": "./snippets/java-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "/snippets/javascript-snippets.code-snippets.json"
+        "path": "./snippets/javascript-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "/snippets/vue-snippets.code-snippets.json"
+        "path": "./snippets/vue-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "/snippets/ReactNative-snippets.code-snippets.json"
+        "path": "./snippets/ReactNative-snippets.json"
       }
     ]
   },
@@ -66,7 +76,7 @@
     "cli-progress": "^3.12.0",
     "ora": "^8.1.1"
   },
-  "description": "CodersLar Pro - AI-powered CLI extension for developers.",
+  "description": "Tools AI-powered CLI extension for developers ⚡.",
   "devDependencies": {
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
@@ -79,7 +89,7 @@
   "engines": {
     "vscode": ">=1.95.0"
   },
-  "icon": "Image/Logo3.png",
+  "icon": "assets/Image/Logo3.png",
   "id": "ZakyEvenso12",
   "keywords": [
     "codersLar",
@@ -91,17 +101,7 @@
     "snippets"
   ],
   "license": "AGPL-3.0-only",
-  "badges": [
-    {
-      "description": "CodersLar Pro",
-      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
-    },
-    {
-      "description": "CodersLar Pro",
-      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
-    }
-  ],
-  "main": "out/exstension.js",
+  "main": "out/extension.js",
   "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
   "repository": {
@@ -118,5 +118,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.0.9"
+  "version": "2.1.0"
 }

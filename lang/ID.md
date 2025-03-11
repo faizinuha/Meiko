@@ -10,8 +10,8 @@
 
 <p align="center">
 🐱‍👤 -> 
-  <strong><a href="lang/JP.md">Bahasa Jepang</a></strong>
-  <strong><a href="lang/EN.md">Bahasa Inggris</a></strong>
+  <strong><a href="JP">Bahasa Jepang</a></strong>
+  <strong><a href="EN">Bahasa Inggris</a></strong>
 </p>
 
 ## 💖 Donasi
@@ -140,15 +140,14 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 - 🏗️ **Vue Two-Way Binding**: Snippet untuk two-way binding menggunakan v-model di Vue 3.
 - 🏗️ **Vue Modal Component**: Snippet untuk membuat modal sederhana di Vue 3.
 - 🏗️ **Vue Form Component**: Snippet untuk membuat form sederhana di Vue 3.
+
 <hr>
+# 📝 Lisensi:
+Hak Cipta (c) 2024 Zaky Development
 
-
-# 📝 License:
-Copyright (c) 2024 Zaky Development 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Dengan ini diberikan izin, tanpa biaya, kepada siapa pun yang memperoleh salinan
+perangkat lunak ini dan berkas dokumentasi terkait ("Perangkat Lunak"), untuk menggunakan
+Perangkat Lunak tanpa batasan, termasuk tanpa batasan hak
+untuk menggunakan, menyalin, memodifikasi, menggabungkan, menerbitkan, mendistribusikan, mensublisensikan, dan/atau menjual
+salinan Perangkat Lunak, dan untuk mengizinkan orang yang menerima Perangkat Lunak
+untuk melakukannya, dengan ketentuan sebagai berikut: 
