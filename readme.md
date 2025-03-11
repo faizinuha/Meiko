@@ -1,7 +1,7 @@
 # ⚡ CodersLar Pro
 
 <p align="center">
-  <img src="assets/image/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
  **CodersLar** adalah ekstensi Visual Studio Code yang dirancang untuk memudahkan pengalaman coding. Dengan dukungan untuk empat bahasa pemrograman, ekstensi ini mempercepat dan mempermudah proses penulisan kode melalui berbagai template yang telah disediakan.
 

@@ -1,7 +1,7 @@
 # ⚡ CodersLar Pro
 
 <p align="center">
-  <img src="../assets/image/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="../assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
 **CodersLar Pro** is a Visual Studio Code extension designed to simplify the coding experience. With support for four programming languages, this extension speeds up and simplifies the code-writing process through various provided templates.
 

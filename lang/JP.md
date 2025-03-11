@@ -1,7 +1,7 @@
 # ⚡ CodersLar Pro
 
 <p align="center">
-  <img src="../assets//image/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="../assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
  **CodersLar Pro** は、コーディング体験を簡単にするために設計されたVisual Studio Codeの拡張機能です。4つのプログラミング言語をサポートし、さまざまなテンプレートを提供することで、コードの作成プロセスを迅速かつ容易にします。
 
