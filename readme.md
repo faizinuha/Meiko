@@ -49,7 +49,8 @@ Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ **Buat pull request**.
 - 🐞 **Laporkan masalah** di [GitHub Repository kami](#).
-
+-Libary:https://www.npmjs.com/search?q=electron
+-github: https://github.com/electron/electron/issues
 ---
 
 ## 📂 Fitur
