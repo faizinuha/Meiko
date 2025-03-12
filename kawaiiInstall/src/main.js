@@ -1,7 +1,13 @@
-const { app, BrowserWindow, ipcMain, dialog, globalShortcut } = require("electron");
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  dialog,
+  globalShortcut,
+} = require("electron");
 const path = require("path");
 const { exec } = require("child_process");
-const { autoUpdater } = require("electron-updater");
+// const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 let selectedDirectory = "";
@@ -12,7 +18,7 @@ app.whenReady().then(() => {
     height: 700,
     fullscreen: false,
     resizable: true,
-    frame: true,
+    frame: false,
     icon: path.join(__dirname, "../assets/Anime_pixel_Art1.png"),
     webPreferences: {
       preload: path.join(__dirname, "./preload.js"),
@@ -22,7 +28,19 @@ app.whenReady().then(() => {
     }
   });
 
+  mainWindow.setFocusable(true);
+  mainWindow.setFullScreenable(true);
+
+  // Debug
+  mainWindow.webContents.openDevTools();
+
   mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
+
+  // Tambahkan ini setelah mainWindow dibuat
+  mainWindow.once("ready-to-show", () => {
+    mainWindow.show();
+    mainWindow.setFocusable(true);
+  });
 
   globalShortcut.register("F11", () => {
     mainWindow.setFullScreen(!mainWindow.isFullScreen());
@@ -33,7 +51,7 @@ app.whenReady().then(() => {
     mainWindow = null;
   });
 
-  autoUpdater.checkForUpdatesAndNotify();
+  // autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on("will-quit", () => {
@@ -54,23 +72,38 @@ ipcMain.handle("select-directory", async () => {
 
 const installFramework = async (framework, command, projectName) => {
   if (!selectedDirectory) {
-    mainWindow.webContents.send("install-error", `❌ Pilih folder terlebih dahulu!`);
+    mainWindow.webContents.send(
+      "install-error",
+      `❌ Pilih folder terlebih dahulu!`
+    );
     return;
   }
 
   if (!projectName || projectName.trim() === "") {
-    mainWindow.webContents.send("install-error", `${framework} ❌ Nama proyek tidak boleh kosong!`);
+    mainWindow.webContents.send(
+      "install-error",
+      `${framework} ❌ Nama proyek tidak boleh kosong!`
+    );
     return;
   }
 
-  mainWindow.webContents.send("install-progress", `🔄 Installing ${framework}...`);
+  mainWindow.webContents.send(
+    "install-progress",
+    `🔄 Installing ${framework}...`
+  );
 
   try {
     await execPromise(`cd "${selectedDirectory}" && ${command} ${projectName}`);
-    mainWindow.webContents.send("install-success", `✅ ${framework} berhasil di-install.`);
+    mainWindow.webContents.send(
+      "install-success",
+      `✅ ${framework} berhasil di-install.`
+    );
   } catch (error) {
     console.error(`Error installing ${framework}:`, error);
-    mainWindow.webContents.send("install-error", `❌ ${framework} gagal di-install.`);
+    mainWindow.webContents.send(
+      "install-error",
+      `❌ ${framework} gagal di-install.`
+    );
   }
 };
 
@@ -87,7 +120,11 @@ const execPromise = (command) => {
 };
 
 ipcMain.on("install-laravel", (_event, { projectName }) => {
-  installFramework("Laravel", "composer create-project --prefer-dist laravel/laravel", projectName);
+  installFramework(
+    "Laravel",
+    "composer create-project --prefer-dist laravel/laravel",
+    projectName
+  );
 });
 
 ipcMain.on("install-react", (_event, { projectName }) => {

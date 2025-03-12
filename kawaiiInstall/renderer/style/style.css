@@ -70,7 +70,11 @@ input {
   border-radius: 8px;
   font-size: 14px;
   outline: none;
+  position: relative;
+  z-index: 10;
+  pointer-events: auto;
 }
+
 
 button {
   background: #ff69b4;

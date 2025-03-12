@@ -1,7 +1,9 @@
 {
+  "author": "Zaky De",
   "build": {
     "publish": [
       {
+        "owner": "faizinuha",
         "provider": "github",
         "repo": "https://github.com/faizinuha/Kawaii_Code/releases"
       }
@@ -11,7 +13,6 @@
       "target": "nsis"
     }
   },
-  "description": "Kawaii dengan desain anime pixel",
   "devDependencies": {
     "electron": "^28.3.3",
     "electron-builder": "^25.1.8",
@@ -19,11 +20,13 @@
     "electron-updater": "^6.3.9"
   },
   "main": "src/main.js",
-  "name": "kawaii-",
+  "name": "kawaii",
+  "description": "Kawaii dengan desain anime pixel",
+  "license": "MIT",
   "scripts": {
-    "make": "electron-builder --overwrite",
+    "make": "electron-builder",
     "package": "electron-packager . Kawaii --platform=win32 --arch=x64 --out=dist/ --overwrite",
     "start": "electron ."
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }

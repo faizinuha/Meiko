@@ -1,6 +1,6 @@
 {
   "appId": "com.kawaii.installer",
-  "productName": "Kawaii Installer",
+  "productName": "Kawaii",
   "win": {
     "target": "nsis",
     "icon": "assets/Anime_pixel_Art.png"
