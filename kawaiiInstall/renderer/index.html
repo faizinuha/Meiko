@@ -26,13 +26,25 @@
             <p id="helpMessage"></p>
             <div id="opsiMessage" style="display: none;">
                 <strong>Opsi Yang Tersedia:</strong> <br>
-                <button class="install-btn" data-framework="laravel">Install Laravel</button> <br>
-                <button class="install-btn" data-framework="react">Install React.js</button> <br>
-                <button class="install-btn" data-framework="next">Install Next.js</button> <br>
+                <button class="install-btn" data-framework="laravel"> Laravel</button> <br>
+                <button class="install-btn" data-framework="react"> React.js</button> <br>
+                <button class="install-btn" data-framework="next"> Next.js</button> <br>
             </div>
             <p id="loadingMessage" style="display: none;">⏳ Mohon tunggu, proses sedang berjalan...</p>
         </div>
     </div>
+    <div id="animeAnimation" style="display: none;">
+        <img src="../assets/Gif/200w.gif" alt="Anime Running"  />
+    </div>
     <script src="renderer.js"></script>
+    <script>
+      function debounce(func, wait) {
+        let timeout;
+        return function(...args) {
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(this, args), wait);
+        };
+      }
+    </script>
 </body>
 </html>

@@ -1,13 +1,14 @@
 const { app, BrowserWindow, ipcMain, dialog, globalShortcut } = require("electron");
 const path = require("path");
 const { exec } = require("child_process");
+const { autoUpdater } = require("electron-updater");
 
 let mainWindow;
 let selectedDirectory = "";
 
 app.whenReady().then(() => {
   mainWindow = new BrowserWindow({
-    width: 1000,
+    width: 800,
     height: 700,
     fullscreen: false,
     resizable: true,
@@ -18,7 +19,7 @@ app.whenReady().then(() => {
       nodeIntegration: true,
       enableRemoteModule: true,
       contextIsolation: false,
-    }    
+    }
   });
 
   mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
@@ -31,13 +32,14 @@ app.whenReady().then(() => {
   mainWindow.on("closed", () => {
     mainWindow = null;
   });
+
+  autoUpdater.checkForUpdatesAndNotify();
 });
 
 app.on("will-quit", () => {
   globalShortcut.unregisterAll();
 });
 
-// Event pilih folder
 ipcMain.handle("select-directory", async () => {
   const result = await dialog.showOpenDialog(mainWindow, {
     properties: ["openDirectory"],
@@ -50,8 +52,7 @@ ipcMain.handle("select-directory", async () => {
   return null;
 });
 
-// Function install framework
-const installFramework = (framework, command, projectName) => {
+const installFramework = async (framework, command, projectName) => {
   if (!selectedDirectory) {
     mainWindow.webContents.send("install-error", `❌ Pilih folder terlebih dahulu!`);
     return;
@@ -64,28 +65,35 @@ const installFramework = (framework, command, projectName) => {
 
   mainWindow.webContents.send("install-progress", `🔄 Installing ${framework}...`);
 
-  exec(`cd "${selectedDirectory}" && ${command} ${projectName}`, (error, stdout, stderr) => {
-    if (error) {
-      console.error(`Error installing ${framework}:`, stderr);
-      mainWindow.webContents.send("install-error", `❌ ${framework} gagal di-install.`);
-    } else {
-      console.log(`${framework} Installed:`, stdout);
-      mainWindow.webContents.send("install-success", `✅ ${framework} berhasil di-install.`);
-    }
+  try {
+    await execPromise(`cd "${selectedDirectory}" && ${command} ${projectName}`);
+    mainWindow.webContents.send("install-success", `✅ ${framework} berhasil di-install.`);
+  } catch (error) {
+    console.error(`Error installing ${framework}:`, error);
+    mainWindow.webContents.send("install-error", `❌ ${framework} gagal di-install.`);
+  }
+};
+
+const execPromise = (command) => {
+  return new Promise((resolve, reject) => {
+    exec(command, (error, stdout, stderr) => {
+      if (error) {
+        reject(stderr);
+      } else {
+        resolve(stdout);
+      }
+    });
   });
 };
 
-// Laravel
 ipcMain.on("install-laravel", (_event, { projectName }) => {
   installFramework("Laravel", "composer create-project --prefer-dist laravel/laravel", projectName);
 });
 
-// React.js
 ipcMain.on("install-react", (_event, { projectName }) => {
   installFramework("React.js", "npx create-react-app", projectName);
 });
 
-// Next.js
 ipcMain.on("install-next", (_event, { projectName }) => {
   installFramework("Next.js", "npx create-next-app", projectName);
 });

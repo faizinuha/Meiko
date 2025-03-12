@@ -1,16 +1,26 @@
 {
-  "name": "kawaii-",
-  "version": "1.0.1",
-  "description": " Kawaii dengan desain anime pixel",
-  "main": "src/main.js",
-  "scripts": {
-    "start": "electron .",
-    "package": "electron-packager . KawaiiInstaller --platform=win32 --arch=x64 --out=dist/ --overwrite",
-    "make": "electron-builder"
+  "build": {
+    "publish": [
+      {
+        "owner": " faizinuha",
+        "provider": "github",
+        "repo": "https://github.com/faizinuha/Kawaii_Code/releases"
+      }
+    ]
   },
+  "description": " Kawaii dengan desain anime pixel",
   "devDependencies": {
     "electron": "^28.3.3",
     "electron-builder": "^25.1.8",
-    "electron-packager": "^17.1.2"
-  }
+    "electron-packager": "^17.1.2",
+    "electron-updater": "^6.3.9"
+  },
+  "main": "src/main.js",
+  "name": "kawaii-",
+  "scripts": {
+    "make": "electron-builder",
+    "package": "electron-packager . Kawaii --platform=win32 --arch=x64 --out=dist/ --overwrite",
+    "start": "electron ."
+  },
+  "version": "1.0.1"
 }

@@ -6,11 +6,19 @@
     "icon": "assets/Anime_pixel_Art.png"
   },
   "linux": {
-    "target": "AppImage",
+    "target": [
+      "AppImage",
+      "deb",
+      "rpm",
+      "snap"
+    ],
     "icon": "assets/Anime_pixel_Art1.png"
   },
   "mac": {
-    "target": "dmg",
+    "target": [
+      "dmg",
+      "zip"
+    ],
     "icon": "assets/Anime_pixel_Art2.png"
   }
 }
