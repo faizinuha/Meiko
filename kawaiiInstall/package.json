@@ -21,7 +21,7 @@
   "main": "src/main.js",
   "name": "kawaii-",
   "scripts": {
-    "make": "electron-builder",
+    "make": "electron-builder --overwrite",
     "package": "electron-packager . Kawaii --platform=win32 --arch=x64 --out=dist/ --overwrite",
     "start": "electron ."
   },
