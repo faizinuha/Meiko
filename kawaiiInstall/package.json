@@ -2,13 +2,16 @@
   "build": {
     "publish": [
       {
-        "owner": " faizinuha",
         "provider": "github",
         "repo": "https://github.com/faizinuha/Kawaii_Code/releases"
       }
-    ]
+    ],
+    "win": {
+      "icon": "assets/Anime_pixel_Art.png",
+      "target": "nsis"
+    }
   },
-  "description": " Kawaii dengan desain anime pixel",
+  "description": "Kawaii dengan desain anime pixel",
   "devDependencies": {
     "electron": "^28.3.3",
     "electron-builder": "^25.1.8",
