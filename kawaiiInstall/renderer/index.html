@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="Kawaii, Kawaii Install, Kawaii Installer, Kawaii Framework, Kawaii React, Kawaii Laravel, Kawaii Next.js">
+    <meta name="description" content="Kawaii adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat. Pilih framework yang ingin kamu install.">
+    <meta name="author" content="Zaki ">
+    <meta name="robots" content="index, follow">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="yandex" content="index, follow">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="theme-color" content="#000000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <title>Kawaii </title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
-    <div class="container">
+    <div id="loadingScreen" class="loading-screen">
+        <p>⏳ Loading, please wait...</p>
+    </div>
+    <div id="mainContent" class="container" style="display: none;">
         <div class="image"></div>
         <div class="text">
             <h1>Welcome Kawaii</h1>
             <p>👋 Selamat datang di Kawaii </p>
-            <p>🚀 Kawaii  adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat</p>
+            <!-- <p>🚀 Kawaii  adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat</p> -->
             <p>📦 Pilih framework yang ingin kamu install</p>
             <div id="version"></div>
             <div id="creator"></div>
-            <input type="text" id="userInput" placeholder="/help or /opsi" />
+            <!-- <div id="lastUpdated"></div> -->
+            <hr> 
             <div id="projectInputContainer" style="display: none;">
                 <p>Masukkan Nama Proyek:</p>
                 <input type="text" id="projectName" placeholder="Contoh: MyProject" />
                 <p id="directoryInfo">📂 Pilih folder untuk menyimpan proyek</p>
                 <button id="installConfirmBtn">Install</button>
             </div>
-            <p id="helpMessage"></p>
-            <div id="opsiMessage" style="display: none;">
+            <div id="opsiMessage">
                 <strong>Opsi Yang Tersedia:</strong> <br>
                 <button class="install-btn" data-framework="laravel"> Laravel</button> <br>
                 <button class="install-btn" data-framework="react"> React.js</button> <br>
@@ -33,7 +49,7 @@
             <p id="loadingMessage" style="display: none;">⏳ Mohon tunggu, proses sedang berjalan...</p>
         </div>
     </div>
-    <div id="animeAnimation" style="display: none;">
+    <div id="animeAnimation" style="display: none;" >
         <img src="../assets/Gif/200w.gif" alt="Anime Running"  />
     </div>
     <script src="renderer.js"></script>
@@ -45,6 +61,14 @@
           timeout = setTimeout(() => func.apply(this, args), wait);
         };
       }
+
+      // Simulate data rendering delay
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          document.getElementById("loadingScreen").style.display = "none";
+          document.getElementById("mainContent").style.display = "flex";
+        }, 2000); // 2 seconds delay
+      });
     </script>
 </body>
 </html>

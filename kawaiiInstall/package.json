@@ -21,7 +21,7 @@
   },
   "main": "src/main.js",
   "name": "kawaii",
-  "description": "Kawaii dengan desain anime pixel",
+  "description": "Vibes for your code editor",
   "license": "MIT",
   "scripts": {
     "make": "electron-builder",

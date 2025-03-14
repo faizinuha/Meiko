@@ -18,7 +18,7 @@ app.whenReady().then(() => {
     height: 700,
     fullscreen: false,
     resizable: true,
-    frame: false,
+    frame: true,
     icon: path.join(__dirname, "../assets/Anime_pixel_Art1.png"),
     webPreferences: {
       preload: path.join(__dirname, "./preload.js"),
@@ -36,11 +36,11 @@ app.whenReady().then(() => {
 
   mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
 
-  // Tambahkan ini setelah mainWindow dibuat
-  mainWindow.once("ready-to-show", () => {
+  // Simulasi delay rendering data
+  setTimeout(() => {
     mainWindow.show();
     mainWindow.setFocusable(true);
-  });
+  }, 2000); // 2 detik delay
 
   globalShortcut.register("F11", () => {
     mainWindow.setFullScreen(!mainWindow.isFullScreen());
