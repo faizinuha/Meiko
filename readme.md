@@ -142,15 +142,16 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 - 🏗️ **Vue Two-Way Binding**: Snippet untuk two-way binding menggunakan v-model di Vue 3.
 - 🏗️ **Vue Modal Component**: Snippet untuk membuat modal sederhana di Vue 3.
 - 🏗️ **Vue Form Component**: Snippet untuk membuat form sederhana di Vue 3.
+
+---
+
+#### 🐍 **Python (v2.1.8)**
+
+- 🐍 **PyHello**: Program Hello World.
+- 🐍 **PySum**: Penjumlahan dua angka.
+- 🐍 **PyFactorial**: Menghitung faktorial dari sebuah angka.
+- 🐍 **PyFibonacci**: Menghasilkan deret Fibonacci.
+- 🐍 **PyPalindrome**: Memeriksa apakah sebuah string adalah palindrome.
+- ⏳ **Coming Soon**: Snippet tambahan.
+
 <hr>
-<!-- 
-
-# 📝 License:
-Copyright (c) 2024 Zaky Development 
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions: -->

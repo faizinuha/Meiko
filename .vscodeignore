@@ -2,7 +2,5 @@
 .vscode-test/**
 .gitignore
 vsc-extension-quickstart.md
-exstension.js/
-exstension.js
 kawaiiInstall/
 Kawaii Installer Setup 1.0.0.exe

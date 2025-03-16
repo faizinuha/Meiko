@@ -4,11 +4,19 @@ All notable changes to the "KawaiiCode->codersLar" extension will be documented 
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [Done]
 ## 🛠️ New Update And Topic
 - - **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman. 
 ### Added
 - Fitur baru yang akan datang.
+
+## [2.1.8] - 2024-02-01
+
+### Added
+- Snippet baru untuk berbagai bahasa pemrograman.
+
+### Changed
+- Pembaruan lisensi untuk menghapus bagian kontribusi.
 
 ## [2.1.0] - 2024-01-20
 

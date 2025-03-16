@@ -7,8 +7,8 @@
   "author": "Zaky",
   "badges": [
     {
-      "description": "CodersLar Pro",
-      "href": "https://example.com",
+      "description": "CodersLar (Legety)",
+      "href": "https://github.com/faizinuha/Exstension-Vsocode",
       "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
     }
   ],
@@ -43,31 +43,31 @@
     "snippets": [
       {
         "language": "html",
-        "path": "./snippets/html-snippets.json"
+        "path": "./src/html-snippets.json"
       },
       {
         "language": "php",
-        "path": "./snippets/php-snippets.json"
+        "path": "./src/php-snippets.json"
       },
       {
         "language": "php",
-        "path": "./snippets/laravel-snippets.json"
+        "path": "./src/laravel-snippets.json"
       },
       {
         "language": "java",
-        "path": "./snippets/java-snippets.json"
+        "path": "./src/java-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/javascript-snippets.json"
+        "path": "./src/javascript-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/vue-snippets.json"
+        "path": "./src/vue-snippets.json"
       },
       {
         "language": "javascript",
-        "path": "./snippets/ReactNative-snippets.json"
+        "path": "./src/ReactNative-snippets.json"
       }
     ]
   },
@@ -85,11 +85,11 @@
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
   },
-  "displayName": "CodersLar Pro",
+  "displayName": "CodersLar(Legety)",
   "engines": {
     "vscode": ">=1.95.0"
   },
-  "icon": "assets/Image/Logo3.png",
+  "icon": "assets/Logo3.png",
   "id": "ZakyEvenso12",
   "keywords": [
     "codersLar",
@@ -106,7 +106,7 @@
   "publisher": "ZakyEvenso12",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZakyEvenso12/CodersLar-Pro"
+    "url": "https://github.com/faizinuha/Exstension-Vsocode"
   },
   "scripts": {
     "test": "node ./out/test/runTest.js"
