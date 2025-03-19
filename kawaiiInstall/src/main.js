@@ -70,6 +70,7 @@ ipcMain.handle("select-directory", async () => {
   return null;
 });
 
+// Function to install a framework
 const installFramework = async (framework, command, projectName) => {
   if (!selectedDirectory) {
     mainWindow.webContents.send(
@@ -107,6 +108,7 @@ const installFramework = async (framework, command, projectName) => {
   }
 };
 
+// Function to execute a command
 const execPromise = (command) => {
   return new Promise((resolve, reject) => {
     exec(command, (error, stdout, stderr) => {
@@ -119,6 +121,7 @@ const execPromise = (command) => {
   });
 };
 
+// Handle Laravel installation
 ipcMain.on("install-laravel", (_event, { projectName }) => {
   installFramework(
     "Laravel",
@@ -127,10 +130,12 @@ ipcMain.on("install-laravel", (_event, { projectName }) => {
   );
 });
 
+// Handle React.js installation
 ipcMain.on("install-react", (_event, { projectName }) => {
   installFramework("React.js", "npx create-react-app", projectName);
 });
 
+// Handle Next.js installation
 ipcMain.on("install-next", (_event, { projectName }) => {
   installFramework("Next.js", "npx create-next-app", projectName);
 });

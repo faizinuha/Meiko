@@ -4,19 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <meta name="keywords" content="Kawaii, Kawaii Install, Kawaii Installer, Kawaii Framework, Kawaii React, Kawaii Laravel, Kawaii Next.js">
     <meta name="description" content="Kawaii adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat. Pilih framework yang ingin kamu install.">
-    <meta name="author" content="Zaki ">
-    <meta name="robots" content="index, follow">
-    <meta name="googlebot" content="index, follow">
-    <meta name="bingbot" content="index, follow">
-    <meta name="yandex" content="index, follow">
-    <meta name="referrer" content="no-referrer-when-downgrade">
-    <meta name="format-detection" content="telephone=no">
-    <meta name="theme-color" content="#000000">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <title>Kawaii </title>
+    <meta name="author" content="Zaki">
+    <title>Kawaii</title>
     <link rel="stylesheet" href="style/style.css">
 </head>
 <body>
@@ -27,12 +17,10 @@
         <div class="image"></div>
         <div class="text">
             <h1>Welcome Kawaii</h1>
-            <p>👋 Selamat datang di Kawaii </p>
-            <!-- <p>🚀 Kawaii  adalah aplikasi yang memudahkan kamu untuk membuat proyek baru dengan cepat</p> -->
+            <p>👋 Selamat datang di Kawaii</p>
             <p>📦 Pilih framework yang ingin kamu install</p>
             <div id="version"></div>
             <div id="creator"></div>
-            <!-- <div id="lastUpdated"></div> -->
             <hr> 
             <div id="projectInputContainer" style="display: none;">
                 <p>Masukkan Nama Proyek:</p>
@@ -49,19 +37,11 @@
             <p id="loadingMessage" style="display: none;">⏳ Mohon tunggu, proses sedang berjalan...</p>
         </div>
     </div>
-    <div id="animeAnimation" style="display: none;" >
-        <img src="../assets/Gif/200w.gif" alt="Anime Running"  />
+    <div id="animeAnimation" style="display: none;">
+        <img src="../assets/Gif/200w.gif" alt="Anime Running" />
     </div>
     <script src="renderer.js"></script>
     <script>
-      function debounce(func, wait) {
-        let timeout;
-        return function(...args) {
-          clearTimeout(timeout);
-          timeout = setTimeout(() => func.apply(this, args), wait);
-        };
-      }
-
       // Simulate data rendering delay
       document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {

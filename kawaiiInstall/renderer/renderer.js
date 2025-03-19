@@ -52,16 +52,19 @@ document.addEventListener("DOMContentLoaded", () => {
     window.ipcRenderer.send(`install-${selectedFramework}`, { projectName, directory: selectedDirectory });
   });
 
+  // Handle install progress
   window.ipcRenderer.on("install-progress", (_, message) => {
     console.log(message);
   });
 
+  // Handle install success
   window.ipcRenderer.on("install-success", (_, message) => {
     loadingMessage.style.display = "none";
     animeAnimation.style.display = "none"; // Menyembunyikan animasi anime
     alert(message);
   });
 
+  // Handle install error
   window.ipcRenderer.on("install-error", (_, message) => {
     loadingMessage.style.display = "none";
     animeAnimation.style.display = "none"; // Menyembunyikan animasi anime

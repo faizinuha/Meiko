@@ -28,5 +28,5 @@
     "package": "electron-packager . Kawaii --platform=win32 --arch=x64 --out=dist/ --overwrite",
     "start": "electron ."
   },
-  "version": "1.0.2"
+  "version": "1.0.3"
 }
