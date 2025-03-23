@@ -145,7 +145,7 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 
 ---
 
-#### 🐍 **Python (v2.1.8)**
+#### 🐍 **Python (v2.1.2)**
 
 - 🐍 **PyHello**: Program Hello World.
 - 🐍 **PySum**: Penjumlahan dua angka.

@@ -10,7 +10,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 ### Added
 - Fitur baru yang akan datang.
 
-## [2.1.8] - 2024-02-01
+## [2.1.2] - 2024-02-01
 
 ### Added
 - Snippet baru untuk berbagai bahasa pemrograman.

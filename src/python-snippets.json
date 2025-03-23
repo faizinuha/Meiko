@@ -1,0 +1,63 @@
+{
+    "PyHello": {
+        "prefix": "PyHello",
+        "body": [
+            "print('Hello, World!')"
+        ],
+        "description": "Python Hello World program"
+    },
+    "PySum": {
+        "prefix": "PySum",
+        "body": [
+            "num1 = float(input('Enter first number: '))",
+            "num2 = float(input('Enter second number: '))",
+            "sum = num1 + num2",
+            "print(f'Sum of {num1} and {num2} is {sum}')"
+        ],
+        "description": "Python program to add two numbers"
+    },
+    "PyFactorial": {
+        "prefix": "PyFactorial",
+        "body": [
+            "def factorial(n):",
+            "    if n == 0:",
+            "        return 1",
+            "    return n * factorial(n-1)",
+            "",
+            "num = int(input('Enter a number: '))",
+            "result = factorial(num)",
+            "print(f'Factorial of {num} is {result}')"
+        ],
+        "description": "Calculate factorial of a number"
+    },
+    "PyFibonacci": {
+        "prefix": "PyFibonacci",
+        "body": [
+            "def fibonacci(n):",
+            "    fib = [0, 1]",
+            "    for i in range(2, n):",
+            "        fib.append(fib[i-1] + fib[i-2])",
+            "    return fib",
+            "",
+            "n = int(input('Enter number of terms: '))",
+            "result = fibonacci(n)",
+            "print(f'Fibonacci sequence: {result}')"
+        ],
+        "description": "Generate Fibonacci sequence"
+    },
+    "PyPalindrome": {
+        "prefix": "PyPalindrome",
+        "body": [
+            "def is_palindrome(text):",
+            "    text = text.lower().replace(' ', '')",
+            "    return text == text[::-1]",
+            "",
+            "text = input('Enter text to check: ')",
+            "if is_palindrome(text):",
+            "    print(f'{text} is a palindrome')",
+            "else:",
+            "    print(f'{text} is not a palindrome')"
+        ],
+        "description": "Check if a string is palindrome"
+    }
+}
