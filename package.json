@@ -2,7 +2,12 @@
   "activationEvents": [
     "onCommand:extension.coders-solid",
     "onCommand:extension.coders-delete",
-    "onCommand:extension.coders-crud"
+    "onCommand:extension.coders-crud",
+    "onLanguage:javascript",
+    "onLanguage:typescript",
+    "onLanguage:php",
+    "onLanguage:html",
+    "onLanguage:java"
   ],
   "author": "Zaky",
   "badges": [
@@ -20,7 +25,8 @@
   "categories": [
     "Programming Languages",
     "AI",
-    "Snippets"
+    "Snippets",
+    "Other"
   ],
   "contributes": {
     "commands": [
@@ -72,8 +78,10 @@
     ]
   },
   "dependencies": {
+    "@tensorflow/tfjs-node": "^4.4.0",
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
+    "openai": "^4.0.0",
     "ora": "^8.1.1"
   },
   "description": "Tools AI-powered CLI extension for developers ⚡.",
@@ -82,6 +90,7 @@
     "@types/vscode": "^1.95.0",
     "electron-builder": "^25.1.8",
     "prettier": "^3.3.3",
+    "typescript": "^5.0.0",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
   },
@@ -101,7 +110,7 @@
     "snippets"
   ],
   "license": "AGPL-3.0-only",
-  "main": "out/extension.js",
+  "main": "./dist/extension.js",
   "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
   "repository": {
@@ -109,7 +118,11 @@
     "url": "https://github.com/faizinuha/Exstension-Vsocode"
   },
   "scripts": {
-    "test": "node ./out/test/runTest.js"
+    "build": "tsc && webpack",
+    "watch": "tsc -watch",
+    "compile": "tsc -p ./",
+    "test": "node ./out/test/runTest.js",
+    "format": "prettier --write ."
   },
   "tags": [
     "codersLar",

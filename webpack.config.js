@@ -1,15 +1,19 @@
 const path = require("path");
 
+// Konfigurasi webpack untuk pembangunan proyek
 module.exports = {
-  mode: "production",
+  mode: "production", // Mode produksi untuk optimasi
   entry: {
     codersSolid: "./cli/coders-solid.js",
     crudInstaller: "./cli/crud-installer.js",
     deleteSolid: "./cli/delete-solid.js",
   },
   output: {
-    filename: "[name].bundle.js", // Akan menghasilkan codersSolid.bundle.js, crudInstaller.bundle.js, deleteSolid.bundle.js
+    filename: "[name].bundle.js", // Menghasilkan file bundle terpisah
     path: path.resolve(__dirname, "dist"),
   },
   target: "node",
+  optimization: {
+    minimize: true // Mengoptimasi ukuran file
+  }
 };
