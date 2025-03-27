@@ -1,6 +1,9 @@
 {
   "recommendations": [
     "zakyevenso12.CodersLar",
-    "zakyevenso12.kawaiicode"
+    "zakyevenso12.kawaiicode",
+    "monokai.theme-monokai-pro-vscode",
+    "ZakyEvenso12.php-native"
+    // "ZakyEvenso12.kawaiicode"
   ]
 }
