@@ -1,17 +1,20 @@
-# ⚡ CodersLar Pro
+# ⚡ Meiko
 
 <p align="center">
-  <img src="../assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="../assets/icons1.jpeg" alt="Meiko Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
-**CodersLar Pro** is a Visual Studio Code extension designed to simplify the coding experience. With support for four programming languages, this extension speeds up and simplifies the code-writing process through various provided templates.
+**Meiko** 
+is a Visual Studio Code extension designed to simplify the coding experience. With support for four programming languages, this extension speeds up and simplifies the code-writing process through various provided templates.
 
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 
 <p align="center">
 🐱‍👤 -> 
-  <strong><a href="JP">Japanese</a></strong>
-  <strong><a href="ID">English</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/JP.md">Japanese</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/ID.md">Indonesian</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">Chinese</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/korea.md">Korean</a></strong>
 </p>
 
 ## 💖 Donation
@@ -19,14 +22,18 @@
 If you enjoy this extension and would like to support the developer, please consider donating!
 
 <a href="https://saweria.co/C02V">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Donation Icon" width="150" />
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
+</a>
+|
+<a href="https://ko-fi.com/mahiro885">
+    <img src="../assets/image.png" alt="捐赠图标" width="40" />
 </a>
 
 ---
 
 ## 🚀 Main Feature Demo
 
-Here is a list of the main features of CodersLar:
+Here is a list of the main features of Meiko:
 
 - 🌐 **Multi-Language Support**: Supports four programming languages.
 - 📋 **Snippet Templates**: Provides various templates to speed up code writing.
@@ -36,7 +43,7 @@ Here is a list of the main features of CodersLar:
 
 1. **Install the Extension**:
    - 🛒 Open the Visual Studio Code Marketplace.
-   - 🔍 Search and download **CodersLar**.
+   - 🔍 Search and download **Meiko**.
 2. **Enjoy the Coding Experience**:
    - ⚡ Use the various provided shortcuts for an easier and simpler coding experience.
 
@@ -47,11 +54,35 @@ Here is a list of the main features of CodersLar:
 If you find a bug or have an idea for improvement, please:
 
 - 🛠️ **Create a pull request**.
-- 🐞 **Report an issue** on [our GitHub Repository](#).
+- 🐞 **Report an issue** on [our GitHub Repository](https://github.com/faizinuha/Meiko).
 
 ---
 
 ## 📂 Features
+
+### File Extensions Converter
+New feature to convert short file names to full names for various frameworks:
+
+#### Framework Support:
+- 🌐 **Laravel**: `.b.p` → `.blade.php` or `.b.php` → `.blade.php`
+- 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` or `.erb.h` → `.html.erb`
+- ⚛️ **React/Next.js**: 
+  - `.j.tsx` → `.jsx.tsx`
+  - `.tsx.c` → `.component.tsx` 
+  - `.p.tsx` → `.page.tsx`
+- 📱 **Vue.js**:
+  - `.v.js` → `.vue.js`
+  - `.v.c` → `.vue.component.js`
+- 🅰️ **Angular**:
+  - `.c.ts` → `.component.ts`
+  - `.s.ts` → `.service.ts`
+  - `.m.ts` → `.module.ts`
+- 🎯 **Svelte**: `.s.svelte` → `.svelte`
+- 🐘 **PHP**: `.t.php` → `.template.php`
+- 🐍 **Django/Python**:
+  - `.d.py` → `.django.py`
+  - `.v.py` → `.view.py`
+  - `.t.py` → `.template.py`
 
 ### New Coders CLI Terminal
 

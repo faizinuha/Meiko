@@ -1,18 +1,21 @@
-# ⚡ CodersLar Pro
+# ⚡ Meiko
 
 <p align="center">
-  <img src="assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="assets/icons1.jpeg" alt="Meiko Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
- **CodersLar**
+ **Meiko**
   adalah ekstensi Visual Studio Code yang dirancang untuk memudahkan pengalaman coding. Dengan dukungan untuk empat bahasa pemrograman, ekstensi ini mempercepat dan mempermudah proses penulisan kode melalui berbagai template yang telah disediakan.
 
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
+
 
 <p align="center">
 🐱‍👤 -> 
-  <strong><a href="lang/JP.md">Bahasa Jepang</a></strong>
-  <strong><a href="lang/EN.md">Bahasa Inggris</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/JP.md">Bahasa Jepang</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">Bahasa Inggris</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">Bahasa Mandarin</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/korea.md">Bahasa Korea</a></strong>
 </p>
 
 ## 💖 Donasi
@@ -20,14 +23,18 @@
 Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimbangkan untuk berdonasi!
 
 <a href="https://saweria.co/C02V">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Ikon Donasi" width="150" />
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
+</a>
+|
+<a href="https://ko-fi.com/mahiro885">
+    <img src="assets/image.png" alt="捐赠图标" width="40" />
 </a>
 
 ---
 
 ## 🚀 Demo Fitur Utama
 
-Berikut adalah daftar fitur utama dari CodersLar:
+Berikut adalah daftar fitur utama dari Meiko:
 
 - 🌐 **Dukungan Multi Bahasa**: Mendukung empat bahasa pemrograman.
 - 📋 **Template Snippet**: Menyediakan berbagai template untuk mempercepat penulisan kode.
@@ -37,32 +44,53 @@ Berikut adalah daftar fitur utama dari CodersLar:
 
 1. **Install Ekstensi**:
    - 🛒 Buka Marketplace Visual Studio Code.
-   - 🔍 Cari dan unduh **CodersLar**.
+   - 🔍 Cari dan unduh **Meiko**.
 2. **Nikmati Pengalaman Coding**:
    - ⚡ Gunakan berbagai shortcut yang telah disediakan untuk pengalaman coding yang lebih mudah dan simpel.
 
 ---
 
 ## 🤝 Kontribusi
-
 Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ **Buat pull request**.
-- 🐞 **Laporkan masalah** di [GitHub Repository kami](#).
+- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko).
 -Libary:https://www.npmjs.com/search?q=electron
 -github: https://github.com/electron/electron/issues
 ---
 
 ## 📂 Fitur
 
+### File Extensions Converter
+Fitur baru untuk mengkonversi nama file singkat menjadi panjang untuk berbagai framework:
+
+#### Framework Support:
+- 🌐 **Laravel**: `.b.p` → `.blade.php` atau `.b.php` → `.blade.php`
+- 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` atau `.erb.h` → `.html.erb`
+- ⚛️ **React/Next.js**: 
+  - `.j.tsx` → `.jsx.tsx`
+  - `.tsx.c` → `.component.tsx` 
+  - `.p.tsx` → `.page.tsx`
+- 📱 **Vue.js**:
+  - `.v.js` → `.vue.js`
+  - `.v.c` → `.vue.component.js`
+- 🅰️ **Angular**:
+  - `.c.ts` → `.component.ts`
+  - `.s.ts` → `.service.ts`
+  - `.m.ts` → `.module.ts`
+- 🎯 **Svelte**: `.s.svelte` → `.svelte`
+- 🐘 **PHP**: `.t.php` → `.template.php`
+- 🐍 **Django/Python**:
+  - `.d.py` → `.django.py`
+  - `.v.py` → `.view.py`
+  - `.t.py` → `.template.py`
+
 ### New Coders CLi terminal
 
 #### **Laravel Solid**
-
 Laravel Solid adalah fitur yang membantu pengembang dalam menyiapkan proyek Laravel yang sudah terstruktur secara solid dengan konfigurasi awal yang rapi dan mudah digunakan.
 
-#### **Coders Solid**
-
+#### **Coders Solid** **baca di bawah untuk Lebih Lengkap ya**
 Fitur ini memungkinkan pengguna untuk dengan cepat mengatur kerangka dasar Laravel yang sudah disiapkan untuk pengembangan lebih lanjut. Beberapa poin utama:
 
 - 🛠️ **Instalasi Dasar**: 
@@ -71,11 +99,10 @@ Fitur ini memungkinkan pengguna untuk dengan cepat mengatur kerangka dasar Larav
 - ⏱️ **Efisiensi Waktu**: Memulai proyek tanpa harus mengatur ulang file secara manual.
 
 #### **Coders-delete**
-
 Fitur ini berfungsi untuk menghapus folder atau file Laravel jika ternyata proyek yang telah dibuat tidak jadi digunakan.
 
 - 🚮 **Penghapusan Cepat**: Menghemat waktu pengguna.
-- 🔒 **Keamanan Data**: Proses penghapusan hanya pada folder proyek yang dipilih pengguna.
+- 🔒 **Keamanan Data**: Proses penghapusan hanya pada folder proyek yang dipilih pengguna. Sudah di Latih 
 
 ---
 
@@ -90,6 +117,15 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 
 ---
 
+--- 
+### 💻 **Coders-crud Cli Solid ** ( Sudah di latih)
+Cli Sederhana Untuk Pembuatan Crud di Solid 
+1. ⌨️ **Buka terminal** dengan `Ctrl + J`.
+2. Ketik `coders-solid <NameProject>`.
+3. 🎉 **Edit sesuai kebutuhan** tanpa membuat dari awal.
+4. 🚀 Gunakan CLI ini tanpa batasan.
+
+---
 ### Snippets
 
 #### 🏗️ **HTML**

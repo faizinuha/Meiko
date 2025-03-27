@@ -1,17 +1,19 @@
-# ⚡ CodersLar Pro
+# ⚡ Meiko
 
 <p align="center">
-  <img src="../assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="../assets/icons1.jpeg" alt="Meiko Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
- **CodersLar Pro** は、コーディング体験を簡単にするために設計されたVisual Studio Codeの拡張機能です。4つのプログラミング言語をサポートし、さまざまなテンプレートを提供することで、コードの作成プロセスを迅速かつ容易にします。
+ **Meiko** は、コーディング体験を簡単にするために設計されたVisual Studio Codeの拡張機能です。4つのプログラミング言語をサポートし、さまざまなテンプレートを提供することで、コードの作成プロセスを迅速かつ容易にします。
 
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 
 <p align="center">
 🐱‍👤 -> 
-  <strong><a href="ID">インドネシア</a></strong>
-  <strong><a href="EN">英語</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">英語</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/ID.md">インドネシア語</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">中国語</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/korea.md">韓国語</a></strong>
 </p>
 
 ## 💖 寄付
@@ -19,14 +21,18 @@
 この拡張機能を楽しんでいただき、開発者をサポートしたい場合は、寄付をご検討ください！
 
 <a href="https://saweria.co/C02V">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="寄付アイコン" width="150" />
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
+</a>
+|
+<a href="https://ko-fi.com/mahiro885">
+    <img src="../assets/image.png" alt="捐赠图标" width="40" />
 </a>
 
 ---
 
 ## 🚀 主な機能のデモ
 
-以下は、CodersLarの主な機能のリストです：
+以下は、Meikoの主な機能のリストです：
 
 - 🌐 **多言語サポート**: 4つのプログラミング言語をサポート。
 - 📋 **スニペットテンプレート**: コードの作成を迅速化するためのさまざまなテンプレートを提供。
@@ -36,7 +42,7 @@
 
 1. **拡張機能のインストール**:
    - 🛒 Visual Studio Codeのマーケットプレースを開く。
-   - 🔍 **CodersLar**を検索してダウンロード。
+   - 🔍 **Meiko**を検索してダウンロード。
 2. **コーディング体験を楽しむ**:
    - ⚡ 提供されているさまざまなショートカットを使用して、より簡単でシンプルなコーディング体験を実現。
 
@@ -53,13 +59,37 @@
 
 ## 📂 機能
 
-### 新しいCoders CLiターミナル
+### ファイル拡張子コンバーター
+各フレームワークの短いファイル名を完全な名前に変換する新機能：
+
+#### フレームワークサポート：
+- 🌐 **Laravel**: `.b.p` → `.blade.php` または `.b.php` → `.blade.php`
+- 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` または `.erb.h` → `.html.erb`
+- ⚛️ **React/Next.js**: 
+  - `.j.tsx` → `.jsx.tsx`
+  - `.tsx.c` → `.component.tsx` 
+  - `.p.tsx` → `.page.tsx`
+- 📱 **Vue.js**:
+  - `.v.js` → `.vue.js`
+  - `.v.c` → `.vue.component.js`
+- 🅰️ **Angular**:
+  - `.c.ts` → `.component.ts`
+  - `.s.ts` → `.service.ts`
+  - `.m.ts` → `.module.ts`
+- 🎯 **Svelte**: `.s.svelte` → `.svelte`
+- 🐘 **PHP**: `.t.php` → `.template.php`
+- 🐍 **Django/Python**:
+  - `.d.py` → `.django.py`
+  - `.v.py` → `.view.py`
+  - `.t.py` → `.template.py`
+
+### 新しいMeiko CLIターミナル
 
 #### **Laravel Solid**
 
 Laravel Solidは、開発者がLaravelプロジェクトをSolidな構造で準備するのを支援する機能です。初期設定が整っており、使いやすいです。
 
-#### **Coders Solid**
+#### **Meiko Solid**
 
 この機能により、ユーザーはLaravelの基本的なフレームワークを迅速に設定し、さらなる開発に備えることができます。主なポイントは以下の通りです：
 
@@ -68,7 +98,7 @@ Laravel Solidは、開発者がLaravelプロジェクトをSolidな構造で準�
   - 小規模から中規模のプロジェクト向けのデフォルト設定ファイル。
 - ⏱️ **時間効率**: 手動でファイルを再設定することなくプロジェクトを開始。
 
-#### **Coders-delete**
+#### **Meiko-delete**
 
 この機能は、作成したプロジェクトが使用されない場合に、Laravelのフォルダやファイルを削除するために使用されます。
 
@@ -77,12 +107,12 @@ Laravel Solidは、開発者がLaravelプロジェクトをSolidな構造で準�
 
 ---
 
-### 💻 **Coders-crud CLI**
+### 💻 **Meiko-crud CLI**
 
 LaravelのCRUD作成のためのシンプルなCLI：
 
 1. ⌨️ `Ctrl + J`で**ターミナルを開く**。
-2. `coders-crud <NameProject>`と入力。
+2. `meiko-crud <NameProject>`と入力。
 3. 🎉 **必要に応じて編集**し、最初から作成する必要はありません。
 4. 🚀 このCLIを制限なく使用。
 

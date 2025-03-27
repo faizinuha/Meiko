@@ -7,14 +7,15 @@
     "onLanguage:typescript",
     "onLanguage:php",
     "onLanguage:html",
-    "onLanguage:java"
+    "onLanguage:java",
+    "workspaceContains:**/*"
   ],
   "author": "Zaky",
   "badges": [
     {
-      "description": "CodersLar (Legety)",
-      "href": "https://github.com/faizinuha/Exstension-Vsocode",
-      "url": "https://img.shields.io/badge/CodersLar-Pro-blue"
+      "description": "Meiko",
+      "href": "https://github.com/faizinuha/Meiko",
+      "url": "https://img.shields.io/badge/Meiko-Pro-blue"
     }
   ],
   "bin": {
@@ -41,6 +42,10 @@
       {
         "command": "extension.codersCrud",
         "title": "Run Coders CRUD CLI"
+      },
+      {
+        "command": "kawaii.createShortNameFile",
+        "title": "Kawaii: Create File with Short Name"
       }
     ],
     "documentation": {
@@ -74,62 +79,73 @@
       {
         "language": "javascript",
         "path": "./src/ReactNative-snippets.json"
+      },
+      {
+        "language": "python",
+        "path": "./src/python-snippets.json"
       }
     ]
   },
   "dependencies": {
-    "@tensorflow/tfjs-node": "^4.4.0",
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
-    "openai": "^4.0.0",
     "ora": "^8.1.1"
   },
-  "description": "Tools AI-powered CLI extension for developers ⚡.",
+  "description": "🚀 Advanced AI-powered VS Code ",
   "devDependencies": {
+    "@tensorflow/tfjs-node": "^4.4.0",
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
     "electron-builder": "^25.1.8",
+    "openai": "^4.0.0",
     "prettier": "^3.3.3",
     "typescript": "^5.0.0",
     "webpack": "^5.98.0",
     "webpack-cli": "^6.0.1"
   },
-  "displayName": "CodersLar(Legety)",
+  "displayName": "Meiko",
   "engines": {
     "vscode": ">=1.95.0"
   },
-  "icon": "assets/Logo3.png",
+  "icon": "assets/icons1.jpeg",
   "id": "ZakyEvenso12",
   "keywords": [
-    "codersLar",
+    "Meiko",
     "php",
     "laravel",
     "AI",
     "javascript",
-    "Vue",
-    "snippets"
+    "vue",
+    "react",
+    "snippets",
+    "productivity",
+    "web-development",
+    "code-generator",
+    "cli-tools",
+    "typescript",
+    "html"
   ],
-  "license": "AGPL-3.0-only",
-  "main": "./dist/extension.js",
-  "name": "kawaiicode",
+  "license": "MIT",
+  "main": "./out/extension.js",
+  "name": "meiko",
   "publisher": "ZakyEvenso12",
   "repository": {
     "type": "git",
-    "url": "https://github.com/faizinuha/Exstension-Vsocode"
+    "url": "https://github.com/faizinuha/Meiko"
   },
   "scripts": {
     "build": "tsc && webpack",
-    "watch": "tsc -watch",
     "compile": "tsc -p ./",
+    "format": "prettier --write .",
     "test": "node ./out/test/runTest.js",
-    "format": "prettier --write ."
+    "watch": "tsc -watch"
   },
   "tags": [
-    "codersLar",
+    "Meiko",
     "codersHtml",
     "laravel",
     "AI",
     "snippets"
   ],
-  "version": "2.1.2"
+  "version": "2.1.3"
 }

@@ -1,17 +1,19 @@
-# ⚡ CodersLar Pro
+# ⚡ Meiko
 
 <p align="center">
-  <img src="assets/Logo3.png" alt="CodersLar Logo" width="100" style="border-radius: 30px;" /><hr>
+  <img src="../assets/icons1.jpeg" alt="Meiko Logo" width="100" style="border-radius: 30px;" /><hr>
 </p>
- **CodersLar** adalah ekstensi Visual Studio Code yang dirancang untuk memudahkan pengalaman coding. Dengan dukungan untuk empat bahasa pemrograman, ekstensi ini mempercepat dan mempermudah proses penulisan kode melalui berbagai template yang telah disediakan.
+ **Meiko** adalah ekstensi Visual Studio Code yang dirancang untuk memudahkan pengalaman coding. Dengan dukungan untuk empat bahasa pemrograman, ekstensi ini mempercepat dan mempermudah proses penulisan kode melalui berbagai template yang telah disediakan.
 
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
-![CodersLar Pro](https://img.shields.io/badge/CodersLar-Pro-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
+![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 
 <p align="center">
 🐱‍👤 -> 
-  <strong><a href="JP">Bahasa Jepang</a></strong>
-  <strong><a href="EN">Bahasa Inggris</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/JP.md">Bahasa Jepang</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">Bahasa Inggris</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">Bahasa Mandarin</a></strong>
+  <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/korea.md">Bahasa Korea</a></strong>
 </p>
 
 ## 💖 Donasi
@@ -19,14 +21,18 @@
 Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimbangkan untuk berdonasi!
 
 <a href="https://saweria.co/C02V">
-    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Ikon Donasi" width="150" />
+    <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
+</a>
+|
+<a href="https://ko-fi.com/mahiro885">
+    <img src="../assets/image.png" alt="捐赠图标" width="40" />
 </a>
 
 ---
 
 ## 🚀 Demo Fitur Utama
 
-Berikut adalah daftar fitur utama dari CodersLar:
+Berikut adalah daftar fitur utama dari Meiko:
 
 - 🌐 **Dukungan Multi Bahasa**: Mendukung empat bahasa pemrograman.
 - 📋 **Template Snippet**: Menyediakan berbagai template untuk mempercepat penulisan kode.
@@ -36,7 +42,7 @@ Berikut adalah daftar fitur utama dari CodersLar:
 
 1. **Install Ekstensi**:
    - 🛒 Buka Marketplace Visual Studio Code.
-   - 🔍 Cari dan unduh **CodersLar**.
+   - 🔍 Cari dan unduh **Meiko**.
 2. **Nikmati Pengalaman Coding**:
    - ⚡ Gunakan berbagai shortcut yang telah disediakan untuk pengalaman coding yang lebih mudah dan simpel.
 
@@ -47,7 +53,7 @@ Berikut adalah daftar fitur utama dari CodersLar:
 Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ **Buat pull request**.
-- 🐞 **Laporkan masalah** di [GitHub Repository kami](#).
+- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko).
 
 ---
 
@@ -150,4 +156,4 @@ perangkat lunak ini dan berkas dokumentasi terkait ("Perangkat Lunak"), untuk me
 Perangkat Lunak tanpa batasan, termasuk tanpa batasan hak
 untuk menggunakan, menyalin, memodifikasi, menggabungkan, menerbitkan, mendistribusikan, mensublisensikan, dan/atau menjual
 salinan Perangkat Lunak, dan untuk mengizinkan orang yang menerima Perangkat Lunak
-untuk melakukannya, dengan ketentuan sebagai berikut: 
+untuk melakukannya, dengan ketentuan sebagai berikut:

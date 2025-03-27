@@ -1,31 +1,30 @@
 {
-  "Blade Template Layout": {
-    "prefix": "bladeLayout",
+  "Blade Content Section": {
     "body": [
-      "<!DOCTYPE html>",
-      "<html lang=\"en\">",
-      "<head>",
-      "    <meta charset=\"UTF-8\">",
-      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
-      "    <title>@yield('title', 'Default Title')</title>",
-      "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\">",
-      "    @stack('styles')",
-      "</head>",
-      "<body>",
-      "    @include('partials.header')",
-      "    <div class=\"container my-4\">",
-      "        @yield('content')",
-      "    </div>",
-      "    @include('partials.footer')",
-      "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\"></script>",
-      "    @stack('scripts')",
-      "</body>",
-      "</html>"
+      "@extends('layouts.app')",
+      "",
+      "@section('title', '${1:Page Title}')",
+      "",
+      "@section('content')",
+      "<div class=\"content\">",
+      "    <h1>${2:Welcome to the Page}</h1>",
+      "    <p>${3:Your content goes here.}</p>",
+      "</div>",
+      "@endsection"
     ],
-    "description": "Laravel Blade Layout Template"
+    "description": "Laravel Blade Content Section",
+    "prefix": "bladeContent"
+  },
+  "Blade Footer Partial": {
+    "body": [
+      "<footer class=\"text-center py-4 bg-light\">",
+      "    <p>&copy; ${1:Year} Your Company. All rights reserved.</p>",
+      "</footer>"
+    ],
+    "description": "Laravel Blade Footer Partial",
+    "prefix": "bladeFooter"
   },
   "Blade Header Partial": {
-    "prefix": "bladenav",
     "body": [
       "<nav class=\"navbar navbar-expand-lg navbar-light bg-light\">",
       "    <div class=\"container-fluid\">",
@@ -46,35 +45,35 @@
       "    </div>",
       "</nav>"
     ],
-    "description": "Laravel Blade Header Partial"
+    "description": "Laravel Blade Header Partial",
+    "prefix": "bladenav"
   },
-  "Blade Footer Partial": {
-    "prefix": "bladeFooter",
+  "Blade Template Layout": {
     "body": [
-      "<footer class=\"text-center py-4 bg-light\">",
-      "    <p>&copy; ${1:Year} Your Company. All rights reserved.</p>",
-      "</footer>"
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title>@yield('${1:title}', '${2:Default Title}')</title>",
+      "    <link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css\" rel=\"stylesheet\">",
+      "    @stack('${3:styles}')",
+      "</head>",
+      "<body>",
+      "    @include('${4:partials.header}')",
+      "    <div class=\"container my-4\">",
+      "        @yield('${5:content}')",
+      "    </div>",
+      "    @include('${6:partials.footer}')",
+      "    <script src=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js\"></script>",
+      "    @stack('${7:scripts}')",
+      "</body>",
+      "</html>"
     ],
-    "description": "Laravel Blade Footer Partial"
-  },
-  "Blade Content Section": {
-    "prefix": "bladeContent",
-    "body": [
-      "@extends('layouts.app')",
-      "",
-      "@section('title', '${1:Page Title}')",
-      "",
-      "@section('content')",
-      "<div class=\"content\">",
-      "    <h1>${2:Welcome to the Page}</h1>",
-      "    <p>${3:Your content goes here.}</p>",
-      "</div>",
-      "@endsection"
-    ],
-    "description": "Laravel Blade Content Section"
+    "description": "Laravel Blade Layout Template",
+    "prefix": "bladeLayout"
   },
   "Blade Template Tailwind": {
-    "prefix": "bladeLayoutTailwind",
     "body": [
       "<!DOCTYPE html>",
       "<html lang=\"id\">",
@@ -95,6 +94,7 @@
       "</body>",
       "</html>"
     ],
-    "description": "Template Layout Laravel Blade dengan Tailwind CSS"
+    "description": "Template Layout Laravel Blade dengan Tailwind CSS",
+    "prefix": "bladeLayoutTailwind"
   }
 }
