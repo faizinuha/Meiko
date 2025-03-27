@@ -110,7 +110,7 @@
   "icon": "assets/icons1.jpeg",
   "id": "ZakyEvenso12",
   "keywords": [
-    "Meiko",
+    "CodersLar(Legety)",
     "php",
     "laravel",
     "AI",
@@ -127,7 +127,7 @@
   ],
   "license": "MIT",
   "main": "./out/extension.js",
-  "name": "meiko",
+  "name": "kawaiicode",
   "publisher": "ZakyEvenso12",
   "repository": {
     "type": "git",
@@ -147,5 +147,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.1.3"
+  "version": "2.1.4"
 }
