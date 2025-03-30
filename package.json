@@ -1,5 +1,6 @@
 {
   "activationEvents": [
+    "*",
     "onCommand:extension.coders-solid",
     "onCommand:extension.coders-delete",
     "onCommand:extension.coders-crud",
@@ -22,6 +23,13 @@
     "coders-crud": "cli/crud-installer.js",
     "coders-delete": "cli/delete-solid.js",
     "coders-solid": "cli/coders-solid.js"
+  },
+  "browser": "./dist/web/extension.js",
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true
+    },
+    "virtualWorkspaces": true
   },
   "categories": [
     "Programming Languages",
@@ -46,6 +54,10 @@
       {
         "command": "kawaii.createShortNameFile",
         "title": "Kawaii: Create File with Short Name"
+      },
+      {
+        "command": "meiko-web.hello",
+        "title": "Hello Meiko Web"
       }
     ],
     "documentation": {
@@ -134,7 +146,8 @@
     "url": "https://github.com/faizinuha/Meiko"
   },
   "scripts": {
-    "build": "tsc && webpack",
+    "build": "tsc && webpack && npm run build-web",
+    "build-web": "webpack --config webpack.web.config.js",
     "compile": "tsc -p ./",
     "format": "prettier --write .",
     "test": "node ./out/test/runTest.js",
@@ -147,5 +160,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.1.4"
+  "version": "2.1.5"
 }

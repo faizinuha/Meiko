@@ -1,6 +1,13 @@
 const vscode = require("vscode");
 
 function activate(context) {
+    // Show welcome message
+    const hasShownWelcome = context.globalState.get('hasShownWelcome');
+    if (!hasShownWelcome) {
+        vscode.window.showInformationMessage('Terima kasih telah mengunduh Meiko Extension! 🎉');
+        context.globalState.update('hasShownWelcome', true);
+    }
+
     console.log('CodersLar Pro is now active!');
 
     let disposableSolid = vscode.commands.registerCommand("extension.codersSolid", function () {

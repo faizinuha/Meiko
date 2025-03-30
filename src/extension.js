@@ -1,7 +1,7 @@
-import * as vscode from 'vscode';
-import { FileWatcherFeature } from './features/fileWatcher';
+const vscode = require('vscode');
+const { FileWatcherFeature } = require('./features/fileWatcher');
 
-export function activate(context: vscode.ExtensionContext) {
+function activate(context) {
     try {
         // Inisialisasi FileWatcher untuk mengubah nama file pendek ke panjang
         new FileWatcherFeature(context);
@@ -17,4 +17,9 @@ export function activate(context: vscode.ExtensionContext) {
     }
 }
 
-export function deactivate() {}
+function deactivate() {}
+
+module.exports = {
+    activate,
+    deactivate
+};
