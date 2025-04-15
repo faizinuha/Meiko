@@ -191,3 +191,18 @@ Cli Sederhana Untuk Pembuatan Crud di Solid
 - ⏳ **Coming Soon**: Snippet tambahan.
 
 <hr>
+
+
+```
+## ✅ Publisher Identity Confirmed
+Terima kasih telah menggunakan **CodersLar (by Meiko)**! Extension ini dibuat dan dipelihara oleh tim developer terpercaya.
+
+🌐 Website Resmi: [https://meikode.dev](https://meikode.dev) *(in development)*  
+📬 Kontak Dukungan: support@meikode.dev  
+🔐 Status: Verified Developer Branding *(non-official)*
+```
+---
+
+**Publisher:** Meiko Labs  
+🧑‍💻 Developer: ZakyEvenso12  
+📘 Verified Branding (non-official)  
