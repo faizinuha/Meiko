@@ -1,6 +1,5 @@
 {
   "activationEvents": [
-    "*",
     "onCommand:extension.coders-solid",
     "onCommand:extension.coders-delete",
     "onCommand:extension.coders-crud",

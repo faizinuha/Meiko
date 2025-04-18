@@ -54,7 +54,7 @@ Berikut adalah daftar fitur utama dari Meiko:
 Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 - 🛠️ **Buat pull request**.
-- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko).
+- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko)
 -Libary:https://www.npmjs.com/search?q=electron
 -github: https://github.com/electron/electron/issues
 ---
@@ -63,7 +63,6 @@ Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 ### File Extensions Converter
 Fitur baru untuk mengkonversi nama file singkat menjadi panjang untuk berbagai framework:
-
 #### Framework Support:
 - 🌐 **Laravel**: `.b.p` → `.blade.php` atau `.b.php` → `.blade.php`
 - 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` atau `.erb.h` → `.html.erb`
