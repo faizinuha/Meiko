@@ -1,51 +1,54 @@
-import * as path from 'path';
+import * as path from "path";
+export function expandShortFileName(
+  fileName: string,
+  customMappings: { [key: string]: string }
+): string {
+  const defaultPatterns: { [key: string]: string } = {
+    ".b.p": ".blade.php",
+    ".b.php": ".blade.php",
 
-export function expandShortFileName(fileName: string): string {
-    // Mapping untuk konversi nama pendek ke panjang untuk berbagai framework
-    const patterns: { [key: string]: string } = {
-        // Laravel Blade
-        '.b.p': '.blade.php',
-        '.b.php': '.blade.php',
-        
-        // Ruby on Rails
-        '.e.rb': '.html.erb',
-        '.erb.h': '.html.erb',
-        
-        // React/Next.js
-        '.j.tsx': '.jsx.tsx',
-        '.tsx.c': '.component.tsx',
-        '.p.tsx': '.page.tsx',
-        
-        // Vue.js
-        '.v.js': '.vue.js',
-        '.v.c': '.vue.component.js',
-        
-        // Angular
-        '.c.ts': '.component.ts',
-        '.s.ts': '.service.ts',
-        '.m.ts': '.module.ts',
-        
-        // Svelte
-        '.s.svelte': '.svelte',
-        
-        // PHP Templates
-        '.t.php': '.template.php',
-        
-        // Django/Python
-        '.d.py': '.django.py',
-        '.v.py': '.view.py',
-        '.t.py': '.template.py'
-    };
+    // Ruby on Rails
+    ".e.rb": ".html.erb",
+    ".erb.h": ".html.erb",
 
-    let expandedName = fileName;
-    
-    for (const [shortVersion, fullVersion] of Object.entries(patterns)) {
-        if (fileName.toLowerCase().endsWith(shortVersion)) {
-            const baseName = path.basename(fileName, shortVersion);
-            expandedName = `${baseName}${fullVersion}`;
-            break;
-        }
+    // React/Next.js
+    ".j.tsx": ".jsx.tsx",
+    ".tsx.c": ".component.tsx",
+    ".p.tsx": ".page.tsx",
+
+    // Vue.js
+    ".v.js": ".vue.js",
+    ".v.c": ".vue.component.js",
+
+    // Angular
+    ".c.ts": ".component.ts",
+    ".s.ts": ".service.ts",
+    ".m.ts": ".module.ts",
+
+    // Svelte
+    ".s.svelte": ".svelte",
+
+    // PHP Templates
+    ".t.php": ".template.php",
+
+    // Django/Python
+    ".d.py": ".django.py",
+    ".v.py": ".view.py",
+    ".t.py": ".template.py",
+    // ... tambahkan mapping default lainnya
+  };
+
+  const patterns = { ...defaultPatterns, ...customMappings }; // Gabungkan mapping default dan custom
+
+  let expandedName = fileName;
+
+  for (const [shortVersion, fullVersion] of Object.entries(patterns)) {
+    if (fileName.toLowerCase().endsWith(shortVersion)) {
+      const baseName = path.basename(fileName, shortVersion);
+      expandedName = `${baseName}${fullVersion}`;
+      break;
     }
+  }
 
-    return expandedName;
+  return expandedName;
 }
