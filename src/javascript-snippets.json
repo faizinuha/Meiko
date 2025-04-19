@@ -111,9 +111,9 @@
 	},
 	"Get Element by Id": {
 		"body": [
-			"const ${1:elemet1} = document.getElementById('${2:id}');"
+			"const ${1:element} = document.getElementById('${2:id}');"
 		],
-		"description": "Get elemet by Id",
+		"description": "Get element by Id",
 		"prefix": "jsGetId"
 	},
 	"Get Elements by Tag Name": {

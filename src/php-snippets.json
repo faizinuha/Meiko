@@ -1,31 +1,35 @@
 {
-  "foreach loop": {
-    "prefix": "fore",
-    "body": ["foreach ($${1:iterable} as $${2:item}) {", "\t$0", "}"],
-    "description": "foreach loop structure in PHP"
-  },
-  "Foreach": {
-    "prefix": "foreach",
+  "Basic Query": {
     "body": [
-      "@foreach (${1:collection} as ${2:item})",
-      "    ${2:item}",
-      "@endforeach"
+      "// Mengambil semua data",
+      "${1:ModelName}::all();",
+      "",
+      "// Mengambil data dengan kondisi",
+      "${1:ModelName}::where('${2:field}', '${3:value}')->get();",
+      "",
+      "// Mengambil data pertama yang cocok",
+      "${1:ModelName}::where('${2:field}', '${3:value}')->first();",
+      "",
+      "// Menghitung jumlah data",
+      "${1:ModelName}::count();",
+      "",
+      "// Menghapus data",
+      "${1:ModelName}::destroy(${4:id});"
     ],
-    "description": "Template for foreach statements in Blade"
+    "description": "Basic queries for Laravel models",
+    "prefix": "query"
   },
-  "Forelse Statements": {
-    "prefix": "forelse",
+  "Basic Route": {
     "body": [
-      "@forelse (${1:collection} as ${2:item})",
-      "    ${2:item}",
-      "@empty",
-      "    <p>No items found.</p>",
-      "@endforelse"
+      "use Illuminate\\Support\\Facades\\Route;",
+      "",
+      "// Basic route definition",
+      "Route::get('/${1:uri}', '${2:ControllerName}@${3:methodName}')->name('${1}.index');"
     ],
-    "description": "Template in Blade"
+    "description": "Basic route definition in Laravel",
+    "prefix": "route"
   },
   "CRUD with Image Validation": {
-    "prefix": "crudimg",
     "body": [
       "<?php",
       "",
@@ -40,8 +44,8 @@
       "    // Menampilkan daftar data",
       "    public function index()",
       "    {",
-      "        $data = ${1:ModelName}::all();",
-      "        return view('${3:viewName}.index', compact('data'));",
+      "        $${1/[A-Z][a-z]+|[0-9]+/\\L$0/g} = ${1:ModelName}::all();",
+      "        return view('${3:viewName}.index', compact('${1/[A-Z][a-z]+|[0-9]+/\\L$0/g}'));",
       "    }",
       "",
       "    // Menampilkan form untuk menambahkan data",
@@ -118,20 +122,62 @@
       "    }",
       "}"
     ],
-    "description": "Basic CRUD with image validation and delete functionality"
+    "description": "Basic CRUD with image validation and delete functionality",
+    "prefix": "crudimg"
+  },
+  "Foreach": {
+    "body": [
+      "@foreach (${1:collection} as ${2:item})",
+      "    ${2:item}",
+      "@endforeach"
+    ],
+    "description": "Template for foreach statements in Blade",
+    "prefix": "foreach"
+  },
+  "foreach loop": {
+    "body": [
+      "foreach (\\$${1:iterable} as \\$${2:item}) {",
+      "\t$0",
+      "}"
+    ],
+    "description": "foreach loop structure in PHP",
+    "prefix": "fore"
+  },
+  "Forelse Statements": {
+    "body": [
+      "@forelse (${1:collection} as ${2:item})",
+      "    ${2:item}",
+      "@empty",
+      "    <p>No items found.</p>",
+      "@endforelse"
+    ],
+    "description": "Template in Blade",
+    "prefix": "forelse"
+  },
+  "Middleware Route": {
+    "body": [
+      "use Illuminate\\Support\\Facades\\Route;",
+      "",
+      "// Admin routes with auth, verified, and admin role middleware",
+      "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
+      "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
+      "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
+      "});"
+    ],
+    "description": "Simpel Middleware Route",
+    "prefix": "MiddlewareRoute"
   },
   "Resource Route": {
-    "prefix": "ResourceRoute",
     "body": [
       "use Illuminate\\Support\\Facades\\Route;",
       "",
       "// Standard resource routes",
       "Route::resource('/${1:ResourceName}', '${2:ResourceName}Controller');"
     ],
-    "description": "Simpel Resource Route"
+    "description": "Simpel Resource Route",
+    "prefix": "ResourceRoute"
   },
   "Split CRUD Routes": {
-    "prefix": "SplitCRUD",
     "body": [
       "use Illuminate\\Support\\Facades\\Route;",
       "",
@@ -144,49 +190,7 @@
       "Route::put('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@update')->name('${1}.update');",
       "Route::delete('/${1:ResourceName}/{id}', '${2:ResourceName}Controller@destroy')->name('${1}.destroy');"
     ],
-    "description": "Split CRUD Routes"
-  },
-  "Middleware Route": {
-    "prefix": "MiddlewareRoute",
-    "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Admin routes with auth, verified, and admin role middleware",
-      "Route::middleware(['auth', 'verified', 'role:admin'])->group(function () {",
-      "    Route::get('/admin/dashboard', '${2:AdminController}@dashboard')->name('admin.dashboard');",
-      "    Route::resource('/admin/${1:ResourceName}', '${2:ResourceName}Controller');",
-      "});"
-    ],
-    "description": "Simpel Middleware Route"
-  },
-  "Basic Route": {
-    "prefix": "route",
-    "body": [
-      "use Illuminate\\Support\\Facades\\Route;",
-      "",
-      "// Basic route definition",
-      "Route::get('/${1:uri}', '${2:ControllerName}@${3:methodName}')->name('${1}.index');"
-    ],
-    "description": "Basic route definition in Laravel"
-  },
-  "Basic Query": {
-    "prefix": "query",
-    "body": [
-      "// Mengambil semua data",
-      "${1:ModelName}::all();",
-      "",
-      "// Mengambil data dengan kondisi",
-      "${1:ModelName}::where('${2:field}', '${3:value}')->get();",
-      "",
-      "// Mengambil data pertama yang cocok",
-      "${1:ModelName}::where('${2:field}', '${3:value}')->first();",
-      "",
-      "// Menghitung jumlah data",
-      "${1:ModelName}::count();",
-      "",
-      "// Menghapus data",
-      "${1:ModelName}::destroy(${4:id});"
-    ],
-    "description": "Basic queries for Laravel models"
+    "description": "Split CRUD Routes",
+    "prefix": "SplitCRUD"
   }
 }

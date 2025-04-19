@@ -33,6 +33,8 @@ module.exports = {
     activate,
     deactivate
 };
+
+
 // fungsi untuk chat ai 
 "use strict";
 var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
@@ -157,15 +159,18 @@ function removeCommentTags(code) {
 }
 async function triggerCodeCompletion(context, comment, allCode) {
     const allCodeData = "```" + allCode + "```";
-    // Logika untuk generate suggestion berdasarkan lineContent
-    const token = context.globalState.get('token'); // Ambil token dari globalState
-    const body = {
-        code: `this is the full code from editor ${allCodeData}. continue the code from instruction comment: "${comment}". Provide only the code without triple backtick and programming language, with comments for additional lines.`,
-    };
-    // Buat StatusBarItem untuk loading
+    
+    // Cek token terlebih dahulu
+    const token = context.globalState.get('token');
+    if (!token) {
+        vscode.window.showErrorMessage('Token tidak ditemukan. Silakan login terlebih dahulu.');
+        return;
+    }
+
     const loadingStatusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
     loadingStatusBarItem.text = "🔄 Memuat kode dari Pacar AI...";
     loadingStatusBarItem.show();
+
     try {
         const response = await fetch('https://chat.pacar-ai.my.id/api/code', {
             method: 'POST',
@@ -173,46 +178,43 @@ async function triggerCodeCompletion(context, comment, allCode) {
                 'Authorization': `Bearer ${token}`,
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(body)
+            body: JSON.stringify({
+                code: `this is the full code from editor ${allCodeData}. continue the code from instruction comment: "${comment}"`
+            })
         });
-        // Cek apakah response berhasil
+
         if (!response.ok) {
-            const errorMessage = await response.text();
-            throw new Error(`Error ${response.status}: ${errorMessage}`);
+            const errorText = await response.text();
+            throw new Error(`Gagal mengambil data: ${response.status} - ${errorText}`);
         }
-        // Jika berhasil, ambil data
+
         const coding = await response.json();
-        // Menambahkan hasil sementara ke editor
+        if (!coding) {
+            throw new Error('Tidak ada respon kode dari server');
+        }
+
         const editor = vscode.window.activeTextEditor;
         if (editor) {
             const currentLine = editor.selection.active.line;
-            // Tampilkan pesan instruksi
             const instructionMessage = "Pilih untuk menerima kode dari Pacar AI...";
             vscode.window.showInformationMessage(instructionMessage, { modal: true }, "Terima Kode", "Tolak Kode").then(selection => {
                 if (selection === "Terima Kode") {
-                    // Jika pengguna memilih 'Terima Kode'
                     editor.edit(editBuilder => {
-                        // Hapus pesan instruksi jika ada
                         const instructionStartPosition = new vscode.Position(currentLine, 0);
                         const instructionEndPosition = new vscode.Position(currentLine + 1, 0);
                         editBuilder.delete(new vscode.Range(instructionStartPosition, instructionEndPosition));
-                        // Sisipkan hasil code completion
                         editBuilder.insert(new vscode.Position(currentLine, 0), `${coding}\n`);
                     });
-                }
-                else if (selection === "Tolak Kode") {
-                    // Jika pengguna memilih 'Tolak Kode', lakukan sesuatu jika perlu
+                } else if (selection === "Tolak Kode") {
                     console.log("Kode ditolak.");
                 }
             });
         }
-    }
-    catch (error) {
-        console.error(error);
-    }
-    finally {
-        // Sembunyikan StatusBarItem loading setelah selesai
-        loadingStatusBarItem.hide();
+    } catch (error) {
+        vscode.window.showErrorMessage(`Error: ${error.message}`);
+        console.error('Detail error:', error);
+    } finally {
+        loadingStatusBarItem.dispose();
     }
 }
 // This method is called when your extension is deactivated

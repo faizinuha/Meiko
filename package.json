@@ -1,7 +1,6 @@
 {
   "activationEvents": [
     "*",
-    "onStartupFinished",
     "onCommand:extension.coders-solid",
     "onCommand:extension.coders-delete",
     "onCommand:extension.coders-crud",
@@ -10,8 +9,7 @@
     "onLanguage:php",
     "onLanguage:html",
     "onLanguage:java",
-    "workspaceContains:**/*",
-    "onStartupFinished"
+    "workspaceContains:**/*"
   ],
   "author": "Zaky",
   "badges": [
@@ -225,5 +223,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.2.1"
+  "version": "2.2.2"
 }
