@@ -76,7 +76,7 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
           selectedLine: selectedLine
         }).then(() => {
           console.log('File info updated successfully');
-        }).catch(error => {
+        }, (error: Error) => {
           console.error('Failed to update file info:', error);
         });
       }
@@ -112,9 +112,9 @@ export class SidebarProvider implements vscode.WebviewViewProvider {
       htmlContent = htmlContent.replace('%AUDIO%', audio.toString());
       htmlContent = htmlContent.replace('%BACKGROUND%', background.toString());
       return htmlContent;
-    } catch (error) {
-      console.error('Error loading webview:', error);
-      return `<html><body>Error loading webview: ${error.message}</body></html>`;
+    } catch (error: unknown) {
+      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+      return `<html><body>Error loading webview: ${errorMessage}</body></html>`;
     }
   }
 }
