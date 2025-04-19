@@ -3,7 +3,9 @@
     "zakyevenso12.CodersLar",
     "zakyevenso12.kawaiicode",
     "monokai.theme-monokai-pro-vscode",
-    "ZakyEvenso12.php-native"
+    "ZakyEvenso12.php-native",
+    	"dbaeumer.vscode-eslint",
+		"ms-vscode.extension-test-runner"
     // "ZakyEvenso12.kawaiicode"
   ]
 }

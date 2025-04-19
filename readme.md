@@ -58,34 +58,6 @@ Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 -Libary:https://www.npmjs.com/search?q=electron
 -github: https://github.com/electron/electron/issues
 ---
-
-## 📂 Fitur
-
-### File Extensions Converter
-Fitur baru untuk mengkonversi nama file singkat menjadi panjang untuk berbagai framework:
-#### Framework Support:
-- 🌐 **Laravel**: `.b.p` → `.blade.php` atau `.b.php` → `.blade.php`
-- 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` atau `.erb.h` → `.html.erb`
-- ⚛️ **React/Next.js**: 
-  - `.j.tsx` → `.jsx.tsx`
-  - `.tsx.c` → `.component.tsx` 
-  - `.p.tsx` → `.page.tsx`
-- 📱 **Vue.js**:
-  - `.v.js` → `.vue.js`
-  - `.v.c` → `.vue.component.js`
-- 🅰️ **Angular**:
-  - `.c.ts` → `.component.ts`
-  - `.s.ts` → `.service.ts`
-  - `.m.ts` → `.module.ts`
-- 🎯 **Svelte**: `.s.svelte` → `.svelte`
-- 🐘 **PHP**: `.t.php` → `.template.php`
-- 🐍 **Django/Python**:
-  - `.d.py` → `.django.py`
-  - `.v.py` → `.view.py`
-  - `.t.py` → `.template.py`
-
-### New Coders CLi terminal
-
 #### **Laravel Solid**
 Laravel Solid adalah fitur yang membantu pengembang dalam menyiapkan proyek Laravel yang sudah terstruktur secara solid dengan konfigurasi awal yang rapi dan mudah digunakan.
 
@@ -190,18 +162,27 @@ Cli Sederhana Untuk Pembuatan Crud di Solid
 - ⏳ **Coming Soon**: Snippet tambahan.
 
 <hr>
+## 📜 Catatan Penting ##
 
 
-```
-## ✅ Publisher Identity Confirmed
-Terima kasih telah menggunakan **CodersLar (by Meiko)**! Extension ini dibuat dan dipelihara oleh tim developer terpercaya.
+## ✅ Contact Meiko ##
+Terima kasih telah menggunakan **Meiko**! Extension ini dibuat dan dipelihara oleh tim developer terpercaya.
 
-🌐 Website Resmi: [https://meikode.dev](https://meikode.dev) *(in development)*  
+🌐 Website Resmi: [https://Mardev7.vercel.app](https://Mardev7.vercel.app) *(in development)*  
 📬 Kontak Dukungan: support@meikode.dev  
 🔐 Status: Verified Developer Branding *(non-official)*
-```
+
+ [#Error Update](https://github.com/faizinuha/Meiko/issues/1)
+
+Mohon Segera Beri Tahu Kami Jika Anda menemukan masalah atau bug pada ekstensi ini. Kami akan segera memperbaikinya.
+Jika Fitur terbaru di bagian Pacar Ai 
+Silakan Download Yang ini -> [Pacar Ai](https://marketplace.visualstudio.com/items?itemName=PacarAI.pacar-ai)
+
 ---
 
 **Publisher:** Meiko Labs  
 🧑‍💻 Developer: ZakyEvenso12  
 📘 Verified Branding (non-official)  
+📧 Email: support@meikode.dev  
+jika ada yang ingin ditanyakan silahkan hubungi saya di [Instagram](https://www.instagram.com/zaky_evanso/) atau [Facebook](https://www.facebook.com/zaky.evanso.5)  
+🔗 Kunjungi [Website Resmi](https://Mardev7.vercel.app) untuk informasi lebih lanjut.

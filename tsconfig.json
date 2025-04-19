@@ -7,8 +7,12 @@
     "rootDir": "src", // Direktori sumber
     "sourceMap": true,
     "strict": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   // Pengecualian direktori
-  "exclude": ["node_modules", ".vscode-test", "kawaiiInstall"]
+  "exclude": ["node_modules", ".vscode-test", "kawaiiInstall", "webviews"],
+  "include": ["src/**/*"]
 }

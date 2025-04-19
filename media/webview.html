@@ -1,0 +1,1631 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pacar AI Chat</title>
+        <!-- Include style and script from media/prism.css, media/prism.js -->
+        <link rel="stylesheet" href="%PRISM_PATH%"> <!-- Link to the Prism CSS for syntax highlighting -->
+        <link rel="stylesheet" href="%STYLES_PATH%">
+        <style>
+            #avatar {
+                background: url('%BACKGROUND%') !important;
+                background-repeat: no-repeat !important;
+                background-size: cover !important;
+            }
+        </style>
+    </head>
+
+    <body>
+
+        <div id="content" class="content"></div>
+        <div id="message" class="message"></div>
+        <button id="speakButton" class="hidden">speak</button>
+        <input id="talkText" class="hidden" />
+        <input id="maxTalks" class="hidden" />
+        <audio id="audio" class="welcome" autoplay muted>
+            <source id="audiosource" src="%AUDIO%" />
+        </audio>
+        <div id="messageInputContainer" class="p-4 bg-black shadow-md fixed-bottom" style="display: none;">
+            <div class="flex items-center">
+                <textarea id="messageInput" placeholder="Ask Pacar AI"
+                    class="flex-grow p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 h-6 bg-black text-white">
+                </textarea>
+                <button id="sendMessageButton"
+                    class="ml-2 h-12 p-2 flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white rounded">
+                    <div id="button-send" class="button-send">
+                        <svg class="h-4 w-4 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z" />
+                        </svg>
+                    </div>
+                    <svg id="loader" class="loader hidden" viewBox="0 0 24 24">
+                        <circle class="path" cx="12" cy="12" r="10" fill="none" stroke-width="4" />
+                    </svg>
+                </button>
+            </div>
+            <div class="flex">
+                <div id="div-code-selected" class="flex mt-2">
+                </div>
+                <div id="generating" class="mt-2 ml-2 border border-1 p-2"></div>
+            </div>
+        </div>
+        <script type="importmap">
+                    {   
+                        "imports": {
+                            "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+                            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/",
+                            "@pixiv/three-vrm": "%VRM%"
+                        }
+                    }
+                </script>
+        <script type="module">
+            var messageArray = []
+            var talkDuration = 0
+            var talkMessage = ""
+            document.addEventListener('DOMContentLoaded', function () {
+                const token = localStorage.getItem('token')
+                const userId = localStorage.getItem('userId')
+                if (token && userId) {
+                    fetchHistory(userId)
+                } else {
+                    showLoginForm()
+                }
+                const sendMessageButton = document.getElementById('sendMessageButton')
+                sendMessageButton.addEventListener('click', handleSendMessage)
+
+                const messageInput = document.getElementById('messageInput')
+                messageInput.value = messageInput.value.trim()
+
+                messageInput.addEventListener('keydown', handleKeyDown)
+
+                window.addEventListener('message', async event => {
+                    const messageEvent = event.data
+
+                    if (messageEvent.command == 'updateFileInfo') {
+                        if (messageEvent.filePath) {
+
+
+                            document.getElementById('div-code-selected').innerHTML = `
+                            <div id="fileOpen"
+                                class="flex file-open p-1 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <span id="filePath"></span><span class="fs-6" id="selectedLine"></span>
+                                <span id="svg-eye"></span>
+                            </div>`
+
+                            document.getElementById('filePath').textContent = messageEvent.filePath
+                            document.getElementById('selectedLine').textContent = ': ' + messageEvent.selectedLine + ' Current file'
+                            document.getElementById('svg-eye').innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="eye" fill="white" class="icon">
+                                <path
+                                    d="M21.92,11.6C19.9,6.91,16.1,4,12,4S4.1,6.91,2.08,11.6a1,1,0,0,0,0,.8C4.1,17.09,7.9,20,12,20s7.9-2.91,9.92-7.6A1,1,0,0,0,21.92,11.6ZM12,18c-3.17,0-6.17-2.29-7.9-6C5.83,8.29,8.83,6,12,6s6.17,2.29,7.9,6C18.17,15.71,15.17,18,12,18ZM12,8a4,4,0,1,0,4,4A4,4,0,0,0,12,8Zm0,6a2,2,0,1,1,2-2A2,2,0,0,1,12,14Z">
+                                </path>
+                            </svg>`
+                        } else {
+                            document.getElementById('div-code-selected').innerHTML = ""
+                            document.getElementById('filePath').textContent = ""
+                            document.getElementById('selectedLine').textContent = ""
+                            document.getElementById('svg-eye').innerHTML = ""
+                        }
+                        return
+                    }
+
+                    const messageText = event.data // Menerima pesan dari extension
+                    let coding = messageText.text || "" // Menggunakan operator logika OR untuk inisialisasi
+                    let allCode = messageText.allCode || "" // Menggunakan operator logika OR untuk inisialisasi
+
+                    const allCodeStorageKey = 'allCodeStorage' // Define a key for storing all code in local storage
+                    const codingStorageKey = 'codingStorage' // Define a key for storing all code in local storage
+                    const storedAllCode = localStorage.getItem(allCodeStorageKey)
+                    const storedCoding = localStorage.getItem(codingStorageKey)
+
+                    if (storedAllCode === allCode) {
+                        allCode = "" // Reset allCode jika sama dengan yang disimpan
+                    }
+                    if (storedCoding === coding) {
+                        coding = "" // Reset allCode jika sama dengan yang disimpan
+                    }
+
+                    // Save all code to local storage only if it's not empty
+                    if (allCode) {
+                        localStorage.setItem(allCodeStorageKey, allCode)
+                        console.log("All code saved to local storage.")
+
+
+                    } else {
+                        console.log("No allCode to save.")
+                    }
+
+                    // Save all code to local storage only if it's not empty
+                    if (coding) {
+                        localStorage.setItem(codingStorageKey, coding)
+                        console.log("Coding saved to local storage.")
+                    } else {
+                        console.log("No coding to save.")
+                    }
+
+
+                    const messageInput = document.getElementById('messageInput')
+                    // Menghapus spasi di awal dan akhir pada load
+
+                    let message = messageInput.value.trim()
+                    if (coding) {
+                        message = "[labelInstruction]Instruction: [labelInstruction]" + message + "[selection]" + coding + "[selection]"
+                    }
+                    if (allCode) {
+                        message = "[fullcode]" + allCode + "[fullcode]" + message
+                    }
+                    console.log("send message to API")
+                    if (!message) return
+                    sendMessageToApi(message)
+                })
+            })
+
+            function handleKeyDown(event) {
+                if (event.key === 'Enter' && !event.shiftKey) {
+                    event.preventDefault()
+                    handleSendMessage()
+                } else {
+                    this.style.height = 'auto' // Reset tinggi agar bisa menghitung tinggi yang baru
+                    this.style.height = Math.min(this.scrollHeight, 300) + 'px' // Set tinggi maksimal 300px
+                }
+            }
+
+            async function handleSendMessage() {
+                document.getElementById('generating').innerHTML = "Generating..."
+                const sendMessageButton = document.getElementById('button-send')
+                const loader = document.getElementById('loader')
+
+                // Ganti tombol dengan loader
+                sendMessageButton.classList.add('hidden') // Sembunyikan tombol
+                loader.classList.remove('hidden') // Tampilkan loader
+                console.log("send message to Pacar AI")
+                // Proses pengiriman pesan
+                vscode.postMessage({ command: 'getSelectedText' })
+
+            }
+
+            async function sendMessageToApi(message) {
+                let newMessageArray = [...messageArray, { role: 'user', message: message }]
+                const historyId = localStorage.getItem('historyId')
+                const userId = localStorage.getItem('userId')
+                const character = localStorage.getItem('character')
+
+                let uniqueId = Date.now() + Math.random()
+                displayMessagesAssistant({ role: 'user', message: message, uniqueId })
+
+                const data = {
+                    historyId,
+                    userId,
+                    character,
+                    message
+                }
+
+                try {
+                    const response = await fetch('https://chat.pacar-ai.my.id/api/messages', {
+                        method: 'POST',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+
+                    if (!response.ok) {
+                        throw new Error('Failed to send message')
+                    }
+                    const reader = response.body.getReader()
+                    const decoder = new TextDecoder("utf-8")
+                    let done = false
+
+                    let assistantMessage = '' // Variabel untuk menyimpan pesan assistant
+                    const assistantRole = 'assistant' // Role untuk pesan assistant
+                    let isFirst = true
+                    // uniqueId
+                    let uniqueId = Date.now() + Math.random()
+                    while (!done) {
+                        const { value, done: doneReading } = await reader.read()
+                        done = doneReading
+                        // Decode dan tambahkan ke assistantMessage
+                        assistantMessage += decoder.decode(value, { stream: true })
+                        if (isFirst) {
+                            isFirst = false
+                            displayMessagesAssistant({ role: assistantRole, message: assistantMessage, uniqueId })
+                        } else {
+                            updateMessagesAssistant({ role: assistantRole, message: assistantMessage, uniqueId })
+                        }
+                    }
+                    messageArray = [...messageArray, { role: assistantRole, message: assistantMessage }]
+                    if (talkDuration > 0) {
+                        let talking = talkDuration / 4
+                        if (assistantMessage.length < 300 && isAudioPlay) {
+                            startTalking(talking, assistantMessage)
+                        }
+                    }
+
+                    messageInput.value = ''
+
+                    const sendMessageButton = document.getElementById('button-send')
+                    const loader = document.getElementById('loader')
+
+                    loader.classList.add('hidden') // Sembunyikan loader
+                    sendMessageButton.classList.remove('hidden') // Tampilkan tombol kembali
+
+                    document.getElementById('generating').innerHTML = ""
+                    data.assistantMessage = assistantMessage
+                    const responsePost = await fetch('https://chat.pacar-ai.my.id/api/messages', {
+                        method: 'PUT',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    if (!responsePost.ok) {
+                        throw new Error('Failed to send message')
+                    }
+
+                    // loadMessages(historyId)
+                } catch (error) {
+                    console.error('Error sending message:', error)
+                }
+            }
+
+            function showLoginForm() {
+                const content = document.getElementById('content')
+                content.innerHTML = `
+                    <center>
+                        <div class="login-wrapper mt-5">
+                            <div class="login-container">
+                                <img src="%LOGO_PATH%" alt="Logo">
+                                <form id="loginForm" action="#" method="post">
+                                    <input type="text" name="email" placeholder="Masukkan email" required />
+                                    <input type="password" name="password" placeholder="Masukkan password" required />
+                                    <button type="submit">Login</button>
+                                </form>
+                                <a href="https://pacar-ai.my.id/" target="_blank" class="mt-2 my-2 text-gray-100">Register</a>
+                            </div>
+                        </div>
+                    </center>
+                `
+                const form = document.getElementById('loginForm')
+                form.addEventListener('submit', login)
+            }
+
+            async function login(event) {
+                event.preventDefault() // Mencegah form dari submit default
+
+                const email = event.target.email.value
+                const password = event.target.password.value
+                const messageDiv = document.getElementById('message')
+
+                try {
+                    const response = await fetch('https://chat.pacar-ai.my.id/api/auth/login', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ email, password })
+                    })
+
+                    if (!response.ok) {
+                        console.log("login gagal")
+                        messageDiv.textContent = 'Email atau password salah.'
+                        messageDiv.className = 'message error'
+                        throw new Error('Login gagal')
+                    }
+
+                    console.log("login berhasil")
+                    const data = await response.json()
+
+                    localStorage.setItem('token', data.token)
+                    localStorage.setItem('userId', data.userId)
+                    const token = data.token
+                    vscode.postMessage({ type: 'saveToken', token })
+
+                    messageDiv.textContent = 'Login berhasil!'
+                    messageDiv.className = 'message success'
+                    setTimeout(() => {
+                        messageDiv.textContent = ''
+                    }, 3000)
+                    // Fetch and display chat history
+                    fetchHistory(data.userId)
+                } catch (error) {
+                    messageDiv.textContent = 'Email atau password salah.'
+                    messageDiv.className = 'message error'
+                }
+            }
+
+            async function fetchHistory(userId) {
+                try {
+                    const response = await fetch(`https://chat.pacar-ai.my.id/api/character/?userId=${userId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch history')
+                    }
+
+                    const historyData = await response.json()
+
+                    displayHistory(historyData)
+                } catch (error) {
+                    console.error('Error fetching history:', error)
+                    document.getElementById('message').textContent = 'Gagal mengambil riwayat chat.'
+                    document.getElementById('message').className = 'message error'
+
+                    // Perform logout
+                    logout()
+                }
+            }
+
+            function displayHistory(history) {
+                const content = document.getElementById('content')
+                content.innerHTML = ''
+
+                const historyContainer = document.createElement('div')
+                historyContainer.className = 'history-container'
+
+                if (history.length > 0) {
+                    const historyTitle = document.createElement('h3')
+                    historyTitle.className = 'text-center text-gray-100'
+                    historyTitle.textContent = 'Pacar AI: v1.4.5'
+                    historyContainer.appendChild(historyTitle)
+
+                    const historyList = document.createElement('div')
+                    historyList.className = 'history-list'
+
+                    history.forEach((item, index) => {
+
+                        const historyItem = document.createElement('button')
+                        historyItem.className = 'flex items-center px-2 py-1 my-1 rounded bg-grey-700 w-full bg-chara'
+                        historyItem.onclick = () => handleHistorySelect(item)
+                        const avatar = document.createElement('img')
+                        avatar.src = `https://chat.pacar-ai.my.id${item.avatar}`
+                        avatar.alt = `Avatar ${index + 1}`
+                        avatar.width = 60
+                        avatar.height = 60
+                        avatar.className = 'rounded-full mr-2'
+
+                        const nameContainer = document.createElement('div')
+                        nameContainer.className = 'p-2 text-left min-w-100px'
+                        const name = document.createElement('div')
+                        name.className = 'text-gray-100'
+                        name.textContent = item.name
+                        const status = document.createElement('div')
+                        status.className = 'text-sm text-blue-600 mt-2'
+                        status.textContent = `${item.status} ${item?.characterName}`
+                        nameContainer.appendChild(name)
+                        nameContainer.appendChild(status)
+
+                        const descriptionContainer = document.createElement('div')
+                        descriptionContainer.className = 'p-2 text-left'
+                        const description = document.createElement('div')
+                        description.className = 'text-sm text-gray-400'
+                        description.textContent = item.description
+                        descriptionContainer.appendChild(description)
+
+                        const arrowContainer = document.createElement('div')
+                        arrowContainer.className = 'p-2 text-right'
+                        const arrow = document.createElement('div')
+                        arrow.className = 'text-sm text-gray-400'
+                        arrow.innerHTML = '<svg width="20" height="20" viewBox="0 0 20 20"><polygon points="15,10 0,0 0,20" fill="currentColor" /></svg>'
+                        arrowContainer.appendChild(arrow)
+
+                        historyItem.appendChild(avatar)
+                        historyItem.appendChild(nameContainer)
+                        historyItem.appendChild(descriptionContainer)
+                        historyItem.appendChild(arrowContainer)
+
+                        historyList.appendChild(historyItem)
+                    })
+
+                    historyContainer.appendChild(historyList)
+                } else {
+                    const noHistoryMessage = document.createElement('p')
+                    noHistoryMessage.textContent = 'Tidak ada riwayat chat. Silahkan login dulu di website kami.'
+                    historyContainer.appendChild(noHistoryMessage)
+
+                    // Display login link if no chat history
+                    const loginLink = document.createElement('a')
+                    loginLink.href = 'https://chat.pacar-ai.my.id/'
+                    loginLink.textContent = 'Login to chat'
+                    historyContainer.appendChild(loginLink)
+
+                    const relogin = document.createElement('p')
+                    relogin.textContent = 'Jika sudah login silahkan tutup dahulu tab ini dan buka kembali'
+                    historyContainer.appendChild(relogin)
+                }
+                const buttonContainer = document.createElement('div')
+                buttonContainer.className = 'flex items-center px-2 py-2 my-2 mt-2'
+
+                const newChara = document.createElement('a')
+                newChara.className = 'chara-button me-2'
+                newChara.textContent = 'New Chara'
+                newChara.href = "https://chat.pacar-ai.my.id/"
+                buttonContainer.appendChild(newChara)
+
+                const logoutButton = document.createElement('button')
+                logoutButton.className = 'logout-button'
+                logoutButton.textContent = 'Logout'
+                logoutButton.onclick = logout
+                buttonContainer.appendChild(logoutButton)
+
+                historyContainer.appendChild(buttonContainer)
+
+
+                content.appendChild(historyContainer)
+            }
+
+            async function handleHistorySelect(item) {
+
+                localStorage.setItem('historyId', item.id)
+                localStorage.setItem('character', item?.characterName)
+                localStorage.setItem('gender', item.gender)
+
+                localStorage.setItem('avatar', item.avatar)
+                const divAvatar = document.getElementById("avatar-container")
+                divAvatar.classList.remove("hidden")
+                loadMessages(item.id)
+                let avatar = item.avatar
+                avatar = avatar.replaceAll("images", "3d")
+                avatar = avatar.replaceAll("png", "vrm")
+                avatar = avatar.replaceAll("jpg", "vrm")
+                // await to check if this url https://chat.pacar-ai.my.id/${avatar} exist
+                // Check if the avatar URL exists
+                let avatarUrl = `https://chat.pacar-ai.my.id/${avatar}`
+                const avatarExists = await checkUrlExists(avatarUrl)
+                if (!avatarExists) {
+                    avatarUrl = `https://chat.pacar-ai.my.id/3d/${item.gender.toLowerCase()}/1.vrm`
+                }
+                // Load the avatar if the URL exists
+                loader.load(
+                    avatarUrl,
+                    (gltf) => {
+                        const vrm = gltf.userData.vrm
+
+                        // Optimize VRM model
+                        VRMUtils.removeUnnecessaryVertices(gltf.scene)
+                        VRMUtils.removeUnnecessaryJoints(gltf.scene)
+
+                        // Disable frustum culling for better performance
+                        vrm.scene.traverse((obj) => {
+                            obj.frustumCulled = false
+                        })
+
+                        // Add VRM to the scene
+                        scene.add(vrm.scene)
+                        // Rotate model to face forward
+                        vrm.scene.rotation.y = Math.PI // Rotate 180 degrees on Y-axis
+                        // Optionally add BoxHelper to see the model's bounding box
+                        const boxHelper = new THREE.BoxHelper(vrm.scene, 0xffff00)
+                        // scene.add(boxHelper);
+
+                        currentVrm = vrm // Set the current VRM to the loaded model
+                    },
+                    (progress) => console.log('Loading model...', 100.0 * (progress.loaded / progress.total), '%'),
+                    (error) => console.error(error)
+                )
+            }
+
+            async function checkUrlExists(url) {
+                try {
+                    const response = await fetch(url, { method: 'HEAD' })
+                    return response.ok // Return true if the response is OK (status 200)
+                } catch (error) {
+                    console.error('Error checking URL:', error)
+                    return false // Return false if there was an error
+                }
+            }
+
+
+            async function loadMessages(historyId) {
+                const content = document.getElementById('content')
+                content.innerHTML = 'Loading...'
+
+                try {
+                    const response = await fetch(`https://chat.pacar-ai.my.id/api/messages?historyId=${historyId}`, {
+                        method: 'GET',
+                        headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                            'Content-Type': 'application/json'
+                        }
+                    })
+
+                    if (!response.ok) {
+                        throw new Error('Failed to fetch messages')
+                    }
+
+                    const messages = await response.json()
+                    displayMessages(messages)
+
+                    // Show the message input container
+                    const messageInputContainer = document.getElementById('messageInputContainer')
+                    messageInputContainer.style.display = 'block'
+
+                    // Scroll to the bottom of the content
+                    content.scrollTop = content.scrollHeight
+
+                } catch (error) {
+                    console.error('Error fetching messages:', error)
+                    content.innerHTML = 'Failed to load messages.'
+                }
+            }
+
+            var isAudioPlay = true
+
+            function displayMessages(messages) {
+                const content = document.getElementById('content')
+                content.innerHTML = ''
+
+                const chatContainer = document.createElement('div')
+                chatContainer.className = 'flex-grow overflow-y-auto p-4 bg-chat custom-scrollbar'
+                let talkDuration = 0
+                let talkMessage = ""
+                messages.forEach((msg, index) => {
+                    if (msg.role !== 'system') {
+                        const parts = msg.message.split(/(```[\s\S]*?```|`[^`]+`|\[selection\][\s\S]*?\[selection\]|\[fullcode\][\s\S]*?\[fullcode\]|\[labelInstruction\][\s\S]*?\[labelInstruction\]|\[files\][\s\S]*?\[files\]|\[file\][\s\S]*?\[file\]|\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+                        const messageDiv = document.createElement('div')
+                        messageDiv.className = `mb-2 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`
+
+                        if (msg.role === 'assistant') {
+                            const avatarImg = document.createElement('img')
+                            avatarImg.src = `https://chat.pacar-ai.my.id${localStorage.getItem("avatar")}` // Replace with actual avatar path
+                            avatarImg.alt = 'Pacar Avatar'
+                            avatarImg.className = 'w-50px h-50px rounded-full mr-2'
+                            messageDiv.appendChild(avatarImg)
+                        }
+
+                        const messageContent = document.createElement('div')
+                        messageContent.className = `inline-block p-2 rounded-lg ${msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-grey text-grey-100'}`
+                        messageContent.style.whiteSpace = 'pre-wrap'
+
+                        parts.filter(part => part).forEach((part, i) => {
+                            if (part.startsWith('[selection]') && part.endsWith('[selection]')) {
+                                //skip
+                            } else if (part.startsWith('[fullcode]') && part.endsWith('[fullcode]')) {
+                                //skip
+                            } else if (part.startsWith('[labelInstruction]') && part.endsWith('[labelInstruction]')) {
+                                //skip
+                            } else if (part.startsWith('[files]') && part.endsWith('[files]')) {
+                                //skip
+                            } else if (part.startsWith('```') && part.endsWith('```')) {
+
+                                let codeContent = part.slice(3, -3).trim()
+
+                                const codeLines = codeContent.split('\n')
+                                const firstLine = codeLines[0].trim()
+                                const languageRegex = /^(javascript|python|java|c\+\+|c#|ruby|go|php|typescript|swift|kotlin|json|jsx|tsx|html|css|xml|c|rust|perl|r|bash|cmd)$/i
+
+                                if (languageRegex.test(firstLine)) {
+                                    codeContent = codeLines.slice(1).join('\n').trim() // Remove the first line if it matches a language
+                                }
+
+                                const codeDiv = document.createElement('div')
+                                codeDiv.className = 'p-2 rounded-lg mb-2 wrap'
+
+                                const pre = document.createElement('pre')
+
+                                const code = document.createElement('code')
+                                code.className = `language-${firstLine}` // Menambahkan kelas bahasa
+                                code.textContent = codeContent
+                                pre.appendChild(code)
+
+                                codeDiv.appendChild(pre)
+
+                                Prism.highlightElement(code)
+
+                                const copyButton = document.createElement('button')
+                                copyButton.textContent = 'Copy'
+                                copyButton.className = 'mt-2 bg-blue-500 text-white px-2 py-1 rounded'
+                                copyButton.onclick = () => handleCopy(codeContent)
+                                codeDiv.appendChild(copyButton)
+
+                                const applyButton = document.createElement('button')
+                                applyButton.textContent = 'Apply'
+                                applyButton.className = 'mt-2 bg-blue-300 text-white px-2 py-1 rounded ml-2'
+                                applyButton.onclick = () => handleaApply(codeContent)
+                                codeDiv.appendChild(applyButton)
+
+                                messageContent.appendChild(codeDiv)
+                            } else if (part.startsWith('`') && part.endsWith('`')) {
+                                const inlineCode = part.slice(1, -1)
+                                const codeSpan = document.createElement('code')
+                                codeSpan.className = 'bg-gray-800 text-white p-1 rounded'
+                                codeSpan.textContent = inlineCode
+                                messageContent.appendChild(codeSpan)
+                                if (messages.length - 1 == index) {
+                                    if (msg.role === 'assistant') {
+                                        talkDuration += part.length
+                                        talkMessage = `${talkMessage}. ${part}`
+                                    }
+                                }
+                            } else if (part.startsWith('**') && part.endsWith('**')) {
+                                // Cek Bold
+                                part = part.slice(2, -2).trim()
+                                const textStrong = document.createElement('strong')
+                                textStrong.textContent = part
+                                console.log("textStrong", textStrong)
+                                messageContent.appendChild(textStrong)
+                            } else if (part.startsWith('###')) {
+                                // Cek header
+                                part = part.slice(3).trim()
+                                const textHeader = document.createElement('h3')
+                                textHeader.style = "font-weight: bold; font-size:14px"
+                                textHeader.textContent = part
+                                messageContent.appendChild(textHeader)
+                            } else if (part.startsWith('##')) {
+                                // Cek header
+                                part = part.slice(2).trim()
+                                const textHeader = document.createElement('h2')
+                                textHeader.style = "font-weight: bold; font-size:16px"
+                                textHeader.textContent = part
+                                messageContent.appendChild(textHeader)
+                            } else if (part.startsWith('#')) {
+                                // Cek header
+                                part = part.slice(1).trim()
+                                const textHeader = document.createElement('h1')
+                                textHeader.style = "font-weight: bold; font-size:18px"
+                                textHeader.textContent = part
+                                messageContent.appendChild(textHeader)
+                            } else if (part.startsWith('- ')) {
+                                // Cek list
+                                const listItem = part.slice(2)
+
+                                const partsList = listItem.split(/(\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+                                const textLi = document.createElement('li')
+
+                                partsList.filter(partList => partList).map((partList, i2) => {
+                                    console.log('partList', partList)
+                                    if (partList.startsWith('**') && partList.endsWith('**')) {
+                                        partList = partList.slice(2, -2)
+                                        const textStrong = document.createElement('strong')
+                                        textStrong.textContent = partList
+                                        textLi.appendChild(textStrong)
+                                    } else {
+                                        const text = document.createElement('span')
+                                        text.textContent = partList
+                                        textLi.appendChild(text)
+                                    }
+                                })
+                                messageContent.appendChild(textLi)
+
+
+                            } else if (part.startsWith('_') && part.endsWith('_')) {
+                                const italicText = part.slice(1, -1)
+
+                                const textEm = document.createElement('em')
+                                textEm.textContent = italicText
+                                messageContent.appendChild(textEm)
+                            } else if (part.startsWith('*"') && part.startsWith('*')) {
+                                const quoteText = part.slice(1, -1).trim()
+                                const quote = document.createElement('div')
+                                quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                                quote.textContent = quoteText
+                                messageContent.appendChild(quote)
+                            } else if (part.startsWith('>')) {
+                                const quoteText = part.slice(1).trim()
+                                const quote = document.createElement('div')
+                                quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                                quote.textContent = quoteText
+                                messageContent.appendChild(quote)
+                            } else if (/\[.*?\]\(.*?\)/.test(part)) {
+                                const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/)
+                                if (linkMatch) {
+                                    const linkText = linkMatch[1]
+                                    const linkUrl = linkMatch[2]
+                                    const link = document.createElement('a')
+                                    quote.textContent = linkText
+                                    link.href = linkUrl
+                                    messageContent.appendChild(link)
+                                }
+                            } else {
+                                const textSpan = document.createElement('span')
+                                textSpan.textContent = part
+                                messageContent.appendChild(textSpan)
+                                if (messages.length - 1 == index) {
+                                    if (msg.role === 'assistant') {
+                                        talkDuration += part.length
+                                        talkMessage = `${talkMessage}. ${part}`
+                                    }
+                                }
+                            }
+                        })
+
+                        messageDiv.appendChild(messageContent)
+                        chatContainer.appendChild(messageDiv)
+                    }
+                })
+
+
+
+                content.appendChild(chatContainer)
+                content.scrollTop = content.scrollHeight
+            }
+
+            function displayMessagesAssistant(msg) {
+                const content = document.getElementById('content')
+
+                const chatContainer = document.createElement('div')
+                chatContainer.className = 'flex-grow overflow-y-auto p-4 bg-chat custom-scrollbar'
+                const parts = msg.message.split(/(```[\s\S]*?```|`[^`]+`|\[selection\][\s\S]*?\[selection\]|\[fullcode\][\s\S]*?\[fullcode\]|\[labelInstruction\][\s\S]*?\[labelInstruction\]|\[files\][\s\S]*?\[files\]|\[file\][\s\S]*?\[file\]|\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+                const messageDiv = document.createElement('div')
+                messageDiv.className = `mb-2 flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`
+
+                if (msg.role === 'assistant') {
+                    const avatarImg = document.createElement('img')
+                    avatarImg.src = `https://chat.pacar-ai.my.id${localStorage.getItem("avatar")}` // Replace with actual avatar path
+                    avatarImg.alt = 'Pacar Avatar'
+                    avatarImg.className = 'w-50px h-50px rounded-full mr-2'
+                    messageDiv.appendChild(avatarImg)
+                }
+
+                const messageContent = document.createElement('div')
+                messageContent.className = `inline-block p-2 rounded-lg ${msg.role === 'user' ? 'bg-blue-500 text-white' : 'bg-grey text-grey-100'}`
+                messageContent.style.whiteSpace = 'pre-wrap'
+                messageContent.id = msg.uniqueId
+
+                parts.filter(part => part).forEach((part, i) => {
+                    if (part.startsWith('[selection]') && part.endsWith('[selection]')) {
+                        //skip
+                    } else if (part.startsWith('[fullcode]') && part.endsWith('[fullcode]')) {
+                        //skip
+                    } else if (part.startsWith('[labelInstruction]') && part.endsWith('[labelInstruction]')) {
+                        //skip
+                    } else if (part.startsWith('[files]') && part.endsWith('[files]')) {
+                        //skip
+                    } else if (part.startsWith('```') && part.endsWith('```')) {
+
+                        let codeContent = part.slice(3, -3).trim()
+
+                        const codeLines = codeContent.split('\n')
+                        const firstLine = codeLines[0].trim()
+                        const languageRegex = /^(nginx|dockerfile|javascript|python|java|c\+\+|c#|ruby|go|php|typescript|swift|kotlin|json|jsx|tsx|html|css|xml|c|rust|perl|r|bash|cmd)$/i
+
+                        if (languageRegex.test(firstLine)) {
+                            codeContent = codeLines.slice(1).join('\n').trim() // Remove the first line if it matches a language
+                        }
+
+                        const codeDiv = document.createElement('div')
+                        codeDiv.className = 'p-2 rounded-lg mb-2 wrap'
+
+                        const pre = document.createElement('pre')
+
+                        const code = document.createElement('code')
+                        code.className = `language-${firstLine}` // Menambahkan kelas bahasa
+                        code.textContent = codeContent
+                        pre.appendChild(code)
+
+                        codeDiv.appendChild(pre)
+
+                        Prism.highlightElement(code)
+
+                        const copyButton = document.createElement('button')
+                        copyButton.textContent = 'Copy'
+                        copyButton.className = 'mt-2 bg-blue-500 text-white px-2 py-1 rounded'
+                        copyButton.onclick = () => handleCopy(codeContent)
+                        codeDiv.appendChild(copyButton)
+
+                        const applyButton = document.createElement('button')
+                        applyButton.textContent = 'Apply'
+                        applyButton.className = 'mt-2 bg-blue-300 text-white px-2 py-1 rounded ml-2'
+                        applyButton.onclick = () => handleaApply(codeContent)
+                        codeDiv.appendChild(applyButton)
+
+                        messageContent.appendChild(codeDiv)
+                    } else if (part.startsWith('`') && part.endsWith('`')) {
+                        const inlineCode = part.slice(1, -1)
+                        const codeSpan = document.createElement('code')
+                        codeSpan.className = 'bg-gray-800 text-white p-1 rounded'
+                        codeSpan.textContent = inlineCode
+                        messageContent.appendChild(codeSpan)
+                        talkDuration += part.length
+                        talkMessage = `${talkMessage}. ${part}`
+                    } else if (part.startsWith('**') && part.endsWith('**')) {
+                        // Cek Bold
+                        part = part.slice(2, -2).trim()
+                        const textStrong = document.createElement('strong')
+                        textStrong.textContent = part
+                        console.log("textStrong", textStrong)
+                        messageContent.appendChild(textStrong)
+                    } else if (part.startsWith('###')) {
+                        // Cek header
+                        part = part.slice(3).trim()
+                        const textHeader = document.createElement('h3')
+                        textHeader.style = "font-weight: bold; font-size:14px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('##')) {
+                        // Cek header
+                        part = part.slice(2).trim()
+                        const textHeader = document.createElement('h2')
+                        textHeader.style = "font-weight: bold; font-size:16px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('#')) {
+                        // Cek header
+                        part = part.slice(1).trim()
+                        const textHeader = document.createElement('h1')
+                        textHeader.style = "font-weight: bold; font-size:18px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('- ')) {
+                        // Cek list
+                        const listItem = part.slice(2)
+
+                        const partsList = listItem.split(/(\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+                        const textLi = document.createElement('li')
+
+                        partsList.filter(partList => partList).map((partList, i2) => {
+                            console.log('partList', partList)
+                            if (partList.startsWith('**') && partList.endsWith('**')) {
+                                partList = partList.slice(2, -2)
+                                const textStrong = document.createElement('strong')
+                                textStrong.textContent = partList
+                                textLi.appendChild(textStrong)
+                            } else {
+                                const text = document.createElement('span')
+                                text.textContent = partList
+                                textLi.appendChild(text)
+                            }
+                        })
+                        messageContent.appendChild(textLi)
+
+
+                    } else if (part.startsWith('_') && part.endsWith('_')) {
+                        const italicText = part.slice(1, -1)
+
+                        const textEm = document.createElement('em')
+                        textEm.textContent = italicText
+                        messageContent.appendChild(textEm)
+                    } else if (part.startsWith('*"') && part.startsWith('*')) {
+                        const quoteText = part.slice(1, -1).trim()
+                        const quote = document.createElement('div')
+                        quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                        quote.textContent = quoteText
+                        messageContent.appendChild(quote)
+                    } else if (part.startsWith('>')) {
+                        const quoteText = part.slice(1).trim()
+                        const quote = document.createElement('div')
+                        quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                        quote.textContent = quoteText
+                        messageContent.appendChild(quote)
+                    } else if (/\[.*?\]\(.*?\)/.test(part)) {
+                        const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/)
+                        if (linkMatch) {
+                            const linkText = linkMatch[1]
+                            const linkUrl = linkMatch[2]
+                            const link = document.createElement('a')
+                            quote.textContent = linkText
+                            link.href = linkUrl
+                            messageContent.appendChild(link)
+                        }
+                    } else {
+                        const textSpan = document.createElement('span')
+                        textSpan.textContent = part
+                        messageContent.appendChild(textSpan)
+                        talkDuration += part.length
+                        talkMessage = `${talkMessage}. ${part}`
+                    }
+                })
+
+                messageDiv.appendChild(messageContent)
+                chatContainer.appendChild(messageDiv)
+                content.appendChild(chatContainer)
+                content.scrollTop = content.scrollHeight
+            }
+
+            function updateMessagesAssistant(msg) {
+
+                const parts = msg.message.split(/(```[\s\S]*?```|`[^`]+`|\[selection\][\s\S]*?\[selection\]|\[fullcode\][\s\S]*?\[fullcode\]|\[labelInstruction\][\s\S]*?\[labelInstruction\]|\[files\][\s\S]*?\[files\]|\[file\][\s\S]*?\[file\]|\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+
+                const messageContent = document.getElementById(msg.uniqueId)
+                messageContent.innerHTML = ''
+                parts.filter(part => part).forEach((part, i) => {
+                    if (part.startsWith('[selection]') && part.endsWith('[selection]')) {
+                        //skip
+                    } else if (part.startsWith('[fullcode]') && part.endsWith('[fullcode]')) {
+                        //skip
+                    } else if (part.startsWith('[labelInstruction]') && part.endsWith('[labelInstruction]')) {
+                        //skip
+                    } else if (part.startsWith('[files]') && part.endsWith('[files]')) {
+                        //skip
+                    } else if (part.startsWith('[file]') && part.endsWith('[file]')) {
+                        const textSpan = document.createElement('span')
+                        textSpan.textContent = '--File--'
+                        messageContent.appendChild(textSpan)
+                    } else if (part.startsWith('```') && part.endsWith('```')) {
+
+                        let codeContent = part.slice(3, -3).trim()
+
+                        const codeLines = codeContent.split('\n')
+                        const firstLine = codeLines[0].trim()
+                        const languageRegex = /^(nginx|dockerfile|javascript|python|java|c\+\+|c#|ruby|go|php|typescript|swift|kotlin|json|jsx|tsx|html|css|xml|c|rust|perl|r|bash|cmd)$/i
+
+                        if (languageRegex.test(firstLine)) {
+                            codeContent = codeLines.slice(1).join('\n').trim() // Remove the first line if it matches a language
+                        }
+
+                        const codeDiv = document.createElement('div')
+                        codeDiv.className = 'p-2 rounded-lg mb-2 wrap'
+
+                        const pre = document.createElement('pre')
+
+                        const code = document.createElement('code')
+                        code.className = `language-${firstLine}` // Menambahkan kelas bahasa
+                        code.textContent = codeContent
+                        pre.appendChild(code)
+
+                        codeDiv.appendChild(pre)
+
+                        Prism.highlightElement(code)
+
+                        const copyButton = document.createElement('button')
+                        copyButton.textContent = 'Copy'
+                        copyButton.className = 'mt-2 bg-blue-500 text-white px-2 py-1 rounded'
+                        copyButton.onclick = () => handleCopy(codeContent)
+                        codeDiv.appendChild(copyButton)
+
+                        const applyButton = document.createElement('button')
+                        applyButton.textContent = 'Apply'
+                        applyButton.className = 'mt-2 bg-blue-300 text-white px-2 py-1 rounded ml-2'
+                        applyButton.onclick = () => handleaApply(codeContent)
+                        codeDiv.appendChild(applyButton)
+
+                        messageContent.appendChild(codeDiv)
+                    } else if (part.startsWith('`') && part.endsWith('`')) {
+                        const inlineCode = part.slice(1, -1)
+                        const codeSpan = document.createElement('code')
+                        codeSpan.className = 'bg-gray-800 text-white p-1 rounded'
+                        codeSpan.textContent = inlineCode
+                        messageContent.appendChild(codeSpan)
+                        talkDuration += part.length
+                        talkMessage = `${talkMessage}. ${part}`
+                    } else if (part.startsWith('**') && part.endsWith('**')) {
+                        // Cek Bold
+                        part = part.slice(2, -2).trim()
+                        const textStrong = document.createElement('strong')
+                        textStrong.textContent = part
+                        console.log("textStrong", textStrong)
+                        messageContent.appendChild(textStrong)
+                    } else if (part.startsWith('###')) {
+                        // Cek header
+                        part = part.slice(3).trim()
+                        const textHeader = document.createElement('h3')
+                        textHeader.style = "font-weight: bold; font-size:14px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('##')) {
+                        // Cek header
+                        part = part.slice(2).trim()
+                        const textHeader = document.createElement('h2')
+                        textHeader.style = "font-weight: bold; font-size:16px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('#')) {
+                        // Cek header
+                        part = part.slice(1).trim()
+                        const textHeader = document.createElement('h1')
+                        textHeader.style = "font-weight: bold; font-size:18px"
+                        textHeader.textContent = part
+                        messageContent.appendChild(textHeader)
+                    } else if (part.startsWith('- ')) {
+                        // Cek list
+                        const listItem = part.slice(2)
+
+                        const partsList = listItem.split(/(\*\*[^*]+\*\*|\*\"[^*]+\*|_([^_]+)_|>.*|(\[.*?\]\(.*?\))|###.*|##.*|#.*|^- .*)/gm)
+
+                        const textLi = document.createElement('li')
+
+                        partsList.filter(partList => partList).map((partList, i2) => {
+                            console.log('partList', partList)
+                            if (partList.startsWith('**') && partList.endsWith('**')) {
+                                partList = partList.slice(2, -2)
+                                const textStrong = document.createElement('strong')
+                                textStrong.textContent = partList
+                                textLi.appendChild(textStrong)
+                            } else {
+                                const text = document.createElement('span')
+                                text.textContent = partList
+                                textLi.appendChild(text)
+                            }
+                        })
+                        messageContent.appendChild(textLi)
+
+
+                    } else if (part.startsWith('_') && part.endsWith('_')) {
+                        const italicText = part.slice(1, -1)
+
+                        const textEm = document.createElement('em')
+                        textEm.textContent = italicText
+                        messageContent.appendChild(textEm)
+                    } else if (part.startsWith('*"') && part.startsWith('*')) {
+                        const quoteText = part.slice(1, -1).trim()
+                        const quote = document.createElement('div')
+                        quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                        quote.textContent = quoteText
+                        messageContent.appendChild(quote)
+                    } else if (part.startsWith('>')) {
+                        const quoteText = part.slice(1).trim()
+                        const quote = document.createElement('div')
+                        quote.className = "border-l-4 border-gray-500 pl-4 italic"
+                        quote.textContent = quoteText
+                        messageContent.appendChild(quote)
+                    } else if (/\[.*?\]\(.*?\)/.test(part)) {
+                        const linkMatch = part.match(/\[(.*?)\]\((.*?)\)/)
+                        if (linkMatch) {
+                            const linkText = linkMatch[1]
+                            const linkUrl = linkMatch[2]
+                            const link = document.createElement('a')
+                            quote.textContent = linkText
+                            link.href = linkUrl
+                            messageContent.appendChild(link)
+                        }
+                    } else {
+                        const textSpan = document.createElement('span')
+                        textSpan.textContent = part
+                        messageContent.appendChild(textSpan)
+                        talkDuration += part.length
+                        talkMessage = `${talkMessage}. ${part}`
+                    }
+                })
+
+                const content = document.getElementById('content')
+                content.scrollTop = content.scrollHeight
+
+            }
+
+            async function translate(text) {
+                const body = {
+                    text
+                }
+                const response = await fetch('https://chat.pacar-ai.my.id/api/translate', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(body)
+                })
+
+                // Cek apakah response berhasil
+                if (!response.ok) {
+                    const errorMessage = await response.text()
+                    throw new Error(`Error ${response.status}: ${errorMessage}`)
+                }
+
+                // Jika berhasil, ambil data
+                const translation = await response.json()
+                return translation
+            }
+
+            let lastBlinkTime = 0 // Waktu terakhir kali blink dipanggil
+            let lastBlinkTime2 = 0 // Waktu terakhir kali blink dipanggil
+            let lastNutateTime = 0 // Waktu terakhir kali blink dipanggil
+            // Memanggil talk selama 50 detik
+
+            async function startTalking(maxTalks, message) {
+                // let talk = await translate(message) // disable translate to japanese
+
+                // console.log(talk)
+                document.getElementById('talkText').value = message
+                document.getElementById('maxTalks').value = maxTalks
+                setTimeout(() => {
+                    document.getElementById('speakButton').click()
+
+                }, 200)
+
+
+
+            }
+
+
+            var audioElements = document.getElementsByTagName('audio'),
+                sounds = {}
+
+            for (var i = 0; i < audioElements.length; i++) {
+                sounds[audioElements[i].className] = audioElements[i]
+            }
+
+
+            document.getElementById('speakButton').addEventListener('click', async function () {
+                setTimeout(async () => {
+                    let text = document.getElementById('talkText').value
+                    const userId = localStorage.getItem("userId")
+
+                    // const response = await fetch(`http://127.0.0.1:8000/speak?text=${text}&audio=${userId}`)
+                    // const response = await fetch(`http://127.0.0.1:7000/speak?text=${text}`)
+                    const response = await fetch(`http://103.250.10.249:8886/speak?text=${text}`)
+
+                    if (response.ok) {
+                        const audioUrl = URL.createObjectURL(await response.blob())
+                        const sourcediv = document.getElementById('audiosource')
+                        sourcediv.src = audioUrl
+                        for (var i = 0; i < audioElements.length; i++) {
+                            sounds[audioElements[i].className] = audioElements[i]
+                        }
+                        if (isAudioPlay) {
+                            var audiotag = document.getElementById("audio")
+                            audiotag.muted = false
+                            audiotag.volume = 1
+                        }
+                        playSound('welcome')
+
+                        if (!isAudioPlay) {
+                            stopAudio()
+                        }
+
+
+                    } else {
+                        console.error('Error fetching audio:', response.statusText)
+                    }
+
+
+
+                }, 200)
+
+            })
+            // Solves chrome for andriod issue 178297 Require user gesture
+            // https://code.google.com/p/chromium/issues/detail?id=178297
+            // Fix based on code from http://blog.foolip.org/2014/02/10/media-playback-restrictions-in-blink/
+            if (mediaPlaybackRequiresUserGesture()) {
+                window.addEventListener('keydown', removeBehaviorsRestrictions)
+                window.addEventListener('mousedown', removeBehaviorsRestrictions)
+                window.addEventListener('touchstart', removeBehaviorsRestrictions)
+            }
+
+            function mediaPlaybackRequiresUserGesture() {
+                // test if play() is ignored when not called from an input event handler
+                var video = document.createElement('video')
+                video.play()
+                return video.paused
+            }
+
+            var audiotag = document.getElementById("audio")
+            audiotag.addEventListener('play', () => {
+                console.log('Audio started playing')
+                const talkFunctions = [talk, talk2] // Hapus startBlinking dari sini untuk kontrol lebih baik
+                let count = 0 // Untuk menghitung berapa kali talk dipanggil
+                setTimeout(() => {
+                    const talkInterval = setInterval(() => {
+                        const randomFunction = talkFunctions[Math.floor(Math.random() * talkFunctions.length)]
+                        randomFunction() // Panggil fungsi yang dipilih secara acak
+
+                        // Cek waktu sebelum memanggil startBlinking
+                        const currentTime = Date.now()
+                        if (currentTime - lastBlinkTime > 5000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                            startBlinking()
+                            lastBlinkTime = currentTime // Update waktu terakhir blink
+                        }
+                        if (currentTime - lastBlinkTime2 > 6000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                            startBlinking()
+                            lastBlinkTime2 = currentTime // Update waktu terakhir blink
+                        }
+                        if (currentTime - lastNutateTime > 4000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                            nutate()
+                            lastNutateTime = currentTime // Update waktu terakhir blink
+                        }
+                        // Tunggu hingga audio selesai diputar
+                        var audiotag = document.getElementById("audio")
+                        audiotag.addEventListener('ended', () => {
+                            console.log('Audio finished playing')
+                            clearInterval(talkInterval)
+                            basicMove()
+                            // Lakukan sesuatu setelah audio selesai, misalnya reset animasi
+                        })
+                    }, 300) // Setiap 300ms
+                }, 200)
+                // Lakukan sesuatu setelah audio selesai, misalnya reset animasi
+            })
+            function removeBehaviorsRestrictions() {
+                for (var i = 0; i < audioElements.length; i++) {
+                    audioElements[i].load()
+                }
+
+                window.removeEventListener('keydown', removeBehaviorsRestrictions)
+                window.removeEventListener('mousedown', removeBehaviorsRestrictions)
+                window.removeEventListener('touchstart', removeBehaviorsRestrictions)
+            }
+
+            function playSound(sound) {
+                for (var key in sounds) {
+                    sounds[key].pause()
+                }
+
+                sounds[sound].load()
+                sounds[sound].play()
+            }
+            function handleCopy(code) {
+                navigator.clipboard.writeText(code).then(() => {
+                    alert('Copied!')
+                })
+            }
+            function handleaApply(code) {
+                vscode.postMessage({
+                    command: 'applyCodeSelection',
+                    code: code
+                })
+            }
+
+            function logout() {
+                localStorage.removeItem('token')
+                localStorage.removeItem('userId')
+                showLoginForm()
+            }
+
+            function stopAudio() {
+                console.log("stop audio")
+                var audiotag = document.getElementById("audio")
+                audiotag.volume = 0
+            }
+
+            document.getElementById('audioControl').addEventListener('change', function () {
+                // console.log(this.value)
+                const selectedValue = this.value
+                const audiotag = document.getElementById('audio')
+
+                if (selectedValue === 'play') {
+                    isAudioPlay = true
+                    audiotag.volume = 1
+                } else if (selectedValue === 'mute') {
+                    isAudioPlay = false
+                    stopAudio()
+                }
+            })
+
+            const vscode = acquireVsCodeApi()
+
+            import * as THREE from 'three'
+            import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+            import { OrbitControls } from 'three/addons/controls/OrbitControls.js'
+            import { VRMLoaderPlugin, VRMUtils } from '@pixiv/three-vrm'
+
+            // renderer
+            const renderer = new THREE.WebGLRenderer()
+            renderer.setSize(150, 150)
+            renderer.setPixelRatio(window.devicePixelRatio)
+            //background
+            renderer.setClearColor(0x1f1f1f, 0) // Warna latar belakang dengan transparansi
+            var avatardiv = document.getElementById("avatar")
+            avatardiv.innerHTML = ""
+            avatardiv.appendChild(renderer.domElement)
+
+            // Kamera
+            const camera = new THREE.PerspectiveCamera(30, 1, 0.1, 20)
+            camera.position.set(0, 1.4, 1) // Sesuaikan posisi kamera
+
+            // Kontrol Kamera
+            const controls = new OrbitControls(camera, renderer.domElement)
+            controls.screenSpacePanning = true
+            controls.target.set(0, 1.5, 0) // Target kamera ke tengah scene
+            controls.update()
+
+
+            // scene
+            const scene = new THREE.Scene()
+
+            // light
+            const light = new THREE.DirectionalLight(0xffffff, Math.PI)
+            light.position.set(1.0, 1.0, 1.0).normalize()
+            scene.add(light)
+
+            // gltf and vrm
+            let currentVrm = undefined
+            const loader = new GLTFLoader()
+            loader.crossOrigin = 'anonymous'
+
+            loader.register((parser) => {
+                return new VRMLoaderPlugin(parser)
+            })
+            let gender = localStorage.getItem("gender")
+            let avatar = localStorage.getItem("avatar")
+            console.log("gender", gender)
+            console.log("avatar", avatar)
+
+
+
+            // helpers
+            const gridHelper = new THREE.GridHelper(10, 10)
+            // scene.add(gridHelper)
+
+            const axesHelper = new THREE.AxesHelper(5)
+            // scene.add(axesHelper)
+            // animate
+            const clock = new THREE.Clock()
+            let basicInterval
+            let smileInterval
+            let blinkInterval
+            let basicMoveId
+            let nutateId
+            let smileId
+            let talkId
+            let talk2Id
+            let blinkId
+            let blink2Id
+
+            function basicMove() {
+                resetAnimate()
+                basicMoveId = requestAnimationFrame(basicMove)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const morphTargets = currentVrm.humanoid.hair
+
+
+                    const s = 0.25 * Math.PI * Math.sin(Math.PI * clock.elapsedTime)
+                    // tweak expressions for smile and blink
+                    const smileIntensity = Math.sin(0.7 * Math.PI * clock.elapsedTime) * 0.1 // Ubah ini untuk mengatur intensitas senyum
+                    const hipsIntensity = Math.sin(0.2 * Math.PI * clock.elapsedTime) * 0.1
+                    const blinkIntensity = Math.sin(0.3 * Math.PI * clock.elapsedTime) * 0.2 // Berkedip
+                    const blinkIntensityLeft = Math.sin(0.3 * Math.PI * clock.elapsedTime) * 0.2 // Berkedip
+                    currentVrm.expressionManager.setValue('aa', smileIntensity) // Ekspresi senyum
+
+                    currentVrm.expressionManager.setValue('blinkRight', 0.1) // Mengatur berkedip kanan
+                    currentVrm.expressionManager.setValue('blinkLeft', 0.1) // Mengatur berkedip kanan
+
+                    currentVrm.humanoid.getNormalizedBoneNode('leftUpperArm').rotation.z = 1.5
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = -1.5
+
+                    currentVrm.humanoid.getNormalizedBoneNode('rightLowerLeg').rotation.y = 0.2
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperLeg').rotation.y = 0.2
+                    currentVrm.humanoid.getNormalizedBoneNode('hips').rotation.y = 0.3 * hipsIntensity
+
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+            }
+            var lastBlinkTime3 = 0
+            var lastBlinkTime4 = 0
+            var lastNutateTime2 = 0
+            function blinkAndNutate() {
+                const currentTime = Date.now()
+                if (currentTime - lastBlinkTime3 > 5000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                    startBlinking()
+                    lastBlinkTime3 = currentTime // Update waktu terakhir blink
+                }
+                if (currentTime - lastBlinkTime4 > 6000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                    startBlinking()
+                    lastBlinkTime4 = currentTime // Update waktu terakhir blink
+                }
+                if (currentTime - lastNutateTime2 > 4000) { // Hanya panggil startBlinking jika 2 detik sudah berlalu
+                    nutate()
+                    lastNutateTime2 = currentTime // Update waktu terakhir blink
+                }
+            }
+
+            function nutate() {
+                resetAnimate()
+                nutateId = requestAnimationFrame(nutate)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const morphTargets = currentVrm.humanoid.hair
+
+
+                    const s = 0.25 * Math.PI * Math.sin(Math.PI * clock.elapsedTime)
+                    // tweak expressions for smile and blink
+                    const nutateIntensity = Math.sin(0.1 * Math.PI * clock.elapsedTime) * 0.1 // Ubah ini untuk mengatur intensitas senyum
+
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.y = nutateIntensity * 0.2
+                    // tweak expressions for smile and blink
+
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.x = nutateIntensity * 0.2
+
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+            }
+            function smile() {
+                resetAnimate()
+                smileId = requestAnimationFrame(smile)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const smileIntensity = 0.2 // Ubah senyum dengan intensitas acak
+                    currentVrm.expressionManager.setValue('blinkRight', 0.1) // Mengatur berkedip kanan
+                    currentVrm.expressionManager.setValue('blinkLeft', 0.1) // Mengatur berkedip kanan
+                    currentVrm.expressionManager.setValue('aa', smileIntensity) // Ekspresi senyum
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+                setTimeout(() => {
+                    basicMove()
+                }, 700)
+            }
+            function talk() {
+                resetAnimate()
+                talkId = requestAnimationFrame(talk)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const smileIntensity = 1 // Ubah senyum dengan intensitas acak
+                    currentVrm.expressionManager.setValue('aa', smileIntensity + 2) // Ekspresi senyum
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+                setTimeout(() => {
+                    basicMove()
+                }, 200)
+            }
+            function talk2() {
+                resetAnimate()
+                talk2Id = requestAnimationFrame(talk2)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const smileIntensity = 1 // Ubah senyum dengan intensitas acak
+                    currentVrm.expressionManager.setValue('aa', smileIntensity - 0.5) // Ekspresi senyum
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+                setTimeout(() => {
+                    basicMove()
+                }, 200)
+            }
+            function startBlinking() {
+                resetAnimate()
+                blinkId = requestAnimationFrame(startBlinking)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const s = 0.25 * Math.PI * Math.sin(Math.PI)
+                    // tweak expressions for smile and blink
+                    const smileIntensity = Math.sin(2 * Math.PI) * 0.5 // Ubah ini untuk mengatur intensitas senyum
+                    const blinkIntensity = Math.sin(2 * Math.PI) * 2 // Berkedip
+                    const blinkIntensityLeft = Math.sin(2 * Math.PI) * 2 // Berkedip
+                    currentVrm.expressionManager.setValue('aa', smileIntensity) // Ekspresi senyum
+                    currentVrm.expressionManager.setValue('blinkRight', 0.8 + blinkIntensity) // Ekspresi berkedip kanan
+                    currentVrm.expressionManager.setValue('blinkLeft', 0.8 + blinkIntensityLeft) // Ekspresi berkedip kiri
+                    currentVrm.expressionManager.setValue('head', 0.5) // Mengatur ekspresi kepala
+                    // Gerakan kepala ke kanan sedikit
+                    const headTilt = Math.sin(2 * Math.PI) * 0.02 // Ubah 0.1 untuk mengatur sudut kemiringan
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.y = headTilt
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.x = -headTilt
+
+                    // Atur tangan agar mengarah ke bawah
+                    // currentVrm.humanoid.getNormalizedBoneNode('leftUpperArm').rotation.x = Math.PI / 2 // Tangan kiri di bawah
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = Math.PI / 2 // Tangan kanan di bawah
+                    currentVrm.humanoid.getNormalizedBoneNode('leftUpperArm').rotation.z = 1.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = s
+
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = 0.5
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = -1.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = -1.2
+
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.x = -0.3
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.y = 2.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.z = Math.sin(2 * Math.PI * clock.elapsedTime) * 0.01
+
+                    currentVrm.humanoid.getNormalizedBoneNode('rightLowerLeg').rotation.y = 0.2
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperLeg').rotation.y = 0.2
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+
+                setTimeout(() => {
+                    basicMove()
+                }, 200)
+            }
+            function startBlinking2() {
+                resetAnimate()
+                blink2Id = requestAnimationFrame(startBlinking2)
+                if (currentVrm) {
+                    var deltaTime = clock.getDelta()
+                    const s = 0.25 * Math.PI * Math.sin(Math.PI)
+                    // tweak expressions for smile and blink
+                    const smileIntensity = Math.sin(2 * Math.PI) * 0.5 // Ubah ini untuk mengatur intensitas senyum
+                    const blinkIntensity = Math.sin(2 * Math.PI) * 2 // Berkedip
+                    const blinkIntensityLeft = Math.sin(2 * Math.PI) * 2 // Berkedip
+                    currentVrm.expressionManager.setValue('aa', smileIntensity) // Ekspresi senyum
+                    currentVrm.expressionManager.setValue('blinkRight', 0.1) // Ekspresi berkedip kanan
+                    currentVrm.expressionManager.setValue('blinkLeft', 0.1) // Ekspresi berkedip kiri
+                    currentVrm.expressionManager.setValue('head', 0.5) // Mengatur ekspresi kepala
+                    // Gerakan kepala ke kanan sedikit
+                    const headTilt = Math.sin(2 * Math.PI) * 0.02 // Ubah 0.1 untuk mengatur sudut kemiringan
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.y = headTilt
+                    currentVrm.humanoid.getNormalizedBoneNode('neck').rotation.x = -headTilt
+
+                    // Atur tangan agar mengarah ke bawah
+                    // currentVrm.humanoid.getNormalizedBoneNode('leftUpperArm').rotation.x = Math.PI / 2 // Tangan kiri di bawah
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = Math.PI / 2 // Tangan kanan di bawah
+                    currentVrm.humanoid.getNormalizedBoneNode('leftUpperArm').rotation.z = 1.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = s
+
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.x = 0.5
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = -1.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightUpperArm').rotation.z = -1.2
+
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.x = -0.3
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.y = 2.5
+                    // currentVrm.humanoid.getNormalizedBoneNode('rightLowerArm').rotation.z = Math.sin(2 * Math.PI * clock.elapsedTime) * 0.01
+
+                    currentVrm.humanoid.getNormalizedBoneNode('rightLowerLeg').rotation.y = 0.2
+                    currentVrm.humanoid.getNormalizedBoneNode('rightUpperLeg').rotation.y = 0.2
+                    currentVrm.update(deltaTime)
+                }
+                renderer.render(scene, camera)
+
+                setTimeout(() => {
+                    basicMove()
+                }, 200)
+            }
+
+            function resetAnimate() {
+                cancelAnimationFrame(basicMoveId)
+                cancelAnimationFrame(nutateId)
+                cancelAnimationFrame(smileId)
+                cancelAnimationFrame(talkId)
+                cancelAnimationFrame(talk2Id)
+                cancelAnimationFrame(blinkId)
+                cancelAnimationFrame(blink2Id)
+            }
+            setTimeout(() => {
+                basicMove()
+            }, 1000)
+            setTimeout(() => {
+                const talkInterval = setInterval(() => {
+                    blinkAndNutate()
+                }, 5000)
+            }, 2000)
+
+            // const startButton = document.getElementById('startButton')
+            // const outputDiv = document.getElementById('output')
+            // const transcriptInput = document.getElementById('messageInput')
+
+            // const recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition || window.mozSpeechRecognition || window.msSpeechRecognition)()
+            // recognition.lang = 'id-ID'
+            // recognition.interimResults = true // Enable interim results
+
+            // let silenceTimer // Timer untuk mendeteksi keheningan
+
+            // recognition.onstart = () => {
+            //     startButton.textContent = 'Listening...'
+            // }
+
+            // recognition.onresult = (event) => {
+            //     const transcript = event.results[event.resultIndex][0].transcript // Get the latest transcript
+            //     // outputDiv.textContent += ' ' + transcript // Tambahkan teks baru ke output
+            //     transcriptInput.value = transcript // Simpan hasil transcript di input
+            //     resetSilenceTimer() // Reset timer saat berbicara
+            // }
+
+            // recognition.onend = () => {
+            //     startButton.textContent = 'Start Voice Input'
+            //     // Automatically restart recognition
+            //     recognition.start()
+            // }
+
+            // startButton.addEventListener('click', () => {
+            //     recognition.start()
+            //     resetSilenceTimer() // Mulai timer saat tombol ditekan
+            // })
+
+            // function resetSilenceTimer() {
+            //     clearTimeout(silenceTimer) // Hapus timer sebelumnya
+            //     silenceTimer = setTimeout(() => {
+            //         recognition.stop() // Hentikan pengenalan suara setelah 3 detik hening
+            //         startButton.textContent = 'Voice Input Stopped'
+            //     }, 3000) // 3000ms = 3 detik
+            // }
+
+        </script>
+        <script src="%PRISMJS_PATH%"></script> <!-- Include the Prism JS for syntax highlighting functionality -->
+        <div id="avatar-container" class="hidden">
+            <div id="avatar">
+
+            </div>
+            <div id="stopAudioContainer" class="flex justify-center mt-4">
+                <select id="audioControl" class="h-12 p-2 flex items-center justify-center text-white bg-grey rounded">
+                    <option value="play">Voice On</option>
+                    <option value="mute">Voice Off</option>
+                </select>
+                <button id="startButton" class="hidden">Speak</button>
+                <div id="output" class="hidden">Start</div>
+            </div>
+        </div>
+
+    </body>
+
+</html>

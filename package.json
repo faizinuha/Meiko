@@ -8,7 +8,8 @@
     "onLanguage:php",
     "onLanguage:html",
     "onLanguage:java",
-    "workspaceContains:**/*"
+    "workspaceContains:**/*",
+    "onView:pacar-ai-sidebar"
   ],
   "author": "Zaky",
   "badges": [
@@ -39,6 +40,14 @@
   "contributes": {
     "commands": [
       {
+        "command": "pacar-ai.helloWorld",
+        "title": "Hello World"
+      },
+      {
+        "command": "pacar-ai.applyCode",
+        "title": "Apply Code from Pacar AI"
+      },
+      {
         "command": "extension.codersSolid",
         "title": "Run Coders Solid CLI"
       },
@@ -57,11 +66,33 @@
       {
         "command": "meiko-web.hello",
         "title": "Hello Meiko Web"
+      },
+      {
+        "category": "Kawaii Code",
+        "command": "kawaiCode.toggleAIPartner",
+        "title": "Toggle Fitur Pacar AI"
       }
     ],
+    "configuration": {
+      "properties": {
+        "kawaiiCode.aiPartnerEnabled": {
+          "default": true,
+          "description": "Mengaktifkan atau menonaktifkan fitur Pacar AI",
+          "type": "boolean"
+        }
+      },
+      "title": "Kawaii Code"
+    },
     "documentation": {
       "releaseNotes": "./CHANGELOG.md"
     },
+    "keybindings": [
+      {
+        "command": "pacar-ai.triggerCompletion",
+        "key": "shift+enter",
+        "when": "editorTextFocus"
+      }
+    ],
     "snippets": [
       {
         "language": "html",
@@ -95,7 +126,27 @@
         "language": "python",
         "path": "./src/python-snippets.json"
       }
-    ]
+    ],
+    "views": {
+      "pacar-ai-sidebar": [
+        {
+          "contextualTitle": "PacarAI",
+          "icon": "media/icon.svg",
+          "id": "pacar-ai-sidebar",
+          "name": "Pacar AI",
+          "type": "webview"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "icon": "media/icon.svg",
+          "id": "pacar-ai-sidebar",
+          "title": "Pacar AI"
+        }
+      ]
+    }
   },
   "dependencies": {
     "chalk": "^5.3.0",
@@ -159,5 +210,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.1.6"
+  "version": "2.1.7"
 }
