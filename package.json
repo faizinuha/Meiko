@@ -223,5 +223,14 @@
     "AI",
     "snippets"
   ],
-  "version": "2.2.2"
+  "version": "2.2.2",
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ]
 }
