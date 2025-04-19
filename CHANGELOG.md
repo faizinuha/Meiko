@@ -130,3 +130,14 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ### Added
 - Rilis awal dengan fitur dasar **CodersLar**.
+
+## [1.0.0]
+
+- Fitur pertama
+- Fitur kedua
+- Bug fixes
+
+## [0.9.0]
+
+- Initial release
+- Implementasi dasar

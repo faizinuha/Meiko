@@ -1,5 +1,7 @@
 {
   "activationEvents": [
+    "*",
+    "onStartupFinished",
     "onCommand:extension.coders-solid",
     "onCommand:extension.coders-delete",
     "onCommand:extension.coders-crud",
@@ -9,7 +11,7 @@
     "onLanguage:html",
     "onLanguage:java",
     "workspaceContains:**/*",
-    "onView:pacar-ai-sidebar"
+    "onStartupFinished"
   ],
   "author": "Zaky",
   "badges": [
@@ -71,6 +73,10 @@
         "category": "Kawaii Code",
         "command": "kawaiCode.toggleAIPartner",
         "title": "Toggle Fitur Pacar AI"
+      },
+      {
+        "command": "extension.showReleaseNotes",
+        "title": "Show Release Notes"
       }
     ],
     "configuration": {
@@ -167,6 +173,7 @@
   },
   "displayName": "Meiko",
   "engines": {
+    "node": ">=14.0.0",
     "vscode": ">=1.95.0"
   },
   "icon": "assets/icons1.jpeg",
@@ -190,10 +197,15 @@
   "license": "MIT",
   "main": "./out/extension.js",
   "name": "kawaiicode",
+  "pricing": "Free",
   "publisher": "ZakyEvenso12",
   "repository": {
     "type": "git",
     "url": "https://github.com/faizinuha/Meiko"
+  },
+  "runtime": {
+    "type": "node",
+    "version": ">=14.0.0"
   },
   "scripts": {
     "build": "tsc && webpack && npm run build-web",
@@ -203,6 +215,9 @@
     "test": "node ./out/test/runTest.js",
     "watch": "tsc -watch"
   },
+  "sponsor": {
+    "url": "https://ko-fi.com/mahiro885"
+  },
   "tags": [
     "Meiko",
     "codersHtml",
@@ -210,9 +225,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.2.0",
-  "sponsor": {
-    "url": "https://ko-fi.com/mahiro885"
-  },
-  "pricing": "Free"
+  "version": "2.2.0"
 }
