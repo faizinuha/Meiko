@@ -210,5 +210,9 @@
     "AI",
     "snippets"
   ],
-  "version": "2.1.7"
+  "version": "2.2.0",
+  "sponsor": {
+    "url": "https://ko-fi.com/mahiro885"
+  },
+  "pricing": "Free"
 }
