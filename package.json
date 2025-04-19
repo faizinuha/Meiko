@@ -38,45 +38,6 @@
     "Other"
   ],
   "contributes": {
-    "commands": [
-      {
-        "command": "pacar-ai.helloWorld",
-        "title": "Hello World"
-      },
-      {
-        "command": "pacar-ai.applyCode",
-        "title": "Apply Code from Pacar AI"
-      },
-      {
-        "command": "extension.codersSolid",
-        "title": "Run Coders Solid CLI"
-      },
-      {
-        "command": "extension.codersDelete",
-        "title": "Run Coders Delete CLI"
-      },
-      {
-        "command": "extension.codersCrud",
-        "title": "Run Coders CRUD CLI"
-      },
-      {
-        "command": "kawaii.createShortNameFile",
-        "title": "Kawaii: Create File with Short Name"
-      },
-      {
-        "command": "meiko-web.hello",
-        "title": "Hello Meiko Web"
-      },
-      {
-        "category": "Kawaii Code",
-        "command": "kawaiCode.toggleAIPartner",
-        "title": "Toggle Fitur Pacar AI"
-      },
-      {
-        "command": "extension.showReleaseNotes",
-        "title": "Show Release Notes"
-      }
-    ],
     "configuration": {
       "properties": {
         "kawaiiCode.aiPartnerEnabled": {
@@ -152,6 +113,10 @@
       ]
     }
   },
+  "cpu": [
+    "x64",
+    "arm64"
+  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
@@ -195,6 +160,11 @@
   "license": "MIT",
   "main": "./out/extension.js",
   "name": "kawaiicode",
+  "os": [
+    "darwin",
+    "linux",
+    "win32"
+  ],
   "pricing": "Free",
   "publisher": "ZakyEvenso12",
   "repository": {
@@ -223,14 +193,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.2.2",
-  "cpu": [
-    "x64",
-    "arm64"
-  ],
-  "os": [
-    "darwin",
-    "linux",
-    "win32"
-  ]
+  "version": "2.2.3"
 }
