@@ -117,7 +117,7 @@ function removeCommentTags(code) {
         .replace(/\/\/(.*)$/gm, '$1') // Menghapus // dan menyimpan teks setelahnya
         .replace(/\/\*[\s\S]*?\*\//g, '') // Menghapus komentar multi-baris
         .replace(/#(.*)$/gm, '$1') // Menghapus # dan menyimpan teks setelahnya
-        .replace(/<!--(.*?)-->/g, '$1') // Menghapus komentar HTML
+        .replace(/<!--([\s\S]*?)-->/g, '$1') // Menghapus komentar HTML, termasuk yang multiline
         .replace(/\n\s*\n/g, '\n') // Menghapus baris kosong yang tersisa
         .trim(); // Menghapus spasi di awal dan akhir
 }
