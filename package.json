@@ -38,26 +38,9 @@
     "Other"
   ],
   "contributes": {
-    "configuration": {
-      "properties": {
-        "kawaiiCode.aiPartnerEnabled": {
-          "default": true,
-          "description": "Mengaktifkan atau menonaktifkan fitur Pacar AI",
-          "type": "boolean"
-        }
-      },
-      "title": "Kawaii Code"
-    },
     "documentation": {
       "releaseNotes": "./CHANGELOG.md"
     },
-    "keybindings": [
-      {
-        "command": "pacar-ai.triggerCompletion",
-        "key": "shift+enter",
-        "when": "editorTextFocus"
-      }
-    ],
     "snippets": [
       {
         "language": "html",
@@ -91,32 +74,8 @@
         "language": "python",
         "path": "./src/python-snippets.json"
       }
-    ],
-    "views": {
-      "pacar-ai-sidebar": [
-        {
-          "contextualTitle": "PacarAI",
-          "icon": "media/icon.svg",
-          "id": "pacar-ai-sidebar",
-          "name": "Pacar AI",
-          "type": "webview"
-        }
-      ]
-    },
-    "viewsContainers": {
-      "activitybar": [
-        {
-          "icon": "media/icon.svg",
-          "id": "pacar-ai-sidebar",
-          "title": "Pacar AI"
-        }
-      ]
-    }
+    ]
   },
-  "cpu": [
-    "x64",
-    "arm64"
-  ],
   "dependencies": {
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
