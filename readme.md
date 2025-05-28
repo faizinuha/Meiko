@@ -175,8 +175,7 @@ Terima kasih telah menggunakan **Meiko**! Extension ini dibuat dan dipelihara ol
  [#Error Update](https://github.com/faizinuha/Meiko/issues/1)
 
 Mohon Segera Beri Tahu Kami Jika Anda menemukan masalah atau bug pada ekstensi ini. Kami akan segera memperbaikinya.
-Jika Fitur terbaru di bagian Pacar Ai 
-Silakan Download Yang ini -> [Pacar Ai](https://marketplace.visualstudio.com/items?itemName=PacarAI.pacar-ai)
+Jika Fitur terbaru!
 
 ---
 
