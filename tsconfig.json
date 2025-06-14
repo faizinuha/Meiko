@@ -14,5 +14,5 @@
   },
   // Pengecualian direktori
   "exclude": ["node_modules", ".vscode-test", "kawaiiInstall", "webviews"],
-  "include": ["src/**/*"]
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/extension.js"]
 }

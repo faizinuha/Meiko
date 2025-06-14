@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
     target: 'webworker',
-    entry: './src/extension.ts',
+    entry: './src/extension.js',
     output: {
         path: path.resolve(__dirname, 'dist/web'),
         filename: 'extension.js',
