@@ -53,8 +53,8 @@ Berikut adalah daftar fitur utama dari Meiko:
 ## 🤝 Kontribusi
 Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
-- 🛠️ **Buat pull request**.
-- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko)
+- 🛠️ **Buat pull request**. | 
+- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko) | 
 -Libary:https://www.npmjs.com/search?q=electron
 -github: https://github.com/electron/electron/issues
 ---
