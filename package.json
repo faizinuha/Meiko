@@ -22,7 +22,8 @@
   "bin": {
     "coders-crud": "cli/crud-installer.js",
     "coders-delete": "cli/delete-solid.js",
-    "coders-solid": "cli/coders-solid.js"
+    "coders-solid": "cli/coders-solid.js",
+    "ai": "cli/ai-code-generator.js"
   },
   "browser": "./dist/web/extension.js",
   "capabilities": {
@@ -101,7 +102,7 @@
   "icon": "assets/icons1.jpeg",
   "id": "ZakyEvenso12",
   "keywords": [
-    "CodersLar(Legety)",
+    "CodersLegacy",
     "php",
     "laravel",
     "AI",
@@ -152,5 +153,5 @@
     "AI",
     "snippets"
   ],
-  "version": "2.3.4"
+  "version": "3.3.1"
 }
