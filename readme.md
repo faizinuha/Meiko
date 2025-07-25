@@ -8,7 +8,7 @@
 
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
-
+![Web](https://meiko-6ul.pages.dev/)
 
 <p align="center">
 🐱‍👤 -> 
@@ -25,7 +25,7 @@ Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimb
 <a href="https://saweria.co/C02V">
     <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
 </a>
-|
+
 <a href="https://ko-fi.com/mahiro885">
     <img src="assets/image.png" alt="捐赠图标" width="40" />
 </a>
