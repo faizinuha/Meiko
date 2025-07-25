@@ -8,7 +8,8 @@
 
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
-![Web](https://meiko-6ul.pages.dev/)
+
+<a href="https://meiko-6ul.pages.dev/" class="text-Blue" >Website</a>
 
 <p align="center">
 🐱‍👤 -> 
