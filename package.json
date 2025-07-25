@@ -1,15 +1,13 @@
 {
   "activationEvents": [
-    "*",
-    "onCommand:extension.coders-solid",
-    "onCommand:extension.coders-delete",
-    "onCommand:extension.coders-crud",
     "onLanguage:javascript",
     "onLanguage:typescript",
     "onLanguage:php",
     "onLanguage:html",
     "onLanguage:java",
-    "workspaceContains:**/*"
+    "workspaceContains:**/*",
+    "onCommand:extension.openLaravelAIGenerator",
+    "onStartupFinished"
   ],
   "author": "Zaky",
   "badges": [
@@ -22,8 +20,7 @@
   "bin": {
     "coders-crud": "cli/crud-installer.js",
     "coders-delete": "cli/delete-solid.js",
-    "coders-solid": "cli/coders-solid.js",
-    "ai": "cli/ai-code-generator.js"
+    "coders-solid": "cli/coders-solid.js"
   },
   "browser": "./dist/web/extension.js",
   "capabilities": {
@@ -153,5 +150,8 @@
     "AI",
     "snippets"
   ],
-  "version": "3.3.1"
+  "extensionDependencies": [
+    "be5invis.vscode-custom-css"
+  ],
+  "version": "3.4.4"
 }

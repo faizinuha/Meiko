@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laravel AI Code Generator</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to top */
+            min-height: 100vh;
+            padding: 2rem;
+            box-sizing: border-box;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 0.75rem; /* rounded-xl */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+            padding: 2.5rem; /* p-10 */
+            width: 100%;
+            max-width: 900px; /* Increased max-width for more content */
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem; /* space-y-6 */
+        }
+        .code-output {
+            background-color: #1a202c; /* gray-900 */
+            color: #a0aec0; /* gray-400 */
+            padding: 1.5rem; /* p-6 */
+            border-radius: 0.5rem; /* rounded-lg */
+            overflow-x: auto;
+            max-height: 400px; /* Limit height for long code */
+            white-space: pre-wrap; /* Preserve whitespace and wrap */
+            word-break: break-all; /* Break long words */
+            font-size: 0.875rem; /* text-sm */
+        }
+        .loading-spinner {
+            border: 4px solid #f3f3f3; /* Light grey */
+            border-top: 4px solid #3498db; /* Blue */
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .section-header {
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            background-color: #edf2f7; /* gray-200 */
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            font-weight: 600;
+            color: #2d3748; /* gray-800 */
+            transition: background-color 0.2s ease-in-out;
+        }
+        .section-header:hover {
+            background-color: #e2e8f0; /* gray-300 */
+        }
+        .section-content {
+            display: none; /* Hidden by default */
+            margin-top: 0.5rem;
+        }
+        .section-content.active {
+            display: block; /* Show when active */
+        }
+        .arrow-icon {
+            transition: transform 0.2s ease-in-out;
+        }
+        .arrow-icon.rotated {
+            transform: rotate(90deg);
+        }
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1.5rem; /* p-6 */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Laravel AI Code Generator</h1>
+        <p class="text-gray-600 text-center">
+            Masukkan perintah untuk membuat kode Laravel. Contoh: "buatkan fitur crud untuk Product", "generate controller untuk User".
+        </p>
+
+        <div class="flex flex-col gap-4">
+            <input
+                type="text"
+                id="commandInput"
+                class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Contoh: buatkan fitur crud untuk FoodProduct dengan field name, price, category, image_url"
+            />
+            <button
+                id="generateBtn"
+                class="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-md transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
+            >
+                Buat Kode
+            </button>
+        </div>
+
+        <div id="loading" class="hidden text-center">
+            <div class="loading-spinner"></div>
+            <p class="mt-2 text-gray-600">Sedang membuat kode...</p>
+        </div>
+
+        <div id="outputContainer" class="hidden">
+            <h2 class="text-xl font-semibold text-gray-800 mb-2">Kode yang Dihasilkan:</h2>
+            
+            <!-- Model Section -->
+            <div class="section-header" data-target="modelCode">
+                Model <span class="arrow-icon">&#9658;</span>
+            </div>
+            <div id="modelCode" class="section-content">
+                <pre class="code-output"><code id="generatedModel"></code></pre>
+            </div>
+
+            <!-- Controller Section -->
+            <div class="section-header" data-target="controllerCode">
+                Controller <span class="arrow-icon">&#9658;</span>
+            </div>
+            <div id="controllerCode" class="section-content">
+                <pre class="code-output"><code id="generatedController"></code></pre>
+            </div>
+
+            <!-- Migration Section -->
+            <div class="section-header" data-target="migrationCode">
+                Migration <span class="arrow-icon">&#9658;</span>
+            </div>
+            <div id="migrationCode" class="section-content">
+                <pre class="code-output"><code id="generatedMigration"></code></pre>
+            </div>
+
+            <!-- Routes Section -->
+            <div class="section-header" data-target="routesCode">
+                Routes <span class="arrow-icon">&#9658;</span>
+            </div>
+            <div id="routesCode" class="section-content">
+                <pre class="code-output"><code id="generatedRoutes"></code></pre>
+            </div>
+        </div>
+
+        <div id="errorContainer" class="hidden text-red-600 text-center">
+            <p id="errorMessage"></p>
+        </div>
+    </div>
+
+    <script type="module">
+        // Global variables provided by the Canvas environment
+        // NOTE: These __app_id, __firebase_config, __initial_auth_token are specific to the Canvas environment.
+        // In a VS Code extension webview, you would typically *not* have these directly.
+        // You would manage API keys and authentication within your VS Code extension's Node.js environment
+        // and pass necessary data to the webview via postMessage if needed.
+        const appId = 'vs-code-app-id'; // Placeholder for VS Code context
+        const firebaseConfig = {}; // Placeholder for VS Code context
+        const initialAuthToken = null; // Placeholder for VS Code context
+
+        const commandInput = document.getElementById('commandInput');
+        const generateBtn = document.getElementById('generateBtn');
+        const loadingDiv = document.getElementById('loading');
+        const outputContainer = document.getElementById('outputContainer');
+        const generatedModel = document.getElementById('generatedModel');
+        const generatedController = document.getElementById('generatedController');
+        const generatedMigration = document.getElementById('generatedMigration');
+        const generatedRoutes = document.getElementById('generatedRoutes');
+        const errorContainer = document.getElementById('errorContainer');
+        const errorMessageDiv = document.getElementById('errorMessage');
+
+        // Function to display error messages
+        function showError(message) {
+            errorContainer.classList.remove('hidden');
+            errorMessageDiv.textContent = message;
+            outputContainer.classList.add('hidden'); // Hide output if there's an error
+        }
+
+        // Function to clear messages and hide output sections
+        function clearMessages() {
+            errorContainer.classList.add('hidden');
+            outputContainer.classList.add('hidden');
+            generatedModel.textContent = '';
+            generatedController.textContent = '';
+            generatedMigration.textContent = '';
+            generatedRoutes.textContent = '';
+            errorMessageDiv.textContent = '';
+
+            // Hide all section contents and reset arrows
+            document.querySelectorAll('.section-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            document.querySelectorAll('.arrow-icon').forEach(icon => {
+                icon.classList.remove('rotated');
+            });
+        }
+
+        // Add event listeners for collapsible sections
+        document.querySelectorAll('.section-header').forEach(header => {
+            header.addEventListener('click', () => {
+                const targetId = header.dataset.target;
+                const targetContent = document.getElementById(targetId);
+                const arrowIcon = header.querySelector('.arrow-icon');
+
+                targetContent.classList.toggle('active');
+                arrowIcon.classList.toggle('rotated');
+            });
+        });
+
+        // Function to extract entity and fields from command
+        function parseCommand(command) {
+            let entity = 'Default';
+            let fields = [];
+            const lowerCommand = command.toLowerCase();
+
+            // Try to find "crud for X" or "crud X"
+            const crudMatch = lowerCommand.match(/(?:crud|fitur crud)\s+(?:untuk\s+)?([a-zA-Z]+)/);
+            if (crudMatch && crudMatch[1]) {
+                entity = crudMatch[1].charAt(0).toUpperCase() + crudMatch[1].slice(1);
+            } else {
+                // Fallback for simpler commands, try to find a capitalized word
+                const wordMatches = command.match(/\b[A-Z][a-zA-Z]*\b/g);
+                if (wordMatches && wordMatches.length > 0) {
+                    entity = wordMatches[wordMatches.length - 1]; // Take the last capitalized word as entity
+                }
+            }
+
+            // Extract fields using "dengan field X, Y, Z" or "with fields X, Y, Z"
+            const fieldsMatch = lowerCommand.match(/(?:dengan\s+field|with\s+fields)\s+([a-zA-Z0-9_, ]+)/);
+            if (fieldsMatch && fieldsMatch[1]) {
+                fields = fieldsMatch[1].split(',').map(f => f.trim()).filter(f => f.length > 0);
+            }
+
+            return { entity, fields };
+        }
+
+        // Event listener for the Generate button
+        generateBtn.addEventListener('click', async () => {
+            clearMessages(); // Clear previous messages
+            const command = commandInput.value.trim();
+
+            if (!command) {
+                showError('Mohon masukkan perintah untuk membuat kode.');
+                return;
+            }
+
+            loadingDiv.classList.remove('hidden'); // Show loading spinner
+            generateBtn.disabled = true; // Disable button during generation
+
+            const { entity, fields } = parseCommand(command);
+            const capitalizedEntity = entity.charAt(0).toUpperCase() + entity.slice(1);
+            const pluralEntity = entity.toLowerCase() + 's'; // Simple pluralization
+
+            // Construct a detailed prompt for the Gemini API to get structured JSON output
+            let prompt = `Generate a complete Laravel CRUD (Model, Controller, Migration, Routes) for the entity '${capitalizedEntity}'.
+            The response MUST be a single JSON object with the following keys:
+            "model": raw PHP code for the Laravel Model.
+            "controller": raw PHP code for the Laravel Controller.
+            "migration": raw PHP code for the Laravel Migration.
+            "routes": raw PHP code for the Laravel API routes (using Route::apiResource).
+
+            Ensure the code is complete and syntactically correct. Do NOT include any markdown code block fences (e.g., \`\`\`) or extra text outside the JSON.
+            
+            For the migration, include an 'id' primary key, 'timestamps', and 'softDeletes'.
+            `;
+
+            if (fields.length > 0) {
+                prompt += `\nFor the Model, include the following fields in the '$fillable' array: ${fields.join(', ')}.`;
+                prompt += `\nFor the Migration, create columns for these fields: ${fields.join(', ')}. Assign appropriate data types (e.g., string, text, integer, decimal).`;
+                prompt += `\nFor the Controller, include validation rules for these fields in the 'store' and 'update' methods.`;
+            } else {
+                // Default fields if none are specified
+                prompt += `\nFor the Model, include 'name' and 'description' in the '$fillable' array.`;
+                prompt += `\nFor the Migration, create 'name' (string) and 'description' (text, nullable) columns.`;
+                prompt += `\nFor the Controller, include validation rules for 'name' and 'description'.`;
+            }
+
+            prompt += `\n\nExample JSON structure for a 'Product' entity:
+            {
+              "model": "<?php\\n\\nnamespace App\\\\Models;\\n\\nuse Illuminate\\\\Database\\\\Eloquent\\\\Factories\\\\HasFactory;\\nuse Illuminate\\\\Database\\\\Eloquent\\\\Model;\\nuse Illuminate\\\\Database\\\\Eloquent\\\\SoftDeletes;\\n\\nclass Product extends Model\\n{\\n    use HasFactory, SoftDeletes;\\n\\n    protected $fillable = [\\n        \\\"name\\\",\\n        \\\"description\\\",\\n        \\\"price\\\",\\n        \\\"category\\\",\\n        \\\"image_url\\\"\\n    ];\\n\\n    protected $casts = [\\n        \\\"price\\\" => \\\"decimal:2\\\",\\n        \\\"created_at\\\" => \\\"datetime\\\",\\n        \\\"updated_at\\\" => \\\"datetime\\\",\\n        \\\"deleted_at\\\" => \\\"datetime\\\"\\n    ];\\n}",
+              "controller": "<?php\\n\\nnamespace App\\\\Http\\\\Controllers;\\n\\nuse App\\\\Models\\\\Product;\\nuse Illuminate\\\\Http\\\\Request;\\nuse Illuminate\\\\Http\\\\JsonResponse;\\n\\nclass ProductController extends Controller\\n{\\n    public function index(): JsonResponse\\n    {\\n        $products = Product::all();\\n        return response()->json([\\\"success\\\" => true, \\\"data\\\" => $products]);\\n    }\\n\\n    public function store(Request $request): JsonResponse\\n    {\\n        $validatedData = $request->validate([\\n            \\\"name\\\" => \\\"required|string|max:255\\\",\\n            \\\"description\\\" => \\\"nullable|string\\\",\\n            \\\"price\\\" => \\\"required|numeric\\\",\\n            \\\"category\\\" => \\\"required|string|max:255\\\",\\n            \\\"image_url\\\" => \\\"nullable|url\\\"\\n        ]);\\n        $product = Product::create($validatedData);\\n        return response()->json([\\\"success\\\" => true, \\\"message\\\" => \\\"Product created successfully\\\", \\\"data\\\" => $product], 201);\\n    }\\n\\n    public function show(Product $product): JsonResponse\\n    {\\n        return response()->json([\\\"success\\\" => true, \\\"data\\\" => $product]);\\n    }\\n\\n    public function update(Request $request, Product $product): JsonResponse\\n    {\\n        $validatedData = $request->validate([\\n            \\\"name\\\" => \\\"sometimes|required|string|max:255\\\",\\n            \\\"description\\\" => \\\"sometimes|nullable|string\\\",\\n            \\\"price\\\" => \\\"sometimes|required|numeric\\\",\\n            \\\"category\\\" => \\\"sometimes|required|string|max:255\\\",\\n            \\\"image_url\\\" => \\\"sometimes|nullable|url\\\"\\n        ]);\\n        $product->update($validatedData);\\n        return response()->json([\\\"success\\\" => true, \\\"message\\\" => \\\"Product updated successfully\\\", \\\"data\\\" => $product]);\\n    }\\n\\n    public function destroy(Product $product): JsonResponse\\n    {\\n        $product->delete();\\n        return response()->json([\\\"success\\\" => true, \\\"message\\\" => \\\"Product deleted successfully\\\"]);\\n    }\\n}",
+              "migration": "<?php\\n\\nuse Illuminate\\\\Database\\\\Migrations\\\\Migration;\\nuse Illuminate\\\\Database\\\\Schema\\\\Blueprint;\\nuse Illuminate\\\\Support\\\\Facades\\\\Schema;\\n\\nreturn new class extends Migration\\n{\\n    public function up(): void\\n    {\\n        Schema::create('products', function (Blueprint $table) {\\n            $table->id();\\n            $table->string('name');\\n            $table->text('description')->nullable();\\n            $table->decimal('price', 8, 2);\\n            $table->string('category');\\n            $table->string('image_url')->nullable();\\n            $table->timestamps();\\n            $table->softDeletes();\\n        });\\n    }\\n\\n    public function down(): void\\n    {\\n        Schema::dropIfExists('products');\\n    }\\n};",
+              "routes": "Route::apiResource('products', App\\\\Http\\\\Controllers\\\\ProductController::class);"
+            }`;
+
+
+            let chatHistory = [];
+            chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+
+            const payload = {
+                contents: chatHistory,
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            "model": { "type": "STRING" },
+                            "controller": { "type": "STRING" },
+                            "migration": { "type": "STRING" },
+                            "routes": { "type": "STRING" }
+                        },
+                        required: ["model", "controller", "migration", "routes"]
+                    }
+                }
+            };
+            // In a VS Code extension, you would typically get your API key from VS Code's secret storage
+            // or from a configuration setting, not hardcoded or from a global variable like 'apiKey = ""'.
+            // For demonstration, we'll keep it as an empty string as per Canvas environment.
+            const apiKey = "AIzaSyBFOTuKfTRCAYFXg37q4_fkatykUgm-ZkE"; 
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    throw new Error(`API error: ${response.status} ${response.statusText} - ${errorData.error?.message || 'Unknown error'}`);
+                }
+
+                const result = await response.json();
+
+                if (result.candidates && result.candidates.length > 0 &&
+                    result.candidates[0].content && result.candidates[0].content.parts &&
+                    result.candidates[0].content.parts.length > 0) {
+                    const jsonString = result.candidates[0].content.parts[0].text;
+                    const generatedCode = JSON.parse(jsonString);
+
+                    generatedModel.textContent = generatedCode.model || 'Tidak ada kode Model yang dihasilkan.';
+                    generatedController.textContent = generatedCode.controller || 'Tidak ada kode Controller yang dihasilkan.';
+                    generatedMigration.textContent = generatedCode.migration || 'Tidak ada kode Migration yang dihasilkan.';
+                    generatedRoutes.textContent = generatedCode.routes || 'Tidak ada kode Routes yang dihasilkan.';
+
+                    outputContainer.classList.remove('hidden');
+                } else {
+                    showError('Tidak ada kode yang dihasilkan. AI mungkin tidak memahami perintah atau memberikan respons kosong.');
+                    console.error('Gemini API response structure unexpected:', result);
+                }
+
+            } catch (error) {
+                console.error('Error generating code:', error);
+                showError(`Gagal membuat kode: ${error.message}. Silakan coba lagi.`);
+            } finally {
+                loadingDiv.classList.add('hidden'); // Hide loading spinner
+                generateBtn.disabled = false; // Re-enable button
+            }
+        });
+    </script>
+</body>
+</html>

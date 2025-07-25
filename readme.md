@@ -89,14 +89,24 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 ---
 
 --- 
+
 ### 💻 **Coders-crud Cli Solid ** ( Sudah di latih)
-Cli Sederhana Untuk Pembuatan Crud di Solid 
+
+Cli Sederhana Untuk Pembuatan Crud di Solid
+
 1. ⌨️ **Buka terminal** dengan `Ctrl + J`.
 2. Ketik `coders-solid <NameProject>`.
 3. 🎉 **Edit sesuai kebutuhan** tanpa membuat dari awal.
 4. 🚀 Gunakan CLI ini tanpa batasan.
 
 ---
+
+### 💻 **Open Laravel AI Generator**
+
+1. Ketik `Ctrl + P ` Atau `Cmd + P` di Mac Atau ` Ctrl + Shift + p `
+2. Ketik `Laravel Atau openLaravelAIGenerator`.
+3. 🚀 Gunakan CLI ini tanpa batasan.
+
 ### Snippets
 
 #### 🏗️ **HTML**

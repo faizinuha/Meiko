@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meiko - Ekstensi VS Code Cerdas</title>
+    <!-- Chosen Palette: Calm Harmony (Slate, Cyan) -->
+    <!-- Application Structure Plan: A single-page landing site structure was chosen to present the Meiko extension's features in a more engaging and organized way than a static README. The key interaction is a tabbed "Snippet Explorer" which groups the extensive snippet list by language, improving usability and reducing cognitive load. The flow guides the user from a high-level overview (Hero, Features) to detailed information (Snippets, CLI Tools), and finally to calls-to-action (Donation, Contribution). -->
+    <!-- Visualization & Content Choices: Report Info: Snippet lists for 5 languages. Goal: Organize & Inform. Viz/Method: Tabbed interface using HTML/JS. Interaction: User clicks language tabs to toggle visibility of snippet lists. Justification: Prevents a very long, unorganized scroll, allowing users to focus on the language they care about. Library/Method: Vanilla JS for DOM manipulation. Report Info: High-level features. Goal: Inform. Viz/Method: Icon + Text cards in a grid. Justification: More scannable and visually appealing than a bulleted list. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+            color: #1e293b; /* slate-800 */
+        }
+        .tab-btn.active {
+            background-color: #06b6d4; /* cyan-500 */
+            color: white;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto px-4 py-8 md:py-16">
+
+        <!-- Hero Section -->
+        <header class="text-center mb-16 md:mb-24">
+            <img src="https://raw.githubusercontent.com/faizinuha/Meiko/main/assets/icons1.jpeg" alt="Meiko Logo" width="128" class="mx-auto mb-6 rounded-3xl shadow-lg" onerror="this.style.display='none'">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-slate-900">Meiko</h1>
+            <p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-slate-600">
+                Ekstensi Visual Studio Code yang dirancang untuk memudahkan dan mempercepat pengalaman coding Anda.
+            </p>
+            <div class="mt-8">
+                <a href="#features" class="inline-block bg-cyan-600 text-white font-semibold px-8 py-3 rounded-lg shadow-md hover:bg-cyan-700 transition-colors duration-300">
+                    Lihat Fitur Utama
+                </a>
+            </div>
+        </header>
+
+        <!-- Features Section -->
+        <section id="features" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Fitur Unggulan Meiko</h2>
+                <p class="mt-2 text-slate-500">Semua yang Anda butuhkan untuk produktivitas maksimal.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-3xl mb-4">🤖</div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Laravel AI Code Generator</h3>
+                    <p class="text-slate-600">Hasilkan CRUD Laravel lengkap (Model, Controller, Migration, Routes) hanya dengan perintah bahasa natural.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-3xl mb-4">📋</div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">Template Snippet Lengkap</h3>
+                    <p class="text-slate-600">Berbagai template untuk HTML, Laravel, Java, Vue, dan Python untuk mempercepat penulisan kode Anda.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="text-3xl mb-4">⚡</div>
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">CLI Tools Terintegrasi</h3>
+                    <p class="text-slate-600">Atur proyek Laravel dengan cepat menggunakan perintah `coders-solid`, `coders-crud`, dan `coders-delete`.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Snippet Explorer Section -->
+        <section id="snippets" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Jelajahi Snippets</h2>
+                <p class="mt-2 text-slate-500">Pilih bahasa untuk melihat semua snippet yang tersedia.</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <button class="tab-btn active px-4 py-2 font-semibold rounded-md transition-colors duration-200 bg-white shadow-sm" data-target="laravel">Laravel</button>
+                <button class="tab-btn px-4 py-2 font-semibold rounded-md transition-colors duration-200 bg-white shadow-sm" data-target="html">HTML</button>
+                <button class="tab-btn px-4 py-2 font-semibold rounded-md transition-colors duration-200 bg-white shadow-sm" data-target="vue">Vue.js</button>
+                <button class="tab-btn px-4 py-2 font-semibold rounded-md transition-colors duration-200 bg-white shadow-sm" data-target="java">Java</button>
+                <button class="tab-btn px-4 py-2 font-semibold rounded-md transition-colors duration-200 bg-white shadow-sm" data-target="python">Python</button>
+            </div>
+
+            <!-- Snippet Content -->
+            <div class="bg-white p-6 rounded-xl shadow-md">
+                <!-- Laravel Snippets -->
+                <div id="laravel" class="tab-content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Blade Layout</code>: Template dasar Blade.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">bladenav</code>: Membuat navbar.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">bladeFooter</code>: Footer basic.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">bladeContent</code>: Tampilan konten basic.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">MiddlewareRoute</code>: Mendefinisikan route dengan middleware.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">route</code>: Route dasar.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">forelse</code>: `forelse` dalam Blade.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">foreach</code>: `foreach` dalam Blade.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Query</code>: Query dasar Laravel.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Crud Mod</code>: Template CRUD Laravel.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Validate 2x5</code>: Template validasi query Laravel.</div>
+                </div>
+
+                <!-- HTML Snippets -->
+                <div id="html" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">BSS</code>: Doctype dengan link Bootstrap terbaru.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">DCS</code>: Doctype tanpa link Bootstrap.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">tbl</code>: Table Basic.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Footer</code>: Footer Basic.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">list</code>: List Basic.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Image</code>: Form simpel.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">HtmlForm</code>: HTML Detail dan Summary.</div>
+                </div>
+
+                <!-- Vue.js Snippets -->
+                <div id="vue" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Vue Button Flex Layout</code>: Button dan flex layout styling.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Count Vue</code>: Snippet Vue 3 sederhana untuk counter.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Vue List Rendering</code>: Rendering daftar dengan v-for.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Vue Two-Way Binding</code>: Two-way binding menggunakan v-model.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Vue Modal Component</code>: Membuat modal sederhana.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Vue Form Component</code>: Membuat form sederhana.</div>
+                </div>
+
+                <!-- Java Snippets -->
+                <div id="java" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Javasegitinga</code>: Membuat pola segitiga.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Javastar</code>: Membuat pola bintang.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Javahello</code>: Program Hello World.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">Javapenjumlahan</code>: Penjumlahan dua angka.</div>
+                </div>
+
+                <!-- Python Snippets -->
+                <div id="python" class="tab-content hidden grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">PyHello</code>: Program Hello World.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">PySum</code>: Penjumlahan dua angka.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">PyFactorial</code>: Menghitung faktorial.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">PyFibonacci</code>: Menghasilkan deret Fibonacci.</div>
+                    <div class="p-4 bg-slate-50 rounded-lg"><code class="font-bold text-cyan-700">PyPalindrome</code>: Memeriksa string palindrome.</div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- CLI Tools Section -->
+        <section id="cli-tools" class="mb-16 md:mb-24">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-900">Perkakas Baris Perintah (CLI)</h2>
+                <p class="mt-2 text-slate-500">Kelola proyek Laravel Anda langsung dari terminal.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">coders-solid</h3>
+                    <p class="text-slate-600">Menyiapkan proyek Laravel dengan struktur SOLID dan konfigurasi awal yang rapi.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">coders-crud</h3>
+                    <p class="text-slate-600">Membuat file CRUD dasar untuk proyek Laravel Anda dengan satu perintah sederhana.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm">
+                    <h3 class="text-xl font-semibold text-slate-800 mb-2">coders-delete</h3>
+                    <p class="text-slate-600">Menghapus folder atau file proyek Laravel dengan aman jika tidak lagi dibutuhkan.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Donation & Contribution Section -->
+        <section id="support" class="bg-white rounded-2xl p-8 md:p-12 shadow-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl font-bold text-slate-900">Dukung & Berkontribusi</h2>
+                    <p class="mt-3 text-slate-600">
+                        Jika Anda menikmati Meiko, pertimbangkan untuk mendukung pengembangan atau berkontribusi pada proyek ini. Setiap dukungan sangat berarti!
+                    </p>
+                </div>
+                <div class="flex flex-col sm:flex-row justify-center md:justify-end gap-4">
+                    <a href="https://saweria.co/C02V" target="_blank" rel="noopener noreferrer" class="inline-block bg-amber-500 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-amber-600 transition-colors duration-300 text-center">
+                        Donasi via Saweria
+                    </a>
+                    <a href="https://github.com/faizinuha/Meiko" target="_blank" rel="noopener noreferrer" class="inline-block bg-slate-800 text-white font-semibold px-6 py-3 rounded-lg shadow-md hover:bg-slate-900 transition-colors duration-300 text-center">
+                        Kontribusi di GitHub
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; 2024 Meiko Labs. Dikembangkan oleh ZakyEvenso12.</p>
+            <div class="mt-4 flex justify-center gap-6">
+                <a href="https://www.instagram.com/zaky_evanso/" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Instagram</a>
+                <a href="https://www.facebook.com/zaky.evanso.5" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors">Facebook</a>
+                <a href="mailto:support@meikode.dev" class="hover:text-white transition-colors">Email Dukungan</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    // Deactivate all tabs and hide all content
+                    tabs.forEach(t => t.classList.remove('active'));
+                    contents.forEach(c => c.classList.add('hidden'));
+
+                    // Activate the clicked tab and show its content
+                    tab.classList.add('active');
+                    const targetId = tab.getAttribute('data-target');
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.remove('hidden');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
