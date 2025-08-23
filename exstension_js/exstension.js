@@ -1,5 +1,4 @@
 const vscode = require('vscode');
-const fs = require('fs');
 
 let run = async () => {
     const commands = await vscode.commands.getCommands(true);
@@ -8,27 +7,13 @@ let run = async () => {
     } else {
         vscode.window.showErrorMessage("Custom CSS command not found.");
     }
-}
+};
 
 function activate(context) {
-
     // Get paths to CSS and JS files in the extension
     const extensionPath = context.extensionPath;
-    let cssPath = extensionPath + "css.css";
-    let jsPath = extensionPath + "js.js";
-
-    // Validate the existence of CSS and JS files
-    if (!fs.existsSync(cssPath)) {
-        vscode.window.showErrorMessage('Custom CSS file not found.');
-        return;
-    }
-    if (!fs.existsSync(jsPath)) {
-        vscode.window.showErrorMessage('Custom JS file not found.');
-        return;
-    }
-
-    cssPath = "file:///" + cssPath;
-    jsPath = "file:///" + jsPath;
+    const cssPath = `file://${extensionPath}/css.css`;
+    const jsPath = `file://${extensionPath}/js.js`;
 
     // Get the current user settings
     const config = vscode.workspace.getConfiguration();
@@ -59,7 +44,7 @@ function activate(context) {
     }
 }
 
-function deactivate() { }
+function deactivate() {}
 
 module.exports = {
     activate,

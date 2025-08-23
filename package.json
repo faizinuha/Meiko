@@ -22,7 +22,7 @@
     "coders-delete": "cli/delete-solid.js",
     "coders-solid": "cli/coders-solid.js"
   },
-  "browser": "./dist/web/extension.js",
+  
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
@@ -150,6 +150,8 @@
     "AI",
     "snippets"
   ],
+  "browser": "./dist/web/extension.js",
+  
   "extensionDependencies": [
     "be5invis.vscode-custom-css"
   ],
