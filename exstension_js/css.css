@@ -1,59 +1,44 @@
-/* @import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap'); */
+/*
+  File CSS kustom untuk memperindah tampilan VS Code.
+  Menggunakan variabel CSS untuk tema yang konsisten.
+*/
+
+/* --- Import font eksternal --- */
 @import url('https://fonts.cdnfonts.com/css/cascadia-code');
 
 :root {
-    --back: rgba(var(--vscode-editor-background), 0.1);
+    --vscode-back: rgba(var(--vscode-editor-background), 0.1);
+    --primary-color: #ffba97;
+    --highlight-color: #edd37e;
+    --border-color: rgba(255, 255, 255, 0.05);
+    --subtle-background: rgba(var(--vscode-editor-background), 0.05);
+    --secondary-text: #65615a;
 }
 
-/* Remove settings icon. */
-.action-label.codicon.codicon-settings-view-bar-icon {
-    display: none !important;
-}
-
-
-/* Remove tips from home page. */
-.watermark-box {
-    display: none !important;
-}
-
-
-/* Add animations */
-.split-view-container {
-    background-color: var(--vscode-editor-background);
-}
-
-.split-view-view.visible {
-    transition: left .5s;
-}
-
-.monaco-list-row {
-    transition: top .2s;
-}
-
-.tab,
-.tab.selected {
-    transition: background-color .4s, border .4s;
-}
-
-
-/* Change font. */
-.windows {
+/* Mengubah font utama */
+.windows,
+.monaco-workbench .part.titlebar {
     font-family: "Cascadia Code" !important;
     font-weight: 500 !important;
 }
 
-.monaco-workbench .part.titlebar {
-    font-family: 'Cascadia Code';
+/* Menghilangkan watermark (tips) pada halaman home */
+.watermark-box {
+    display: none !important;
 }
 
-
-/* Code canvas top shadow */
-.monaco-editor .scroll-decoration {
-    box-shadow: 0px 0px 11px 10px var(--vscode-editor-background) !important;
-    top: -8px !important;
+/* Efek transisi yang mulus untuk UI */
+.split-view-container {
+    background-color: var(--vscode-editor-background);
 }
 
-/* Code highlight */
+.monaco-list-row,
+.tab,
+.tab.selected {
+    transition: background-color .3s ease-in-out, border .3s ease-in-out, box-shadow .3s ease-in-out, transform .1s ease-out;
+}
+
+/* Mengubah efek highlight pada kode */
 .cdr.selectionHighlight,
 .cdr.wordHighlight,
 .bracket-highlighting-0,
@@ -64,37 +49,27 @@
 
 .cdr.wordHighlightStrong {
     border-radius: 6px;
-    background-color: #edd37e26;
+    background-color: rgba(237, 211, 126, 0.15);
 }
 
-/* Code suggestions. */
-.suggest-details {
-    background-color: var(--back) !important;
+/* Mengubah gaya saran (suggestions) */
+.editor-widget.suggest-widget.visible,
+.editor-widget.parameter-hints-widget.visible {
+    background-color: var(--vscode-back) !important;
     backdrop-filter: blur(10px);
+    border-radius: 10px !important;
+    padding: 8px !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.suggest-details {
+    background-color: transparent !important;
     margin-left: 8px !important;
     border-radius: 10px !important;
     padding: 4px !important;
 }
 
-.editor-widget.suggest-widget.visible {
-    background-color: var(--back) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 10px !important;
-}
-
-.editor-widget.parameter-hints-widget.visible {
-    background-color: var(--back) !important;
-    backdrop-filter: blur(10px);
-    border-radius: 10px !important;
-    padding: 4px !important;
-}
-
-/* Fix some theme variables. */
-* {
-    --vscode-focusBorder: #ffffff00;
-}
-
-/* Tabs. */
+/* Menghilangkan border pada tabs */
 .tab-border-top-container,
 .tab-border-bottom-container {
     display: none !important;
@@ -107,48 +82,44 @@
 }
 
 .tab.selected {
-    border-radius: 6px !important;
-    background-color: #ffba970d !important;
-    border: 1px solid #b3b3b30d !important;
+    background-color: rgba(var(--primary-color), 0.05) !important;
+    border-color: var(--border-color) !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .tabs-container {
     margin-bottom: 4px;
 }
 
-/* Color picker */
-.colorpicker-color-decoration {
-    border-radius: 6px !important;
-}
-
-/* Tooltip box style */
+/* Gaya Tooltip yang lebih cantik */
 .monaco-hover {
     box-shadow: 0px 8px 32px rgba(0, 0, 0, .45) !important;
     padding: 10px !important;
     backdrop-filter: blur(16px) !important;
     border-radius: 12px !important;
     margin-bottom: 8px !important;
-    background-color: var(--back) !important;
+    background-color: var(--vscode-back) !important;
 }
 
-/* Remove background for lists */
-.monaco-list-rows {
-    background: transparent !important;
-}
-
-/* Hide file explorer action buttons */
+/* Sidebar (Bilah Sisi) */
 .monaco-workbench .part.sidebar .title-actions .actions-container {
     display: none;
 }
 
-/* Center Sidebar title. */
 .composite.title > .title-label {
     width: 100% !important;
     padding-left: 0px !important;
     text-align: center !important;
 }
 
-/* Slim sliders. */
+.monaco-workbench .part.sidebar > .title > .title-label h2 {
+    text-transform: none !important;
+    font-family: 'Cascadia Code';
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Scrollbar yang lebih ramping dan modern */
 .slider {
     width: 2px !important;
     right: 1px !important;
@@ -160,35 +131,15 @@
     background-color: rgba(255, 255, 255, 0.486) !important;
 }
 
-/* More rounded notifications. */
+/* Gaya notifikasi */
 .monaco-workbench > .notifications-toasts .notification-toast-container > .notification-toast {
     border-radius: 10px !important;
 }
 
-/* Sidebar title. */
-.monaco-workbench .part.sidebar > .title > .title-label h2 {
-    text-transform: none !important;
-    font-family: 'Cascadia Code';
-    font-size: 13px;
-    font-weight: 600;
-}
-
-/* File Explorer Selected Item */
-.monaco-list.list_id_1 .monaco-list-row.selected {
-    background-color: var(--vscode-editor-background) !important;
-    border-radius: 0px 6px 6px 0px !important;
-}
-
-.monaco-list.list_id_1 .monaco-list-row:hover {
-    background-color: #e9aea410 !important;
-    border-radius: 0px 6px 6px 0px !important;
-}
-
-
-/* Command palette text input */
+/* Palet Perintah (Command Palette) */
 .quick-input-filter .monaco-inputbox {
     border-radius: 8px !important;
-    padding: 4px !important;
+    padding: 8px !important;
     border: 1px solid #3c3836 !important;
     background-color: var(--vscode-editor-background) !important;
     font-family: "Cascadia Code" !important;
@@ -198,38 +149,21 @@
 
 .quick-input-widget {
     top: 25% !important;
-    border-radius: 8px !important;
-    border: 1px solid var !important;
+    border-radius: 12px !important;
+    border: 1px solid transparent !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
 }
 
-a.action-label.codicon.codicon-gear {
-    opacity: .4;
-}
-
-#command-blur {
-    position: absolute;
-    z-index: 100;
-    width: 100%;
-    height: 100%;
-    background: #11111169;
-    top: 0;
-    left: 0;
-    backdrop-filter: blur(8px);
-}
-
-/* Command palette's input box placeholder. */
 .monaco-inputbox input::placeholder {
     color: rgba(255, 255, 255, .3) !important;
 }
 
-
-/* Remove vscode icon */
+/* Menghilangkan ikon VS Code bawaan */
 .monaco-workbench .part.titlebar > .titlebar-container > .titlebar-left > .window-appicon:not(.codicon) {
     background-image: none !important;
 }
 
-
-/* Status bar text color */
+/* Warna teks status bar */
 footer {
-    color: #65615a !important;
+    color: var(--secondary-text) !important;
 }

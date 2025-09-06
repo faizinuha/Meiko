@@ -22,7 +22,6 @@
     "coders-delete": "cli/delete-solid.js",
     "coders-solid": "cli/coders-solid.js"
   },
-  
   "capabilities": {
     "untrustedWorkspaces": {
       "supported": true
@@ -122,7 +121,7 @@
     "linux",
     "win32"
   ],
-  "pricing": "Free",
+  "pricing": "free",
   "publisher": "ZakyEvenso12",
   "repository": {
     "type": "git",
@@ -151,9 +150,8 @@
     "snippets"
   ],
   "browser": "./dist/web/extension.js",
-  
   "extensionDependencies": [
     "be5invis.vscode-custom-css"
   ],
-  "version": "3.9.9"
+  "version": "4.0.0"
 }

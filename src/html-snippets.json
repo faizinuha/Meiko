@@ -76,9 +76,7 @@
     "prefix": "nvb"
   },
   "HTML Image": {
-    "body": [
-      "<img src=\"${1:path/to}\" alt=\"${2:Image description}\" />"
-    ],
+    "body": ["<img src=\"${1:path/to}\" alt=\"${2:Image description}\" />"],
     "description": "Insert an image",
     "prefix": "image"
   },
@@ -166,5 +164,24 @@
     ],
     "description": "Basic HTML form",
     "prefix": "HtmlForm"
+  },
+  "Html": {
+    "body": [
+      "<!DOCTYPE html>",
+      "<html lang=\"en\">",
+      "<head>",
+      "    <meta charset=\"UTF-8\">",
+      "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">",
+      "    <title>${1:$TM_FILENAME_BASE}</title>",
+      "    <link href=\"styles.css\" rel=\"stylesheet\">",
+      "</head>",
+      "<body>",
+      "    $0",
+      "    <script src=\"scripts.js\"></script>",
+      "</body>",
+      "</html>"
+    ],
+    "description": "HTML5 template with Bootstrap",
+    "prefix": "BSS"
   }
 }

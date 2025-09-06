@@ -1,3 +1,7 @@
+/*
+  File utama ekstensi untuk mengaktifkan kustomisasi UI.
+  Ini memastikan file CSS dan JS kustom dimuat oleh VS Code.
+*/
 const vscode = require('vscode');
 
 let run = async () => {
@@ -10,36 +14,32 @@ let run = async () => {
 };
 
 function activate(context) {
-    // Get paths to CSS and JS files in the extension
+    // Dapatkan path ke file CSS dan JS dalam ekstensi
     const extensionPath = context.extensionPath;
     const cssPath = `file://${extensionPath}/css.css`;
     const jsPath = `file://${extensionPath}/js.js`;
 
-    // Get the current user settings
     const config = vscode.workspace.getConfiguration();
-
-    // Get the current imports array
     let customCssImports = config.get('vscode_custom_css.imports') || [];
 
-    // Ensure the imports array exists and is an array
     if (!Array.isArray(customCssImports)) {
         customCssImports = [];
     }
 
-    // Add the new CSS import if it's not already in the array
+    // Tambahkan impor baru jika belum ada
     if (!customCssImports.includes(cssPath) && !customCssImports.includes(jsPath)) {
         customCssImports.push(cssPath);
         customCssImports.push(jsPath);
 
-        // Update the settings with the modified array
         config.update('vscode_custom_css.imports', customCssImports, vscode.ConfigurationTarget.Global)
             .then(() => {
-                vscode.window.showInformationMessage('Custom CSS and JS import added successfully!');
+                vscode.window.showInformationMessage('Kustomisasi CSS dan JS berhasil ditambahkan!');
                 run();
             }, (error) => {
-                vscode.window.showErrorMessage(`Failed to update settings: ${error.message}`);
+                vscode.window.showErrorMessage(`Gagal memperbarui pengaturan: ${error.message}`);
             });
-
+        
+        // Nonaktifkan breadcrumbs untuk tampilan yang lebih bersih
         config.update('breadcrumbs.enabled', false, vscode.ConfigurationTarget.Global);
     }
 }
