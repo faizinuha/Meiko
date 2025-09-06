@@ -1,21 +1,49 @@
 # Change Log
 
 All notable changes to the "KawaiiCode->codersLar" extension will be documented in this file.
+Update Not Notes :
 
+- - **v4.3.4**: ( 20 september 2025) -> - - **v4.6.6**:
+- - **v4.6.6**: ( 20 september 2025) -> - - **v5.0.0** - - **: ( Finnal 2025 Release)
+
+## [NextUpdate2026]
+## New technology and features
+## optimize and fix bugs
+## Update and add new snippets
+
+
+-----------------------------------------
+
+- - **v4.0.0**:
+- - **v3.9.9**:
+- - **v3.7.8**:
+- - **v3.3.8**:
+- - **v3.3.3**:
+- - **v2.8.8**:
+- - **v2.7.3**:
+- - **v2.3.9**:
+- - **v2.0.5**:
+- - **v2.0.3**:
+- - **v2.0.1**:
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
 ## [Done]
 ## 🛠️ New Update And Topic
+
 - - **v2.0.0**: Rilis besar dengan penambahan banyak snippet baru dan dukungan untuk lebih banyak bahasa pemrograman. 
+
 ### Added
+
 - Fitur baru yang akan datang.
 
 ## [2.1.2] - 2024-02-01
 
 ### Added
+
 - Snippet baru untuk berbagai bahasa pemrograman.
 
 ### Changed
+
 - Pembaruan lisensi untuk menghapus bagian kontribusi.
 
 ## [2.1.0] - 2024-01-20

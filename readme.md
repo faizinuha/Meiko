@@ -12,7 +12,7 @@
 <a href="https://meiko-6ul.pages.dev/" class="text-Blue" >Website</a>
 
 <p align="center">
-🐱‍👤 -> 
+🐱‍👤 ->
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/JP.md">Bahasa Jepang</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">Bahasa Inggris</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">Bahasa Mandarin</a></strong>
@@ -52,29 +52,35 @@ Berikut adalah daftar fitur utama dari Meiko:
 ---
 
 ## 🤝 Kontribusi
+
 Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
-- 🛠️ **Buat pull request**. | 
-- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko) | 
--Libary:https://www.npmjs.com/search?q=electron
--github: https://github.com/electron/electron/issues
+- 🛠️ **Buat pull request**. |
+- 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko) |
+-Libary:<https://www.npmjs.com/search?q=electron>
+-github: <https://github.com/electron/electron/issues>
+
 ---
+
 #### **Laravel Solid**
+
 Laravel Solid adalah fitur yang membantu pengembang dalam menyiapkan proyek Laravel yang sudah terstruktur secara solid dengan konfigurasi awal yang rapi dan mudah digunakan.
 
 #### **Coders Solid** **baca di bawah untuk Lebih Lengkap ya**
+
 Fitur ini memungkinkan pengguna untuk dengan cepat mengatur kerangka dasar Laravel yang sudah disiapkan untuk pengembangan lebih lanjut. Beberapa poin utama:
 
-- 🛠️ **Instalasi Dasar**: 
+- 🛠️ **Instalasi Dasar**:
   - Struktur direktori yang terorganisir.
   - File konfigurasi default untuk proyek skala kecil hingga menengah.
 - ⏱️ **Efisiensi Waktu**: Memulai proyek tanpa harus mengatur ulang file secara manual.
 
 #### **Coders-delete**
+
 Fitur ini berfungsi untuk menghapus folder atau file Laravel jika ternyata proyek yang telah dibuat tidak jadi digunakan.
 
 - 🚮 **Penghapusan Cepat**: Menghemat waktu pengguna.
-- 🔒 **Keamanan Data**: Proses penghapusan hanya pada folder proyek yang dipilih pengguna. Sudah di Latih 
+- 🔒 **Keamanan Data**: Proses penghapusan hanya pada folder proyek yang dipilih pengguna. Sudah di Latih
 
 ---
 
@@ -89,9 +95,9 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 
 ---
 
---- 
+---
 
-### 💻 **Coders-crud Cli Solid ** ( Sudah di latih)
+### 💻 **Coders-crud Cli Solid** ( Sudah di latih)
 
 Cli Sederhana Untuk Pembuatan Crud di Solid
 
@@ -104,7 +110,7 @@ Cli Sederhana Untuk Pembuatan Crud di Solid
 
 ### 💻 **Open Laravel AI Generator**
 
-1. Ketik `Ctrl + P ` Atau `Cmd + P` di Mac Atau ` Ctrl + Shift + p `
+1. Ketik `Ctrl + P` Atau `Cmd + P` di Mac Atau ` Ctrl + Shift + p `
 2. Ketik `Laravel Atau openLaravelAIGenerator`.
 3. 🚀 Gunakan CLI ini tanpa batasan.
 
@@ -173,14 +179,15 @@ Cli Sederhana Untuk Pembuatan Crud di Solid
 - ⏳ **Coming Soon**: Snippet tambahan.
 
 <hr>
+
 ## 📜 Catatan Penting ##
 
-
 ## ✅ Contact Meiko ##
+
 Terima kasih telah menggunakan **Meiko**! Extension ini dibuat dan dipelihara oleh tim developer terpercaya.
 
 🌐 Website Resmi: [https://Mardev7.vercel.app](https://Mardev7.vercel.app) *(in development)*  
-📬 Kontak Dukungan: support@meikode.dev  
+📬 Kontak Dukungan: <support@meikode.dev>  
 🔐 Status: Verified Developer Branding *(non-official)*
 
  [#Error Update](https://github.com/faizinuha/Meiko/issues/1)
@@ -193,6 +200,6 @@ Jika Fitur terbaru!
 **Publisher:** Meiko Labs  
 🧑‍💻 Developer: ZakyEvenso12  
 📘 Verified Branding (non-official)  
-📧 Email: support@meikode.dev  
+📧 Email: <support@meikode.dev>  
 jika ada yang ingin ditanyakan silahkan hubungi saya di [Instagram](https://www.instagram.com/zaky_evanso/) atau [Facebook](https://www.facebook.com/zaky.evanso.5)  
 🔗 Kunjungi [Website Resmi](https://Mardev7.vercel.app) untuk informasi lebih lanjut.
