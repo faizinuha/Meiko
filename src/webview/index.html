@@ -92,6 +92,9 @@
 <body>
     <div class="container">
         <h1 class="text-3xl font-bold text-gray-800 text-center mb-4">Laravel AI Code Generator</h1>
+        <p class="text-sm text-gray-500 text-center -mt-4 mb-4">
+            Belum punya API Key? Atur melalui Command Palette (`Ctrl+Shift+P`) &rarr; "Meiko: Set Gemini API Key".
+        </p>
         <p class="text-gray-600 text-center">
             Masukkan perintah untuk membuat kode Laravel. Contoh: "buatkan fitur crud untuk Product", "generate controller untuk User".
         </p>
@@ -158,14 +161,8 @@
     </div>
 
     <script type="module">
-        // Global variables provided by the Canvas environment
-        // NOTE: These __app_id, __firebase_config, __initial_auth_token are specific to the Canvas environment.
-        // In a VS Code extension webview, you would typically *not* have these directly.
-        // You would manage API keys and authentication within your VS Code extension's Node.js environment
-        // and pass necessary data to the webview via postMessage if needed.
-        const appId = 'vs-code-app-id'; // Placeholder for VS Code context
-        const firebaseConfig = {}; // Placeholder for VS Code context
-        const initialAuthToken = null; // Placeholder for VS Code context
+        // Dapatkan instance VS Code API untuk komunikasi
+        const vscode = acquireVsCodeApi();
 
         const commandInput = document.getElementById('commandInput');
         const generateBtn = document.getElementById('generateBtn');
@@ -177,6 +174,20 @@
         const generatedRoutes = document.getElementById('generatedRoutes');
         const errorContainer = document.getElementById('errorContainer');
         const errorMessageDiv = document.getElementById('errorMessage');
+
+        let apiKey = null; // Variabel untuk menyimpan API key
+
+        // Minta API key dari backend ekstensi saat webview dimuat
+        vscode.postMessage({ command: 'getApiKey' });
+
+        // Listener untuk menerima pesan dari backend ekstensi
+        window.addEventListener('message', event => {
+            const message = event.data;
+            if (message.command === 'apiKeyResponse') {
+                apiKey = message.key;
+                console.log('API Key received.');
+            }
+        });
 
         // Function to display error messages
         function showError(message) {
@@ -216,6 +227,23 @@
             });
         });
 
+        // Add event listeners for save buttons
+        document.querySelectorAll('.save-btn').forEach(button => {
+            button.addEventListener('click', (event) => {
+                const type = event.target.dataset.type;
+                const codeContent = document.getElementById(`generated${type.charAt(0).toUpperCase() + type.slice(1)}`).textContent;
+                const { entity } = parseCommand(commandInput.value.trim());
+
+                vscode.postMessage({
+                    command: 'saveCodeToFile',
+                    type: type,
+                    code: codeContent,
+                    entityName: entity
+                });
+                event.stopPropagation(); // Prevent section from toggling
+            });
+        });
+
         // Function to extract entity and fields from command
         function parseCommand(command) {
             let entity = 'Default';
@@ -250,6 +278,12 @@
 
             if (!command) {
                 showError('Mohon masukkan perintah untuk membuat kode.');
+                return;
+            }
+
+            if (!apiKey) {
+                showError('Gemini API Key belum diatur. Silakan atur melalui Command Palette (Ctrl+Shift+P) dan cari "Meiko: Set Gemini API Key".');
+                vscode.postMessage({ command: 'getApiKey' }); // Coba minta lagi
                 return;
             }
 
@@ -311,11 +345,7 @@
                         required: ["model", "controller", "migration", "routes"]
                     }
                 }
-            };
-            // In a VS Code extension, you would typically get your API key from VS Code's secret storage
-            // or from a configuration setting, not hardcoded or from a global variable like 'apiKey = ""'.
-            // For demonstration, we'll keep it as an empty string as per Canvas environment.
-            const apiKey = "AIzaSyBFOTuKfTRCAYFXg37q4_fkatykUgm-ZkE"; 
+            };            
             const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
 
             try {

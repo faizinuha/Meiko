@@ -29,6 +29,12 @@
     "virtualWorkspaces": true
   },
   "categories": [
+    "Commands",
+    {
+      "command": "meiko.setApiKey",
+      "title": "Meiko: Set Gemini API Key",
+      "category": "Meiko"
+    },
     "Programming Languages",
     "AI",
     "Snippets",

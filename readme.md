@@ -108,11 +108,13 @@ Cli Sederhana Untuk Pembuatan Crud di Solid
 
 ---
 
-### 💻 **Open Laravel AI Generator**
+### 💻 **Laravel AI Generator**
 
+Fitur canggih yang memungkinkan Anda membuat kode CRUD Laravel lengkap (Model, Controller, Migration, dan Routes) hanya dengan memberikan perintah dalam bahasa natural.
 1. Ketik `Ctrl + P` Atau `Cmd + P` di Mac Atau ` Ctrl + Shift + p `
-2. Ketik `Laravel Atau openLaravelAIGenerator`.
-3. 🚀 Gunakan CLI ini tanpa batasan.
+2. Ketik `>Laravel AI Generator` dan tekan Enter.
+3. Di jendela yang muncul, masukkan perintah seperti "buatkan crud untuk produk dengan field nama, harga, dan deskripsi".
+4. AI akan menghasilkan kode yang Anda butuhkan dalam hitungan detik.
 
 ### Snippets
 
