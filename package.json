@@ -11,7 +11,9 @@
     "onCommand:meiko.setApiKey",
     "onCommand:meiko.supabaseLogin",
     "onCommand:meiko.supabaseLogout",
-    "onView:meiko.chatView"
+    "onCommand:meiko.supabaseRefreshDbView",
+    "onView:meiko.chatView",
+    "onView:supabase.tablesView"
   ],
   "author": "Zaky",
   "badges": [
@@ -66,12 +68,12 @@
         {
           "id": "meiko-sidebar",
           "title": "Meiko",
-          "icon": "assets/icons1.jpeg"
+          "icon": "media/image_2025-10-08_145045074.svg"
         },
         {
           "id": "supabase-db-explorer",
           "title": "Supabase",
-          "icon": "media/supabase.png"
+          "icon": "media/image_2025-10-08_145246818.svg"
         }
       ]
     },
