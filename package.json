@@ -6,8 +6,12 @@
     "onLanguage:html",
     "onLanguage:java",
     "workspaceContains:**/*",
-    "onCommand:extension.openLaravelAIGenerator",
-    "onStartupFinished"
+    "onStartupFinished",
+    "onUri",
+    "onCommand:meiko.setApiKey",
+    "onCommand:meiko.supabaseLogin",
+    "onCommand:meiko.supabaseLogout",
+    "onView:meiko.chatView"
   ],
   "author": "Zaky",
   "badges": [
@@ -29,18 +33,75 @@
     "virtualWorkspaces": true
   },
   "categories": [
-    "Commands",
-    {
-      "command": "meiko.setApiKey",
-      "title": "Meiko: Set Gemini API Key",
-      "category": "Meiko"
-    },
     "Programming Languages",
     "AI",
     "Snippets",
     "Other"
   ],
   "contributes": {
+    "commands": [
+      {
+        "command": "meiko.setApiKey",
+        "title": "Meiko: Set Gemini API Key",
+        "category": "Meiko"
+      },
+      {
+        "command": "meiko.supabaseLogin",
+        "title": "Meiko: Supabase Login",
+        "category": "Meiko"
+      },
+      {
+        "command": "meiko.supabaseLogout",
+        "title": "Meiko: Supabase Logout",
+        "category": "Meiko"
+      },
+      {
+        "command": "meiko.supabaseRefreshDbView",
+        "title": "Refresh Supabase DB Explorer",
+        "icon": "$(refresh)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "meiko-sidebar",
+          "title": "Meiko",
+          "icon": "assets/icons1.jpeg"
+        },
+        {
+          "id": "supabase-db-explorer",
+          "title": "Supabase",
+          "icon": "media/supabase.png"
+        }
+      ]
+    },
+    "views": {
+      "meiko-sidebar": [
+        {
+          "icon": "media/image_2025-10-08_145045074.svg",
+          "id": "meiko.chatView",
+          "name": "Chat",
+          "type": "webview"
+        }
+      ],
+      "supabase-db-explorer": [
+        {
+          "icon": "media/image_2025-10-08_145246818.svg",
+          "initialSize": 400,
+          "id": "supabase.tablesView",
+          "name": "Database"
+        }
+      ]
+    },
+    "menus": {
+      "view/title": [
+        {
+          "command": "meiko.supabaseRefreshDbView",
+          "when": "view == supabase.tablesView",
+          "group": "navigation"
+        }
+      ]
+    },
     "documentation": {
       "releaseNotes": "./CHANGELOG.md"
     },
@@ -80,8 +141,10 @@
     ]
   },
   "dependencies": {
+    "@google/generative-ai": "^0.24.1",
     "chalk": "^5.3.0",
     "cli-progress": "^3.12.0",
+    "node-fetch": "^2.7.0",
     "ora": "^8.1.1"
   },
   "description": "🚀 Advanced AI-powered VS Code ",
@@ -121,7 +184,7 @@
   ],
   "license": "MIT",
   "main": "./out/extension.js",
-  "name": "kawaiicode",
+  "name": "meiko",
   "os": [
     "darwin",
     "linux",
@@ -146,7 +209,8 @@
     "watch": "tsc -watch"
   },
   "sponsor": {
-    "url": "https://ko-fi.com/mahiro885"
+    "url": "https://sociabuzz.com/zuax/tribe",
+    "label": "Buy me a coffee"
   },
   "tags": [
     "Meiko",
@@ -159,5 +223,5 @@
   "extensionDependencies": [
     "be5invis.vscode-custom-css"
   ],
-  "version": "4.0.1"
+  "version": "4.1.4"
 }
