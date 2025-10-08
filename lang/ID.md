@@ -9,7 +9,7 @@
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 
 <p align="center">
-🐱‍👤 -> 
+🐱‍👤 ->
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/JP.md">Bahasa Jepang</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">Bahasa Inggris</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">Bahasa Mandarin</a></strong>
@@ -24,7 +24,7 @@ Jika Anda menikmati ekstensi ini dan ingin mendukung pengembang, silakan pertimb
     <img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="捐赠图标" width="150" />
 </a>
 |
-<a href="https://ko-fi.com/mahiro885">
+<a href="https://sociabuzz.com/zuax/tribe">
     <img src="../assets/image.png" alt="捐赠图标" width="40" />
 </a>
 
@@ -37,6 +37,7 @@ Berikut adalah daftar fitur utama dari Meiko:
 - 🌐 **Dukungan Multi Bahasa**: Mendukung empat bahasa pemrograman.
 - 📋 **Template Snippet**: Menyediakan berbagai template untuk mempercepat penulisan kode.
 - ⚡ **Emmet Alternatif**: Membantu pengguna yang belum mengaktifkan Emmet di Visual Studio Code.
+- ⚡ **Integrasi Supabase**: Kelola database Supabase Anda menggunakan AI dan lihat strukturnya langsung di sidebar.
 
 ## 📥 Cara Menggunakan
 
@@ -57,6 +58,24 @@ Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 
 ---
 
+## ✨ Fitur Terbaru: Integrasi Supabase
+
+Meiko kini menjadi asisten database Anda! Kelola proyek Supabase Anda langsung dari VS Code.
+
+- **Login & Manajemen Proyek**:
+  1. Jalankan `Meiko: Supabase Login` untuk menyimpan Access Token Anda dengan aman.
+  2. Pilih proyek aktif Anda dari daftar yang muncul secara otomatis.
+- **Agen Database Berbasis AI**:
+  1. Gunakan prefix `db:` atau `supabase:` di chat Meiko.
+  2. Berikan perintah dalam bahasa natural, seperti: `db: buatkan tabel products dengan kolom name dan price`.
+  3. Meiko akan menerjemahkan permintaan Anda menjadi kode SQL yang siap pakai, bahkan untuk permintaan kompleks seperti foreign key.
+- **Supabase DB Explorer**:
+  1. Sidebar baru dengan ikon Supabase akan muncul di Activity Bar.
+  2. Lihat semua tabel dari proyek aktif Anda secara real-time.
+  3. Refresh daftar tabel kapan saja dengan tombol refresh di judul sidebar.
+
+---
+
 ## 📂 Fitur
 
 ### New Coders CLi terminal
@@ -69,7 +88,7 @@ Laravel Solid adalah fitur yang membantu pengembang dalam menyiapkan proyek Lara
 
 Fitur ini memungkinkan pengguna untuk dengan cepat mengatur kerangka dasar Laravel yang sudah disiapkan untuk pengembangan lebih lanjut. Beberapa poin utama:
 
-- 🛠️ **Instalasi Dasar**: 
+- 🛠️ **Instalasi Dasar**:
   - Struktur direktori yang terorganisir.
   - File konfigurasi default untuk proyek skala kecil hingga menengah.
 - ⏱️ **Efisiensi Waktu**: Memulai proyek tanpa harus mengatur ulang file secara manual.

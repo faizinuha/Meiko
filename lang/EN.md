@@ -38,6 +38,7 @@ Here is a list of the main features of Meiko:
 - 🌐 **Multi-Language Support**: Supports four programming languages.
 - 📋 **Snippet Templates**: Provides various templates to speed up code writing.
 - ⚡ **Emmet Alternative**: Assists users who have not enabled Emmet in Visual Studio Code.
+- ⚡ **Supabase Integration**: Manage your Supabase database using AI and view its structure directly in the sidebar.
 
 ## 📥 How to Use
 
@@ -55,6 +56,24 @@ If you find a bug or have an idea for improvement, please:
 
 - 🛠️ **Create a pull request**.
 - 🐞 **Report an issue** on [our GitHub Repository](https://github.com/faizinuha/Meiko).
+
+---
+
+### ⚡ Supabase Integration & DB Explorer
+
+Meiko is now your database assistant! Manage your Supabase projects directly from VS Code.
+
+- **Login & Project Management**:
+  1. Run `Meiko: Supabase Login` to securely store your Access Token.
+  2. Select your active project from the list that appears automatically.
+- **AI-Powered Database Agent**:
+  1. Use the `db:` or `supabase:` prefix in the Meiko chat.
+  2. Give commands in natural language, like: `db: create a products table with name and price columns`.
+  3. Meiko will translate your request into ready-to-use SQL code, even for complex requests like foreign keys.
+- **Supabase DB Explorer**:
+  1. A new sidebar with the Supabase icon will appear in the Activity Bar.
+  2. View all tables from your active project in real-time.
+  3. Refresh the table list anytime with the refresh button in the sidebar title.
 
 ---
 

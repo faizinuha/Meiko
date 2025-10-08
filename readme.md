@@ -40,6 +40,7 @@ Berikut adalah daftar fitur utama dari Meiko:
 - 🌐 **Dukungan Multi Bahasa**: Mendukung empat bahasa pemrograman.
 - 📋 **Template Snippet**: Menyediakan berbagai template untuk mempercepat penulisan kode.
 - ⚡ **Emmet Alternatif**: Membantu pengguna yang belum mengaktifkan Emmet di Visual Studio Code.
+- ⚡ **Integrasi Supabase**: Kelola database Supabase Anda menggunakan AI dan lihat strukturnya langsung di sidebar.
 
 ## 📥 Cara Menggunakan
 
@@ -59,6 +60,24 @@ Jika Anda menemukan bug atau memiliki ide untuk peningkatan, silakan:
 - 🐞 **Laporkan masalah** di [GitHub Repository kami](https://github.com/faizinuha/Meiko) |
 -Libary:<https://www.npmjs.com/search?q=electron>
 -github: <https://github.com/electron/electron/issues>
+
+---
+
+### ⚡ Integrasi Supabase & DB Explorer
+
+Meiko kini menjadi asisten database Anda! Kelola proyek Supabase Anda langsung dari VS Code.
+
+- **Login & Manajemen Proyek**:
+  1. Jalankan `Meiko: Supabase Login` untuk menyimpan Access Token Anda dengan aman.
+  2. Pilih proyek aktif Anda dari daftar yang muncul secara otomatis.
+- **Agen Database Berbasis AI**:
+  1. Gunakan prefix `db:` atau `supabase:` di chat Meiko.
+  2. Berikan perintah dalam bahasa natural, seperti: `db: buatkan tabel products dengan kolom name dan price`.
+  3. Meiko akan menerjemahkan permintaan Anda menjadi kode SQL yang siap pakai, bahkan untuk permintaan kompleks seperti foreign key.
+- **Supabase DB Explorer**:
+  1. Sidebar baru dengan ikon Supabase akan muncul di Activity Bar.
+  2. Lihat semua tabel dari proyek aktif Anda secara real-time.
+  3. Refresh daftar tabel kapan saja dengan tombol refresh di judul sidebar.
 
 ---
 
@@ -96,25 +115,6 @@ CLI sederhana untuk pembuatan CRUD Laravel:
 ---
 
 ---
-
-### 💻 **Coders-crud Cli Solid** ( Sudah di latih)
-
-Cli Sederhana Untuk Pembuatan Crud di Solid
-
-1. ⌨️ **Buka terminal** dengan `Ctrl + J`.
-2. Ketik `coders-solid <NameProject>`.
-3. 🎉 **Edit sesuai kebutuhan** tanpa membuat dari awal.
-4. 🚀 Gunakan CLI ini tanpa batasan.
-
----
-
-### 💻 **Laravel AI Generator**
-
-Fitur canggih yang memungkinkan Anda membuat kode CRUD Laravel lengkap (Model, Controller, Migration, dan Routes) hanya dengan memberikan perintah dalam bahasa natural.
-1. Ketik `Ctrl + P` Atau `Cmd + P` di Mac Atau ` Ctrl + Shift + p `
-2. Ketik `>Laravel AI Generator` dan tekan Enter.
-3. Di jendela yang muncul, masukkan perintah seperti "buatkan crud untuk produk dengan field nama, harga, dan deskripsi".
-4. AI akan menghasilkan kode yang Anda butuhkan dalam hitungan detik.
 
 ### Snippets
 

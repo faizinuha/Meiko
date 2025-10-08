@@ -9,7 +9,7 @@
 ![Meiko](https://img.shields.io/badge/Meiko-Meiko-blue)
 
 <p align="center">
-🐱‍👤 -> 
+🐱‍👤 ->
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/EN.md">英語</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/ID.md">インドネシア語</a></strong>
   <strong><a href="https://github.com/faizinuha/Meiko/blob/main/lang/china.md">中国語</a></strong>
@@ -37,6 +37,7 @@
 - 🌐 **多言語サポート**: 4つのプログラミング言語をサポート。
 - 📋 **スニペットテンプレート**: コードの作成を迅速化するためのさまざまなテンプレートを提供。
 - ⚡ **Emmet代替**: Visual Studio CodeでEmmetを有効にしていないユーザーを支援。
+- ⚡ **Supabase連携**: AIを使用してSupabaseデータベースを管理し、サイドバーで直接その構造を表示します。
 
 ## 📥 使用方法
 
@@ -57,17 +58,37 @@
 
 ---
 
+### ⚡ Supabase連携 & DBエクスプローラー
+
+Meikoがあなたのデータベースアシスタントになりました！SupabaseプロジェクトをVS Codeから直接管理できます。
+
+- **ログイン & プロジェクト管理**:
+  1. `Meiko: Supabase Login` を実行して、アクセストークンを安全に保存します。
+  2. 自動的に表示されるリストから、アクティブなプロジェクトを選択します。
+- **AI搭載データベースエージェント**:
+  1. Meikoチャットで `db:` または `supabase:` プレフィックスを使用します。
+  2. 「db: nameとpriceカラムを持つproductsテーブルを作成」のように、自然言語でコマンドを与えます。
+  3. Meikoは、外部キーのような複雑なリクエストも、すぐに使えるSQLコードに変換します。
+- **Supabase DBエクスプローラー**:
+  1. アクティビティバーにSupabaseアイコン付きの新しいサイドバーが表示されます。
+  2. アクティブなプロジェクトのすべてのテーブルをリアルタイムで表示します。
+  3. サイドバーのタイトルにある更新ボタンで、いつでもテーブルリストを更新できます。
+
+---
+
 ## 📂 機能
 
 ### ファイル拡張子コンバーター
+
 各フレームワークの短いファイル名を完全な名前に変換する新機能：
 
-#### フレームワークサポート：
+#### フレームワークサポート
+
 - 🌐 **Laravel**: `.b.p` → `.blade.php` または `.b.php` → `.blade.php`
 - 🔄 **Ruby on Rails**: `.e.rb` → `.html.erb` または `.erb.h` → `.html.erb`
-- ⚛️ **React/Next.js**: 
+- ⚛️ **React/Next.js**:
   - `.j.tsx` → `.jsx.tsx`
-  - `.tsx.c` → `.component.tsx` 
+  - `.tsx.c` → `.component.tsx`
   - `.p.tsx` → `.page.tsx`
 - 📱 **Vue.js**:
   - `.v.js` → `.vue.js`
@@ -93,7 +114,7 @@ Laravel Solidは、開発者がLaravelプロジェクトをSolidな構造で準�
 
 この機能により、ユーザーはLaravelの基本的なフレームワークを迅速に設定し、さらなる開発に備えることができます。主なポイントは以下の通りです：
 
-- 🛠️ **基本インストール**: 
+- 🛠️ **基本インストール**:
   - 整理されたディレクトリ構造。
   - 小規模から中規模のプロジェクト向けのデフォルト設定ファイル。
 - ⏱️ **時間効率**: 手動でファイルを再設定することなくプロジェクトを開始。
@@ -170,9 +191,11 @@ LaravelのCRUD作成のためのシンプルなCLI：
 - 🏗️ **Vue Two-Way Binding**: Vue 3でのv-modelを使用した双方向バインディングのスニペット。
 - 🏗️ **Vue Modal Component**: Vue 3でのシンプルなモーダルコンポーネントのスニペット。
 - 🏗️ **Vue Form Component**: Vue 3でのシンプルなフォームコンポーネントのスニペット。
+
 <hr>
 
-# 📝 ライセンス:
+# 📝 ライセンス
+
 Copyright (c) 2024 Zaky Development
 
 本ソフトウェアおよび関連ドキュメント ファイル (以下「ソフトウェア」) のコピーを入手したすべての人物は、ソフトウェアを無制限に扱う権利 (ソフトウェアのコピーの使用、コピー、変更、統合、公開、配布、サブライセンス、および/または販売の権利を含みますが、これに限定されません) およびソフトウェアの提供を受けた人物がこれを行うことを許可する権利を、以下の条件に従って無償で付与されます。
