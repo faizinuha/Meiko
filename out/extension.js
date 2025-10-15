@@ -3,77 +3,129 @@ const fs = require('fs');
 const path = require('path');
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const { SupabaseDbProvider } = require('./extension2.js');
-// Path untuk menyimpan file kredensial (opsional, jika diperlukan)
-let storagePath;
-let credentialsPath;
+
+// Extension details from package.json
+const EXTENSION_ID = 'zakyEvenso12.KawaiiCode';
 
 /**
  * @param {vscode.ExtensionContext} context
  */
 function activate(context) {
+  /**
+   * Updates the 'meiko.supabaseLoggedIn' context variable to control command visibility.
+   * @param {boolean} loggedIn
+   */
+  async function updateContext(loggedIn) {
+    await vscode.commands.executeCommand(
+      'setContext',
+      'meiko.supabaseLoggedIn',
+      loggedIn
+    );
+  }
+
   console.log('Congratulations, your extension "meiko" is now active!');
 
-  // Tentukan path untuk menyimpan file account.json (opsional, jika diperlukan)
-  storagePath = context.globalStorageUri.fsPath;
-  if (!fs.existsSync(storagePath)) {
-    fs.mkdirSync(storagePath, { recursive: true });
-  }
-  credentialsPath = path.join(storagePath, 'account.json');
+  // Set initial context based on stored token
+  context.secrets.get('supabaseAccessToken').then((token) => {
+    if (token) {
+        updateContext(true);
+        // If we already have a token, refresh the DB view on startup
+        vscode.commands.executeCommand('meiko.supabaseRefreshDbView');
+    } else {
+        updateContext(false);
+    }
+  });
 
-  // 1. Perintah untuk mengatur API Key / Login
+  // --- Supabase DB Explorer ---
+  const supabaseDbProvider = new SupabaseDbProvider(context);
+  context.subscriptions.push(
+    vscode.window.registerTreeDataProvider('supabase.tablesView', supabaseDbProvider)
+  );
+
+  const supabaseRefreshDbViewCommand = vscode.commands.registerCommand(
+    'meiko.supabaseRefreshDbView',
+    (projectRef) => supabaseDbProvider.refresh(projectRef)
+  );
+  context.subscriptions.push(supabaseRefreshDbViewCommand);
+
+  // --- URI Handler for OAuth Callback ---
+  context.subscriptions.push(
+    vscode.window.registerUriHandler({
+      async handleUri(uri) {
+        try {
+          // Supabase returns the token in the URL fragment
+          const params = new URLSearchParams(uri.fragment);
+          const accessToken = params.get('access_token');
+
+          if (accessToken) {
+            await context.secrets.store('supabaseAccessToken', accessToken);
+            await updateContext(true);
+
+            vscode.window.showInformationMessage(
+              'Successfully logged in to Supabase!'
+            );
+
+            // Now that we are logged in, show the project picker.
+            await showSupabaseProjectPicker(context, accessToken);
+          } else {
+            throw new Error('Access token not found in callback URI.');
+          }
+        } catch (error) {
+          console.error(`Supabase login callback error: ${error.message}`);
+          vscode.window.showErrorMessage(
+            `Failed to complete Supabase login: ${error.message}`
+          );
+        }
+      },
+    })
+  );
+
+  // --- General Commands ---
   let setApiKeyCommand = vscode.commands.registerCommand(
     'meiko.setApiKey',
     async () => {
-      const choice = await vscode.window.showQuickPick(
-        [
-          {
-            label: 'Enter API Key',
-            description: 'Enter your Gemini API Key manually',
-          },
-        ],
-        {
-          placeHolder: 'Choose an authentication method for Meiko',
-          title: 'Meiko Authentication',
-        }
-      );
-
-      if (!choice) return; // Pengguna membatalkan
-
-      if (choice.label === 'Enter API Key') {
-        const apiKey = await vscode.window.showInputBox({
-          prompt: 'Enter your Google Gemini API Key',
-          placeHolder: 'AIzaSy...',
-          password: true,
-          ignoreFocusOut: true,
-        });
-
-        if (apiKey) {
-          // Simpan API key ke SecretStorage untuk keamanan
-          await context.secrets.store('geminiApiKey', apiKey);
-          vscode.window.showInformationMessage(
-            'Meiko: Gemini API Key has been saved successfully!'
+        const choice = await vscode.window.showQuickPick(
+            [
+              {
+                label: 'Enter API Key',
+                description: 'Enter your Gemini API Key manually',
+              },
+            ],
+            {
+              placeHolder: 'Choose an authentication method for Meiko',
+              title: 'Meiko Authentication',
+            }
           );
-        }
-      }
+    
+          if (!choice) return; // Pengguna membatalkan
+    
+          if (choice.label === 'Enter API Key') {
+            const apiKey = await vscode.window.showInputBox({
+              prompt: 'Enter your Google Gemini API Key',
+              placeHolder: 'AIzaSy...',
+              password: true,
+              ignoreFocusOut: true,
+            });
+    
+            if (apiKey) {
+              // Simpan API key ke SecretStorage untuk keamanan
+              await context.secrets.store('geminiApiKey', apiKey);
+              vscode.window.showInformationMessage(
+                'Meiko: Gemini API Key has been saved successfully!'
+              );
+            }
+          }
     }
   );
 
-  // --- Perintah untuk Supabase ---
+  // --- Supabase Commands ---
   let supabaseLoginCommand = vscode.commands.registerCommand(
     'meiko.supabaseLogin',
-    async () => {
-      const accessToken = await vscode.window.showInputBox({
-        prompt: 'Enter your Supabase Access Token',
-        password: true,
-        ignoreFocusOut: true,
-        placeHolder: 'sbp_xxxxxxxxxxxxxxxxxxxxxxxx',
-      });
-
-      if (accessToken) {
-        await context.secrets.store('supabaseAccessToken', accessToken);
-        // Langsung panggil fungsi untuk memilih proyek setelah login berhasil
-        await showSupabaseProjectPicker(context, accessToken);
-      }
+    () => {
+      const callbackUri = `vscode://${EXTENSION_ID}/callback`;
+      // The official Supabase OAuth endpoint for CLI/external tools
+      const supabaseLoginUrl = `https://supabase.com/dashboard/cli/login?redirect_to=${callbackUri}`;
+      vscode.env.openExternal(vscode.Uri.parse(supabaseLoginUrl));
     }
   );
 
@@ -82,13 +134,16 @@ function activate(context) {
     async () => {
       await context.secrets.delete('supabaseAccessToken');
       await context.globalState.update('activeSupabaseProjectRef', undefined);
+      await context.globalState.update('activeSupabaseProjectName', undefined);
+      await updateContext(false);
       vscode.window.showInformationMessage(
         'Successfully logged out from Supabase.'
       );
+      // Refresh the view, which will now show the logged-out message
+      vscode.commands.executeCommand('meiko.supabaseRefreshDbView');
     }
   );
 
-  // Perintah ini tidak lagi ditampilkan di Command Palette, tapi tetap ada jika dibutuhkan
   let internalSupabaseSetProjectCommand = vscode.commands.registerCommand(
     'meiko.supabaseSetProject',
     async () => {
@@ -103,7 +158,7 @@ function activate(context) {
     }
   );
 
-  // 3. Daftarkan WebviewViewProvider untuk chat di sidebar
+  // --- Webview Provider ---
   const provider = new MeikoChatViewProvider(context.extensionUri, context);
   context.subscriptions.push(
     vscode.window.registerWebviewViewProvider(
@@ -118,32 +173,21 @@ function activate(context) {
     supabaseLogoutCommand,
     internalSupabaseSetProjectCommand
   );
-
-  // --- Supabase DB Explorer ---
-  const supabaseDbProvider = new SupabaseDbProvider(context);
-  vscode.window.registerTreeDataProvider(
-    'supabase.tablesView',
-    supabaseDbProvider
-  );
-  context.subscriptions.push(
-    vscode.commands.registerCommand('meiko.supabaseRefreshDbView', () =>
-      supabaseDbProvider.refresh()
-    )
-  );
 }
 
 /**
- * Mengambil daftar proyek Supabase dan menampilkannya kepada pengguna untuk dipilih.
+ * Fetches Supabase projects and shows a QuickPick for the user to select one.
  * @param {vscode.ExtensionContext} context
  * @param {string} accessToken
  */
 async function showSupabaseProjectPicker(context, accessToken) {
   try {
-    const fetch = require('node-fetch');
+    const fetch = (...args) =>
+      import('node-fetch').then(({ default: fetch }) => fetch(...args));
     const projects = await vscode.window.withProgress(
       {
         location: vscode.ProgressLocation.Notification,
-        title: 'Fetching Supabase projects...',
+        title: 'Fetching Supabase projects...', 
         cancellable: false,
       },
       async () => {
@@ -152,12 +196,17 @@ async function showSupabaseProjectPicker(context, accessToken) {
         });
         if (!response.ok) {
           throw new Error(
-            `API Error (${response.status}): ${response.statusText}`
+            `API Error (${response.status}): ${await response.text()}`
           );
         }
         return await response.json();
       }
     );
+
+    if (!projects || projects.length === 0) {
+        vscode.window.showInformationMessage('No Supabase projects found for your account.');
+        return;
+    }
 
     const projectItems = projects.map((p) => ({
       label: p.name,
@@ -182,8 +231,11 @@ async function showSupabaseProjectPicker(context, accessToken) {
       vscode.window.showInformationMessage(
         `Active Supabase project set to: ${selectedProject.label}`
       );
-      // Refresh DB explorer setelah proyek dipilih
-      vscode.commands.executeCommand('meiko.supabaseRefreshDbView');
+      // Refresh DB explorer, passing the ref directly to the provider
+      vscode.commands.executeCommand(
+        'meiko.supabaseRefreshDbView',
+        selectedProject.ref
+      );
     }
   } catch (error) {
     vscode.window.showErrorMessage(
@@ -253,7 +305,12 @@ class MeikoChatViewProvider {
                   Buffer.from(fileContentBytes).toString('utf8');
                 const fileName = path.basename(fileUri.fsPath);
 
-                fileContexts += `CONTEXT from file "${fileName}":\n\`\`\`\n${fileContent}\n\`\`\`\n\n`;
+                fileContexts += `CONTEXT from file "${fileName}":\n\
+\
+${fileContent}\
+\
+\
+`;
               } catch (e) {
                 this._view.webview.postMessage({
                   type: 'showError',
@@ -311,7 +368,15 @@ class MeikoChatViewProvider {
               history.push({ role: 'user', text: prompt });
               history.push({
                 role: 'assistant',
-                text: `Generated SQL for your request:\n\`\`\`sql\n${sqlCommand}\n\`\`\``,
+                text: `Generated SQL for your request:\n\
+\
+\
+```sql\
+${sqlCommand}\
+```\
+\
+\
+`,
               });
               await this._context.globalState.update(
                 'meikoChatHistory',
@@ -319,7 +384,15 @@ class MeikoChatViewProvider {
               );
               this._view.webview.postMessage({
                 type: 'addResponse',
-                value: `Generated SQL for your request:\n\`\`\`sql\n${sqlCommand}\n\`\`\``,
+                value: `Generated SQL for your request:\n\
+\
+\
+```sql\
+${sqlCommand}\
+```\
+\
+\
+`,
               });
             } catch (error) {
               this._view.webview.postMessage({
