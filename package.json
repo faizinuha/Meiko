@@ -157,7 +157,7 @@
     "@tensorflow/tfjs-node": "^4.4.0",
     "@types/node": "^22.8.4",
     "@types/vscode": "^1.95.0",
-    "electron-builder": "^25.1.8",
+    "electron-builder": "^26.8.1",
     "openai": "^4.0.0",
     "prettier": "^3.3.3",
     "typescript": "^5.0.0",
